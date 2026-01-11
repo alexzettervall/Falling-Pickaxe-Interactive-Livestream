@@ -1,0 +1,12 @@
+"filename", "language", "Python", "comment", "blank", "total"
+"c:\Users\zzsys\Desktop\python\simulation\src\block.py", "Python", 10, 0, 2, 12
+"c:\Users\zzsys\Desktop\python\simulation\src\camera.py", "Python", 31, 0, 10, 41
+"c:\Users\zzsys\Desktop\python\simulation\src\chunk.py", "Python", 28, 4, 4, 36
+"c:\Users\zzsys\Desktop\python\simulation\src\direction.py", "Python", 6, 0, 1, 7
+"c:\Users\zzsys\Desktop\python\simulation\src\location.py", "Python", 8, 0, 2, 10
+"c:\Users\zzsys\Desktop\python\simulation\src\main.py", "Python", 33, 4, 10, 47
+"c:\Users\zzsys\Desktop\python\simulation\src\material.py", "Python", 9, 0, 2, 11
+"c:\Users\zzsys\Desktop\python\simulation\src\position.py", "Python", 7, 0, 1, 8
+"c:\Users\zzsys\Desktop\python\simulation\src\render.py", "Python", 24, 0, 5, 29
+"c:\Users\zzsys\Desktop\python\simulation\src\world.py", "Python", 19, 0, 6, 25
+"Total", "-", 175, 8, 43, 226
