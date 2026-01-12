@@ -11,6 +11,7 @@ class RigidBody(Component):
 
         self.body = pymunk.Body()
         self.body.position = (self.entity.location.position.x, self.entity.location.position.y)
+        self.body.torque = 100
         self.poly = pymunk.Poly.create_box(self.body, (self.entity.size.x, self.entity.size.y))
         self.poly.mass = 1
         physics.physicsManager.add_body(self.body)

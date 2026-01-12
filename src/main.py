@@ -13,10 +13,10 @@ import pymunk
 DEBUG = True
 
 FPS = 60
-WIDTH, HEIGHT = 720, 1280
-CHUNK_SIZE = (16, 16)
+WIDTH, HEIGHT = 720,720
+CHUNK_SIZE = (16, 32)
 BLOCK_SIZE = 1
-CAMERA_SIZE = 18
+CAMERA_SIZE = 40
 
 
 pygame.init()
@@ -31,7 +31,7 @@ physics_manager = PhysicsManager()
 variables.load_sprites()
 
 # Game camera
-variables.camera = Camera(screen, Location(None, Vector2(0, 8)), CAMERA_SIZE)
+variables.camera = Camera(screen, Location(None, Vector2(0, 0)), CAMERA_SIZE)
 # Game world
 world = World(CHUNK_SIZE)
 

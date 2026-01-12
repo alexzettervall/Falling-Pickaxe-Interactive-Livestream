@@ -1,6 +1,5 @@
 from pygame import Vector2
 
-
 class Location():
     def __init__(self, world, position, rotation = 0) -> None:
         self.world = world

@@ -1,3 +1,4 @@
+from bedrock import Bedrock
 from block import Block
 from material import Material
 from location import Location
@@ -8,6 +9,7 @@ class Chunk:
         self.size = size
         self.location = location # Chunk position is in the center of the chunk and blocks are generated around it
         self.blocks: list[Block] = self.generate_blocks(size)
+        self.blocks_to_remove = []
 
     # Generate blocks and returns a list of lists containing them. 
     # The outer list contains each x segment of blocks.
@@ -24,7 +26,13 @@ class Chunk:
                 material = Material.STONE
                 if y_pos > 0:
                     material = Material.GRASS
-                blocks.append(Block(material, Location(self.location.world, Vector2(x_pos, y_pos))))
+                if x == 0 or x == size[0] - 1:
+                    material = Material.BEDROCK
+                if material == Material.BEDROCK:
+                    blocks.append(Bedrock(self, material, Location(self.location.world, Vector2(x_pos, y_pos))))
+                else:
+                    blocks.append(Block(self, material, Location(self.location.world, Vector2(x_pos, y_pos))))
+
         return blocks
     
     def get_block_at_position(self, position: Vector2, block_size: float = 1) -> Block | None:
@@ -37,3 +45,11 @@ class Chunk:
                 return block
                 
         return None
+    
+    def tick(self):
+        for block in self.blocks_to_remove:
+            self.blocks.remove(block)
+        self.blocks_to_remove = []
+    
+    def remove_block(self, block: Block):
+        self.blocks_to_remove.append(block)

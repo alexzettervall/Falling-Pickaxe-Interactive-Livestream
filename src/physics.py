@@ -11,6 +11,8 @@ class PhysicsManager():
     def add_body(self, body: Body):
         self.space.add(body)
         for shape in body.shapes:
+            shape.elasticity = 0.9
+            shape.friction = 0.5
             self.space.add(shape)
 
     def remove_body(self, body: Body):
