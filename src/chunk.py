@@ -1,7 +1,7 @@
 from block import Block
 from material import Material
 from location import Location
-from position import Position
+from pygame import Vector2
 
 class Chunk:
     def __init__(self, location: Location, size: tuple[int, int]):
@@ -24,10 +24,10 @@ class Chunk:
                 material = Material.STONE
                 if y_pos > 0:
                     material = Material.GRASS
-                blocks.append(Block(material, Location(self.location.world, Position(x_pos, y_pos))))
+                blocks.append(Block(material, Location(self.location.world, Vector2(x_pos, y_pos))))
         return blocks
     
-    def get_block_at_position(self, position: Position, block_size: float = 1) -> Block | None:
+    def get_block_at_position(self, position: Vector2, block_size: float = 1) -> Block | None:
         for block in self.blocks:
             if block == None:
                 continue

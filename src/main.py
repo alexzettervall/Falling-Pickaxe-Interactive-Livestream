@@ -1,10 +1,14 @@
 import pygame
 from location import Location
+from physics import PhysicsManager
 import render
 from camera import Camera
 from world import World
 from material import *
-from position import Position
+from pygame import Vector2
+import variables
+import pymunk
+
 
 DEBUG = True
 
@@ -20,10 +24,21 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
 running = True
 
+# Physics Manager
+physics_manager = PhysicsManager()
+
+# Load sprites
+variables.load_sprites()
+
+# Game camera
+variables.camera = Camera(screen, Location(None, Vector2(0, 8)), CAMERA_SIZE)
 # Game world
 world = World(CHUNK_SIZE)
-# Game camera
-camera = Camera(screen, Location(world, Position(0, 8)), CAMERA_SIZE)
+
+# Set world of camera
+# We have to set this after because the world has to be created after the camera
+variables.camera.location.world = world
+
 # Material Data
 material_data: dict[Material, MaterialData]  = dict()
 
@@ -39,8 +54,7 @@ while running:
     screen.fill("black")
 
     # RENDER
-    render.render_world(camera, material_data, world, BLOCK_SIZE)
-    camera.location.move(0, -0.05)
+    render.render_world(variables.camera, material_data, world, BLOCK_SIZE)
     world.tick()
 
     pygame.display.flip()

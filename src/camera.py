@@ -1,7 +1,7 @@
 from math import ceil
 from pygame import Surface
-from position import Position
 from location import Location
+from pygame import Vector2
 
 class Camera:
     def __init__(self, surface: Surface, location: Location, size: float): # Size is the horizontal world distance from the left of the screen to the right of the screen.
@@ -9,7 +9,7 @@ class Camera:
         self.location: Location = location
         self.size: float = size
     
-    def screen_to_world_point(self, screen_position: Position) -> Position:
+    def screen_to_world_point(self, screen_position: Vector2) -> Vector2:
         width = self.surface.get_width()
         height = self.surface.get_height()
         conversion = width / self.size
@@ -20,9 +20,9 @@ class Camera:
         world_x = (relative_pixel_x / conversion) + self.location.position.x
         world_y = (-relative_pixel_y / conversion) + self.location.position.y
 
-        return Position(world_x, world_y)
+        return Vector2(world_x, world_y)
     
-    def world_to_screen_point(self, position: Position) -> Position:
+    def world_to_screen_point(self, position: Vector2) -> Vector2:
         width = self.surface.get_width()
         height = self.surface.get_height()
         conversion = width / self.size
@@ -32,7 +32,7 @@ class Camera:
 
         screen_x = relative_pixel_x + width / 2
         screen_y = -relative_pixel_y + height / 2
-        return Position(screen_x, screen_y)
+        return Vector2(screen_x, screen_y)
 
 
     def world_to_screen_size(self, size: float) -> int:
