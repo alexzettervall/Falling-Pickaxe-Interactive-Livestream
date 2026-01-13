@@ -8,6 +8,8 @@ DEBUG = False
 DELTA_TIME = 1 / 60
 PHYSICS_SCALE = 32
 RENDER_DISTANCE = 32
+TNT_FUSE_TIME: float = 3.0
+TNT_FLASH_INTERVAL: float = 0.4
 BLOCK_SIZE = pygame.Vector2(1, 1)
 
 camera: "Camera" # type: ignore

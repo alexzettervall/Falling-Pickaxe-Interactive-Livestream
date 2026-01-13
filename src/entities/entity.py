@@ -8,23 +8,25 @@ C = TypeVar("C", bound=Component)
 
 class Entity():
     def __init__(self, location, size) -> None:
-        self.components: Dict[Type[Component], Component] = {}
+        self.components: list[Component] = []
         self.location: Location = location
         self.size: Vector2 = size
 
     def add_component(self, component: C) -> C:
-        self.components[type(component)] = component
+        self.components.append(component)
         return component
 
     def get_component(self, component_type: Type[C]) -> Optional[C]:
-        component = self.components.get(component_type)
-        return cast(Optional[C], component)
+        for component in self.components:
+            if isinstance(component, component_type):
+                return component
+        return None
 
     def tick(self):
-        for component in self.components.values():
+        for component in self.components:
             component.tick()
 
     def remove(self):
         self.location.world.remove_entity(self)
-        for component in self.components.values():
+        for component in self.components:
             component.on_remove()
