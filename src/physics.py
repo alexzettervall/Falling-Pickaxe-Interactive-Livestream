@@ -8,9 +8,9 @@ import pymunk
 from pymunk import Arbiter, Body, PointQueryInfo, Poly, Shape, ShapeFilter, Space, Vec2d
 import pymunk.pygame_util
 from entities.entity import Entity
-from variables import DELTA_TIME
-from variables import PHYSICS_SCALE
-import variables
+from game_data import DELTA_TIME
+from game_data import PHYSICS_SCALE
+import game_data
 if TYPE_CHECKING:
     from components.rigidbody import RigidBody
 
@@ -64,10 +64,10 @@ class PhysicsManager():
         self.debug()
 
     def debug(self):
-        if variables.DEBUG:
-            draw_options = pymunk.pygame_util.DrawOptions(variables.camera.surface)
+        if game_data.DEBUG:
+            draw_options = pymunk.pygame_util.DrawOptions(game_data.camera.surface)
             draw_options.transform = pymunk.Transform(
-                a=1, b=0, c=0, d=-1, tx=variables.SCREEN_WIDTH / 2, ty=variables.SCREEN_HEIGHT / 2
+                a=1, b=0, c=0, d=-1, tx=game_data.SCREEN_WIDTH / 2, ty=game_data.SCREEN_HEIGHT / 2
             )
             self.space.debug_draw(draw_options)
 

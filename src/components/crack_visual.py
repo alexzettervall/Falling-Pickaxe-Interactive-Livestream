@@ -2,7 +2,7 @@ from math import floor
 from typing import override
 from component import Component
 from components.health import Health
-import variables
+import game_data
 
 
 class CrackVisual(Component):
@@ -16,5 +16,5 @@ class CrackVisual(Component):
     def on_health_change(self):
         health = self.health.health
         max_health = self.health.max_health
-        n = len(variables.destroy_stage_sprites)
+        n = len(game_data.destroy_stage_sprites)
         self.destroy_stage_index = min(floor(n * ((max_health - health) / max_health)), n)

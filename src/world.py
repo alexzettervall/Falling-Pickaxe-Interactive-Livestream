@@ -14,7 +14,7 @@ from location import Location
 from particles.particles import ParticleManager
 import physics
 import random
-import variables
+import game_data
 tick = 0
 class World:
     def __init__(self, chunk_size: tuple[int, int]):
@@ -32,7 +32,7 @@ class World:
     def tick(self):
         global tick
         tick += 1
-        if tick % 100 == 0:
+        if tick % 6 == 0:
             tnt = self.add_entity(TNT(Location(self, Vector2(self.pickaxe.location.position.x, self.pickaxe.location.position.y + 3))))
             rb = tnt.get_component(RigidBody)
             if rb != None:
@@ -103,10 +103,10 @@ class World:
                 block_health.damage(damage)
 
     def load_chunks(self):
-        location: Location = variables.camera.location
+        location: Location = game_data.camera.location
         if not isinstance(location, Location):
             return
-        min: int = round((location.position.y - variables.RENDER_DISTANCE) / self.chunk_size[1])
+        min: int = round((location.position.y - game_data.RENDER_DISTANCE) / self.chunk_size[1])
         max: int = round(location.position.y / self.chunk_size[1])
         for i in range(min, max + 1, 1):
             chunk = self.get_chunk_at_position(Vector2(0, i * self.chunk_size[1]))
@@ -118,7 +118,7 @@ class World:
         location: Location = self.pickaxe.location
         for chunk in self.chunks:
             dist = location.position.distance_to(chunk.location.position)
-            if dist > variables.RENDER_DISTANCE and chunk.location.position.y > location.position.y:
+            if dist > game_data.RENDER_DISTANCE and chunk.location.position.y > location.position.y:
                 chunk.remove()
 
     
