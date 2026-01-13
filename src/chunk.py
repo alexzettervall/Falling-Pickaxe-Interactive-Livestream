@@ -3,6 +3,8 @@ from block import Block
 from material import Material
 from location import Location
 from pygame import Vector2
+import random
+import variables
 
 class Chunk:
     def __init__(self, location: Location, size: tuple[int, int]):
@@ -24,10 +26,15 @@ class Chunk:
                 x_pos = x + center_offset_x + self.location.position.x
                 y_pos = y + center_offset_y + self.location.position.y
                 material = Material.STONE
-                if y_pos > 0:
-                    material = Material.GRASS
                 if x == 0 or x == size[0] - 1:
                     material = Material.BEDROCK
+                elif y_pos > -5:
+                    continue
+                elif y_pos % 40 == 0:
+                    material = Material.OBSIDIAN
+                else:
+                    material = self.get_random_material()
+
                 if material == Material.BEDROCK:
                     blocks.append(Bedrock(self, material, Location(self.location.world, Vector2(x_pos, y_pos))))
                 else:
@@ -53,3 +60,19 @@ class Chunk:
     
     def remove_block(self, block: Block):
         self.blocks_to_remove.append(block)
+
+    def remove(self):
+        for block in self.blocks:
+            block.destroy()
+        self.location.world.chunks_to_remove.append(self)
+
+    def get_random_material(self):
+        total_weight = 0
+        for spawn_rate in variables.MATERIAL_SPAWN_RATE.values():
+            total_weight += spawn_rate
+        for material in variables.MATERIAL_SPAWN_RATE.keys():
+            rand = random.uniform(0, total_weight)
+            spawn_rate = variables.MATERIAL_SPAWN_RATE[material]
+            if rand < spawn_rate:
+                return material
+            total_weight -= spawn_rate

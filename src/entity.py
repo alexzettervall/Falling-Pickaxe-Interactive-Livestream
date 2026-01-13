@@ -1,6 +1,7 @@
 from typing import Type, TypeVar, Optional, Dict, cast
 
 from pygame import Vector2
+from block import Block
 from component import Component
 from location import Location
 
@@ -27,3 +28,6 @@ class Entity():
         self.location.world.remove_entity(self)
         for component in self.components.values():
             component.on_remove()
+
+    def on_block_collision(self, block: Block):
+        pass

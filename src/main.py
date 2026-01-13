@@ -1,6 +1,8 @@
 import pygame
+import pymunk.pygame_util
 from location import Location
 from physics import PhysicsManager
+import physics
 import render
 from camera import Camera
 from world import World
@@ -8,15 +10,16 @@ from material import *
 from pygame import Vector2
 import variables
 import pymunk
+import math
 
 
 DEBUG = True
 
 FPS = 60
-WIDTH, HEIGHT = 720,720
-CHUNK_SIZE = (16, 32)
+WIDTH, HEIGHT = 700,1300
+CHUNK_SIZE = (16, 9)
 BLOCK_SIZE = 1
-CAMERA_SIZE = 40
+CAMERA_SIZE = 16
 
 
 pygame.init()
@@ -39,12 +42,10 @@ world = World(CHUNK_SIZE)
 # We have to set this after because the world has to be created after the camera
 variables.camera.location.world = world
 
-# Material Data
-material_data: dict[Material, MaterialData]  = dict()
-
-material_data[Material.BEDROCK] = MaterialData(pygame.image.load("..//sprites//blocks//bedrock.png"))
-material_data[Material.GRASS] = MaterialData(pygame.image.load("..//sprites//blocks//grass.png"))
-material_data[Material.STONE] = MaterialData(pygame.image.load("..//sprites//blocks//stone.png"))
+draw_options = pymunk.pygame_util.DrawOptions(screen)
+draw_options.transform = pymunk.Transform(
+    a=1, b=0, c=0, d=-1, tx=WIDTH / 2, ty=HEIGHT / 2
+)
 
 while running:
     for event in pygame.event.get():
@@ -54,9 +55,13 @@ while running:
     screen.fill("black")
 
     # RENDER
-    render.render_world(variables.camera, material_data, world, BLOCK_SIZE)
+    render.render_world(variables.camera, world, BLOCK_SIZE)
+    #physics.physicsManager.space.debug_draw(draw_options)
     world.tick()
 
+    
+    variables.camera.move_towards(world.pickaxe.location.position.y)
+    
     pygame.display.flip()
 
     clock.tick(FPS)

@@ -25,4 +25,5 @@ class SpriteRenderer(Component):
         sized_sprite = pygame.transform.scale(sprite, (screen_size_x, screen_size_y))
         rect = pygame.Rect(screen_position.x - screen_size_x / 2, screen_position.y - screen_size_y / 2, screen_size_x, screen_size_y)
         rotated_sprite = pygame.transform.rotate(sized_sprite, location.rotation)
-        camera.surface.blit(rotated_sprite, rect)
+        rotated_rect = rotated_sprite.get_rect(center=rect.center)
+        camera.surface.blit(rotated_sprite, rotated_rect)

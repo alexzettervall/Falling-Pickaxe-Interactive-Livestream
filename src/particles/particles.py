@@ -1,0 +1,84 @@
+from enum import Enum
+from math import cos, floor, sin
+import random
+from typing import override
+
+from numpy import var
+from pygame import Surface, Vector2
+import pygame
+
+from camera import Camera
+from location import Location
+import variables
+from variables import DELTA_TIME
+
+class ParticleType(Enum):
+    EXPLOSION = 1,
+
+class Particle():
+    def __init__(self, particle_manager, location: Location, size: Vector2, sprite: Surface, time: float) -> None:
+        self.particle_manager = particle_manager
+        self.location = location
+        self.size = size
+        self.sprite = sprite
+        self.time = time
+    
+    def tick(self):
+        self.time -= DELTA_TIME
+        if self.time <= 0:
+            self.remove()
+        pass
+
+    def remove(self):
+        self.particle_manager.remove(self)
+
+class ExplosionParticle(Particle):
+    def __init__(self, particle_manager, location: Location) -> None:
+        spread = 2
+        location.move(random.uniform(-spread, spread), random.uniform(-spread, spread))
+        self.size = Vector2(1, 1)
+        self.life_span = 0.25
+        self.time = self.life_span
+        self.sprite_index = 0
+        super().__init__(particle_manager, location, self.size, variables.explosion_sprites[0], self.time)
+
+    @override
+    def tick(self):
+        self.sprite_index = floor(0 + 15 * ((self.life_span - self.time) / self.life_span))
+        self.sprite = variables.explosion_sprites[self.sprite_index]
+        super().tick()
+
+class ParticleManager():
+    def __init__(self) -> None:
+        self.particles: list[Particle] = []
+        self.particles_to_remove: list[Particle] = []
+
+    def emit(self, particle_type: ParticleType, location: Location, count: int):
+        for i in range(count):
+            if particle_type == ParticleType.EXPLOSION:
+                self.particles.append(ExplosionParticle(self, location.clone()))
+
+    def remove(self, particle):
+        self.particles_to_remove.append(particle)
+
+    def render(self):
+        for particle in self.particles:
+            location = particle.location
+            size = particle.size
+            camera = variables.camera
+            screen_position = camera.world_to_screen_point(location.position)
+            screen_size_x = camera.world_to_screen_size(size.x)
+            screen_size_y = camera.world_to_screen_size(size.y)
+            sized_sprite = pygame.transform.scale(particle.sprite, (screen_size_x, screen_size_y))
+            rect = pygame.Rect(screen_position.x - screen_size_x / 2, screen_position.y - screen_size_y / 2, screen_size_x, screen_size_y)
+            rotated_sprite = pygame.transform.rotate(sized_sprite, location.rotation)
+            rotated_rect = rotated_sprite.get_rect(center=rect.center)
+            camera.surface.blit(rotated_sprite, rotated_rect)
+
+    def tick(self):
+        for particle in self.particles_to_remove:
+            self.particles.remove(particle)
+        self.particles_to_remove = []
+
+        for particle in self.particles:
+            particle.tick()

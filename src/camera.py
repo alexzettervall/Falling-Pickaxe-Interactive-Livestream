@@ -40,3 +40,12 @@ class Camera:
     
     def screen_to_world_size(self, screen_size: int) -> float:
         return screen_size * (self.size / self.surface.get_width())
+    
+    def move_towards(self, pos_y):
+        t = 0.05
+        a = self.location.position.y
+        b = pos_y
+
+        f = a + t * (b - a)
+
+        self.location.position.y = f

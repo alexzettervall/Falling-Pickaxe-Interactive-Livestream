@@ -3,14 +3,19 @@ from pygame import Vector2
 from components.rigidbody import RigidBody
 from components.sprite_renderer import SpriteRenderer
 from entity import Entity
+from location import Location
+from particles.particles import ParticleType
 import variables
+import pymunk
+from variables import PHYSICS_SCALE
 
 class TNT(Entity):
     def __init__(self, location) -> None:
-        super().__init__(location, Vector2(2, 2))
+        super().__init__(location, Vector2(1, 1))
 
         sprite = variables.sprite_tnt
-        self.add_component(RigidBody(self))
+        shape = pymunk.Poly.create_box(None, (self.size.x * PHYSICS_SCALE, self.size.y * PHYSICS_SCALE))
+        self.add_component(RigidBody(self, [shape]))
         self.add_component(SpriteRenderer(self, variables.camera, sprite))
 
         self.fuse: float = 3
@@ -19,7 +24,11 @@ class TNT(Entity):
     def tick(self):
         self.fuse -= variables.DELTA_TIME
         if self.fuse <= 0:
-            self.location.world.create_explosion(self.location, 5, 30)
-            self.remove()
+            self.explode()
         return super().tick()
+    
+    def explode(self):
+        self.location.world.particle_manager.emit(ParticleType.EXPLOSION, self.location, 20)
+        self.location.world.create_explosion(self.location, 4, 100)
+        self.remove()
     
