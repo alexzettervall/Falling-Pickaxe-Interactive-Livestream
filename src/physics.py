@@ -87,6 +87,8 @@ class PhysicsManager():
         self.rigidbodies_to_remove.clear()
     
     def on_collision_begin(self, arbiter: Arbiter, space: Space, any: Any):
+        if arbiter == None:
+            return
         if len(arbiter.bodies) != 2:
             return
         rigidbody1 = self.body_rigidbodies.get(arbiter.bodies[0])
@@ -97,6 +99,8 @@ class PhysicsManager():
         rigidbody2.on_collision_begin(rigidbody1)
 
     def on_collision_end(self, arbiter: Arbiter, space: Space, any: Any):
+        if arbiter == None:
+            return
         if len(arbiter.bodies) != 2:
             return
         rigidbody1 = self.body_rigidbodies.get(arbiter.bodies[0])

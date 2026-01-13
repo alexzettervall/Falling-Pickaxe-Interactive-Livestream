@@ -93,9 +93,7 @@ class World:
     
     def create_explosion(self, location: Location, size: float, strength: float):
         blocks = self.get_blocks_in_range(location, size)
-        print("1")
         for block in blocks:
-            print("2")
             dist = location.position.distance_to(block.location.position)
             if dist < size:
                 damage = strength - strength * (dist / size)
