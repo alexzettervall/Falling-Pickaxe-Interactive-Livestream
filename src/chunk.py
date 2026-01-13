@@ -1,5 +1,5 @@
-from bedrock import Bedrock
-from block import Block
+from entities.block import Block
+from entities.damageable_block import DamageableBlock
 from material import Material
 from location import Location
 from pygame import Vector2
@@ -36,9 +36,9 @@ class Chunk:
                     material = self.get_random_material()
 
                 if material == Material.BEDROCK:
-                    blocks.append(Bedrock(self, material, Location(self.location.world, Vector2(x_pos, y_pos))))
-                else:
                     blocks.append(Block(self, material, Location(self.location.world, Vector2(x_pos, y_pos))))
+                else:
+                    blocks.append(DamageableBlock(self, material, Location(self.location.world, Vector2(x_pos, y_pos))))
 
         return blocks
     
@@ -63,7 +63,7 @@ class Chunk:
 
     def remove(self):
         for block in self.blocks:
-            block.destroy()
+            block.remove()
         self.location.world.chunks_to_remove.append(self)
 
     def get_random_material(self):

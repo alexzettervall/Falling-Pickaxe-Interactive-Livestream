@@ -2,20 +2,26 @@ from typing import override
 from pygame import Vector2
 from components.rigidbody import RigidBody
 from components.sprite_renderer import SpriteRenderer
-from entity import Entity
+from entities.entity import Entity
 from location import Location
 from particles.particles import ParticleType
 import variables
-import pymunk
 from variables import PHYSICS_SCALE
 
 class TNT(Entity):
     def __init__(self, location) -> None:
-        super().__init__(location, Vector2(1, 1))
+        super().__init__(location, size = Vector2(1, 1))
 
         sprite = variables.sprite_tnt
-        shape = pymunk.Poly.create_box(None, (self.size.x * PHYSICS_SCALE, self.size.y * PHYSICS_SCALE))
-        self.add_component(RigidBody(self, [shape]))
+        
+        vertices = [
+            (-0.5, 0.5),
+            (0.5, 0.5),
+            (0.5, -0.5),
+            (-0.5, -0.5)
+        ]
+
+        self.add_component(RigidBody(self, [vertices]))
         self.add_component(SpriteRenderer(self, variables.camera, sprite))
 
         self.fuse: float = 3

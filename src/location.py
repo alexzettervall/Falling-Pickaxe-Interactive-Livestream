@@ -1,8 +1,12 @@
+from __future__ import annotations
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from world import World
 from pygame import Vector2
 
 class Location():
-    def __init__(self, world, position, rotation: float = 0.0) -> None:
-        self.world = world
+    def __init__(self, world: World, position: Vector2, rotation: float = 0.0) -> None:
+        self.world: World = world
         self.position: Vector2 = position
         self.rotation: float = rotation
 

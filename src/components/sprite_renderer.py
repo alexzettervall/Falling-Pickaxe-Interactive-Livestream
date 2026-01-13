@@ -3,20 +3,26 @@ from typing import override
 import pygame
 from camera import Camera
 from component import Component
+import variables
 
 
 class SpriteRenderer(Component):
-    def __init__(self, entity, camera, sprite) -> None:
+    def __init__(self, entity, camera: Camera | None, sprite) -> None:
         super().__init__(entity)
 
         self.sprite = sprite
-        self.camera = camera
+        self.camera: Camera | None = camera
 
     @override
     def tick(self):
         self.render(self.camera, self.sprite)
 
-    def render(self, camera: Camera, sprite):
+    def render(self, camera: Camera | None, sprite):
+        if camera == None:
+            camera = variables.camera
+        if camera == None:
+            return
+        
         location = self.entity.location
         size = self.entity.size
         screen_position = camera.world_to_screen_point(location.position)

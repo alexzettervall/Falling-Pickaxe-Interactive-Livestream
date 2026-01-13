@@ -1,6 +1,6 @@
 class Component():
     def __init__(self, entity) -> None:
-        from entity import Entity
+        from entities.entity import Entity
         self.entity: Entity = entity
 
     def tick(self):

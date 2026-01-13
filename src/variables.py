@@ -3,9 +3,12 @@ from textures import GetTexture
 from material import Material
 from material import MaterialData
 
+SCREEN_WIDTH, SCREEN_HEIGHT = 700,1300
+DEBUG = False
 DELTA_TIME = 1 / 60
 PHYSICS_SCALE = 32
 RENDER_DISTANCE = 32
+BLOCK_SIZE = pygame.Vector2(1, 1)
 
 camera: "Camera" # type: ignore
 
@@ -84,7 +87,7 @@ MATERIAL_SPAWN_RATE = {
     Material.OBSIDIAN: 1,
 }
 
-def get_material_health(material):
+def get_material_health(material) -> float:
     if material == Material.BEDROCK:
         return 10_000_000_000
 
