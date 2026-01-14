@@ -1,7 +1,8 @@
 
 from pygame import Rect, Surface
-import game_data
+from game_data import config
 import pygame
+import game_data
 
 
 class Background():
@@ -12,7 +13,7 @@ class Background():
         self._rescale()
 
     def _rescale(self):
-        screen_w, screen_h = game_data.SCREEN_WIDTH, game_data.SCREEN_HEIGHT
+        screen_w, screen_h = config.screen_width, config.screen_height
         sprite_w, sprite_h = self.sprite.get_size()
         scale = max(screen_w / sprite_w, screen_h / sprite_h)
 

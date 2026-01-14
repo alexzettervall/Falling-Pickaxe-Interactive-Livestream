@@ -3,7 +3,8 @@ import json
 import os
 from typing import TYPE_CHECKING, Any
 import pygame
-from pygame import Surface
+from pygame import Surface, Vector2
+from data.config import Config
 from material import MaterialData
 from sound_data import SoundData
 from pygame.mixer import Sound
@@ -60,3 +61,40 @@ def load_sound_data() -> dict[str, SoundData]:
         sound_datas[sound] = SoundData(sounds, volume)
 
     return sound_datas
+
+def load_config() -> Config:
+    path = "data//config.json"
+
+    config_json: dict[str, Any] = json.loads(open(path, 'r').read())
+
+    screen_width: int = config_json["screen_width"]
+    screen_height: int = config_json["screen_height"]
+    chunk_size: tuple[int, int] = tuple(config_json["chunk_size"])
+    camera_size: int = config_json["camera_size"]
+    fps: float = config_json["fps"]
+    debug: bool = config_json["debug"]
+    delta_time: float = config_json["delta_time"]
+    physics_scale: float = config_json["physics_scale"]
+    render_distance: float = config_json["render_distance"]
+    tnt_fuse_time: float = config_json["tnt_fuse_time"]
+    tnt_flash_interval: float = config_json["tnt_flash_interval"]
+    block_size: Vector2 = Vector2(config_json["block_size"])
+    pickaxe_break_delay: float = config_json["pickaxe_break_delay"]
+
+    config = Config(
+        screen_width=screen_width,
+        screen_height=screen_height,
+        chunk_size=chunk_size,
+        camera_size=camera_size,
+        fps=fps,
+        debug=debug,
+        delta_time=delta_time,
+        physics_scale=physics_scale,
+        render_distance=render_distance,
+        tnt_fuse_time=tnt_fuse_time,
+        tnt_flash_interval=tnt_flash_interval,
+        block_size=block_size,
+        pickaxe_break_delay=pickaxe_break_delay,
+    )
+
+    return config

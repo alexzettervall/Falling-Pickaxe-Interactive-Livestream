@@ -112,7 +112,7 @@ class World:
         location: Location = game_data.camera.location
         if not isinstance(location, Location):
             return
-        min: int = round((location.position.y - game_data.RENDER_DISTANCE) / self.chunk_size[1])
+        min: int = round((location.position.y - game_data.config.render_distance) / self.chunk_size[1])
         max: int = round(location.position.y / self.chunk_size[1])
         for i in range(min, max + 1, 1):
             chunk = self.get_chunk_at_position(Vector2(0, i * self.chunk_size[1]))
@@ -124,7 +124,7 @@ class World:
         location: Location = self.pickaxe.location
         for chunk in self.chunks:
             dist = location.position.distance_to(chunk.location.position)
-            if dist > game_data.RENDER_DISTANCE and chunk.location.position.y > location.position.y:
+            if dist > game_data.config.render_distance and chunk.location.position.y > location.position.y:
                 chunk.remove()
 
     

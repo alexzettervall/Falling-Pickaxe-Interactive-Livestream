@@ -4,7 +4,7 @@ from components import rigidbody
 from components.health import Health
 from components.rigidbody import RigidBody
 from entities.block import Block
-from game_data import DELTA_TIME, PICKAXE_BREAK_DELAY
+from game_data import config
 
 
 class BlockBreaker(Component):
@@ -35,12 +35,12 @@ class BlockBreaker(Component):
         
         block_health.damage(self.damage)
         self.entity.location.world.sound_manager.play_sound("stone")
-        self.block_damage_timers[block] = PICKAXE_BREAK_DELAY
+        self.block_damage_timers[block] = config.pickaxe_break_delay
 
     @override
     def tick(self):
         for block in self.block_damage_timers.keys():
-            self.block_damage_timers[block] -= DELTA_TIME
+            self.block_damage_timers[block] -= config.delta_time
 
         return super().tick()
 

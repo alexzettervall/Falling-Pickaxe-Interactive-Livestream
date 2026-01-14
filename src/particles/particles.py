@@ -11,7 +11,7 @@ from camera import Camera
 import direction
 from location import Location
 import game_data
-from game_data import DELTA_TIME
+from game_data import config
 
 class ParticleType(Enum):
     EXPLOSION = 1,
@@ -27,7 +27,7 @@ class Particle():
         self.alpha = 1
     
     def tick(self):
-        self.time -= DELTA_TIME
+        self.time -= config.delta_time
         if self.time <= 0:
             self.remove()
         pass
@@ -74,8 +74,8 @@ class BlockParticle(Particle):
 
     @override
     def tick(self):
-        self.location.move(self.velocity.x * DELTA_TIME, self.velocity.y * DELTA_TIME)
-        self.velocity.y -= 5 * DELTA_TIME
+        self.location.move(self.velocity.x * config.delta_time, self.velocity.y * config.delta_time)
+        self.velocity.y -= 5 * config.delta_time
         self.alpha = 1 - (self.life_span - self.time) / self.life_span
 
         return super().tick()

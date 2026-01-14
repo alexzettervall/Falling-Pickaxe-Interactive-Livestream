@@ -1,15 +1,13 @@
 from typing import override
 from pygame import Vector2, ver
 from components.block_breaker import BlockBreaker
-from entities.block import Block
 from components.rigidbody import RigidBody
 from components.sprite_renderer import SpriteRenderer
 from entities.entity import Entity
-from particles.particles import ParticleManager, ParticleType
-from game_data import PHYSICS_SCALE
 import game_data
 
 class Pickaxe(Entity):
+    @override
     def __init__(self, location) -> None:
         super().__init__(location, Vector2(2, 2))
 

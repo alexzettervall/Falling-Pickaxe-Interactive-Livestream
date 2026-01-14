@@ -20,8 +20,8 @@ def render_chunk(camera: Camera, chunk: Chunk):
 def render_block(camera: Camera, block: Block,):
     position = block.location.position
     screen_position = camera.world_to_screen_point(position)
-    screen_size_x = camera.world_to_screen_size(game_data.BLOCK_SIZE.x)
-    screen_size_y = camera.world_to_screen_size(game_data.BLOCK_SIZE.y)
+    screen_size_x = camera.world_to_screen_size(game_data.config.block_size.x)
+    screen_size_y = camera.world_to_screen_size(game_data.config.block_size.y)
     
     material_data = game_data.MATERIAL_DATA
 

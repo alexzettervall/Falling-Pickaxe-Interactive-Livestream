@@ -29,13 +29,13 @@ class TNT(Entity):
         self.sprite_renderer = self.add_component(SpriteRenderer(self, game_data.camera, sprite))
         self.flash_sprite_renderer = self.add_component(SpriteRenderer(self, game_data.camera, square))
 
-        self.fuse: float = game_data.TNT_FUSE_TIME
+        self.fuse: float = game_data.config.tnt_fuse_time
         self.location.world.sound_manager.play_sound("tnt_fuse")
 
     @override
     def tick(self):
-        self.flash_sprite_renderer.alpha = math.sin(2 * math.pi * (game_data.TNT_FUSE_TIME - self.fuse) / game_data.TNT_FLASH_INTERVAL) / 2 + 0.5
-        self.fuse -= game_data.DELTA_TIME
+        self.flash_sprite_renderer.alpha = math.sin(2 * math.pi * (game_data.config.tnt_fuse_time - self.fuse) / game_data.config.tnt_flash_interval) / 2 + 0.5
+        self.fuse -= game_data.config.delta_time
         if self.fuse <= 0:
             self.explode()
         return super().tick()

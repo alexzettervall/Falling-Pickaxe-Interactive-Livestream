@@ -1,6 +1,7 @@
 import pygame
 pygame.mixer.init()
 pygame.mixer.set_num_channels(1000)
+import game_data
 from location import Location
 from physics import PhysicsManager
 import render
@@ -8,14 +9,9 @@ from camera import Camera
 from world import World
 from material import *
 from pygame import Vector2
-import game_data
-FPS = 60
-CHUNK_SIZE = (16, 9)
-CAMERA_SIZE = 16
-
 
 pygame.init()
-screen = pygame.display.set_mode((game_data.SCREEN_WIDTH, game_data.SCREEN_HEIGHT))
+screen = pygame.display.set_mode((game_data.config.screen_width, game_data.config.screen_height))
 clock = pygame.time.Clock()
 running = True
 
@@ -26,9 +22,9 @@ physics_manager = PhysicsManager()
 game_data.load_sprites()
 
 # Game world
-world = World(CHUNK_SIZE)
+world = World(game_data.config.chunk_size)
 # Game camera
-game_data.camera = Camera(screen, Location(world, Vector2(0, 0)), CAMERA_SIZE)
+game_data.camera = Camera(screen, Location(world, Vector2(0, 0)), game_data.config.camera_size)
 
 # Set world of camera
 # We have to set this after because the world has to be created after the camera
@@ -50,7 +46,7 @@ while running:
     
     pygame.display.flip()
 
-    clock.tick(FPS)
+    clock.tick(game_data.config.fps)
     pygame.display.set_caption(str(clock.get_fps()))
 
 pygame.quit()

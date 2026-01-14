@@ -2,7 +2,7 @@ from pygame import Vector2
 from component import Component
 from typing import Callable, override, TYPE_CHECKING
 from entities.entity import Entity
-from game_data import PHYSICS_SCALE
+from game_data import config
 from physics import CollisionType, BodyType
 
 class RigidBody(Component):
@@ -12,7 +12,7 @@ class RigidBody(Component):
         for vertices in shapes:
             for i in range(len(vertices)):
                 vertex = vertices[i]
-                vertices[i] = ((vertex[0]) * self.entity.size.x * PHYSICS_SCALE, (-vertex[1]) * self.entity.size.y * PHYSICS_SCALE)
+                vertices[i] = ((vertex[0]) * self.entity.size.x * config.physics_scale, (-vertex[1]) * self.entity.size.y * config.physics_scale)
 
         self.entity.location.world.physics_manager.add_rigidbody(self, shapes, collision_type, body_type)
         self._rigidbodies_in_contact: set[RigidBody] = set()

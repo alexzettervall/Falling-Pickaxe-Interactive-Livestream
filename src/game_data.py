@@ -2,13 +2,14 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 import pygame
 from data import data_loader
+from data.config import Config
 
 if TYPE_CHECKING:
     from sound_data import SoundData
     from material import MaterialData
     from camera import Camera
 
-SCREEN_WIDTH, SCREEN_HEIGHT = 1400,800
+"""SCREEN_WIDTH, SCREEN_HEIGHT = 1400,800
 DEBUG = False
 DELTA_TIME = 1 / 60
 PHYSICS_SCALE = 32
@@ -16,13 +17,13 @@ RENDER_DISTANCE = 24
 TNT_FUSE_TIME: float = 4
 TNT_FLASH_INTERVAL: float = 0.4
 BLOCK_SIZE = pygame.Vector2(1, 1)
-PICKAXE_BREAK_DELAY = 0.05
+PICKAXE_BREAK_DELAY = 0.05"""
 
-camera: Camera
 
-# Material Data
+config: Config = data_loader.load_config()
 MATERIAL_DATA: dict[str, MaterialData] = data_loader.load_material_data()
 SOUND_DATA: dict[str, SoundData] = data_loader.load_sound_data()
+camera: Camera
 
 def load_sprites():
     global sprite_tnt

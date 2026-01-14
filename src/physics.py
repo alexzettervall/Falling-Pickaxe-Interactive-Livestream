@@ -8,8 +8,7 @@ import pymunk
 from pymunk import Arbiter, Body, PointQueryInfo, Poly, ShapeFilter, Space, Vec2d
 import pymunk.pygame_util
 from entities.entity import Entity
-from game_data import DELTA_TIME
-from game_data import PHYSICS_SCALE
+from game_data import config
 import game_data
 if TYPE_CHECKING:
     from components.rigidbody import RigidBody
@@ -40,7 +39,7 @@ class PhysicsManager():
             body.body_type = pymunk.Body.DYNAMIC
 
         entity = rigidbody.entity
-        body.position = (entity.location.position.x * PHYSICS_SCALE, entity.location.position.y * PHYSICS_SCALE)
+        body.position = (entity.location.position.x * config.physics_scale, entity.location.position.y * config.physics_scale)
         for shape in shapes:
             pymunk_shape = Poly(body, shape)
             pymunk_shape.mass = 1
@@ -58,16 +57,16 @@ class PhysicsManager():
         self.rigidbodies_to_remove.add(rigidbody)
 
     def tick(self):
-        self.space.step(DELTA_TIME)
+        self.space.step(config.delta_time)
         self.remove_rigidbodies()
         self.update_rigidbody_positions()
         self.debug()
 
     def debug(self):
-        if game_data.DEBUG:
+        if config.debug:
             draw_options = pymunk.pygame_util.DrawOptions(game_data.camera.surface)
             draw_options.transform = pymunk.Transform(
-                a=1, b=0, c=0, d=-1, tx=game_data.SCREEN_WIDTH / 2, ty=game_data.SCREEN_HEIGHT / 2
+                a=1, b=0, c=0, d=-1, tx=config.screen_width / 2, ty=config.screen_height / 2
             )
             self.space.debug_draw(draw_options)
 
@@ -75,7 +74,7 @@ class PhysicsManager():
     def update_rigidbody_positions(self):
         for body in self.body_rigidbodies.keys():
             rigidbody = self.body_rigidbodies[body]
-            rigidbody.update_position(Vector2(body.position.x / PHYSICS_SCALE, body.position.y / PHYSICS_SCALE))
+            rigidbody.update_position(Vector2(body.position.x / config.physics_scale, body.position.y / config.physics_scale))
             rigidbody.update_rotation_degrees(math.degrees(body.angle))
 
     def remove_rigidbodies(self):
@@ -115,7 +114,7 @@ class PhysicsManager():
         body.angle = math.radians(angle)
 
     def point_query(self, point: tuple[float, float], max_distance: float) -> list[Entity]:
-        queries: list[PointQueryInfo] = self.space.point_query((point[0] * PHYSICS_SCALE, point[1] * PHYSICS_SCALE), max_distance * PHYSICS_SCALE, ShapeFilter())
+        queries: list[PointQueryInfo] = self.space.point_query((point[0] * config.physics_scale, point[1] * config.physics_scale), max_distance * config.physics_scale, ShapeFilter())
         entities: list[Entity] = []
         for query in queries:
             if query.shape.body == None:
