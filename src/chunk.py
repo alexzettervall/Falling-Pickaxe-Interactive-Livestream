@@ -29,10 +29,11 @@ class Chunk:
                     material = "bedrock"
                 elif y_pos > -5:
                     continue
-                elif y_pos % 40 == 0:
+                elif y_pos % 1 == 0:
                     material = "obsidian"
                 else:
                     material = self.get_random_material()
+                    
 
                 if material == "bedrock":
                     blocks.append(Block(self, material, Location(self.location.world, Vector2(x_pos, y_pos))))

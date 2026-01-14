@@ -4,6 +4,7 @@ from components import rigidbody
 from components.health import Health
 from components.rigidbody import RigidBody
 from entities.block import Block
+from game_data import DELTA_TIME, PICKAXE_BREAK_DELAY
 
 
 class BlockBreaker(Component):
@@ -13,15 +14,34 @@ class BlockBreaker(Component):
         self.damage = damage
         self.rigidbody = self.entity.get_component(RigidBody)
         if self.rigidbody != None:
-            self.rigidbody.add_on_collision_listener(self.on_collision)
+            self.rigidbody.add_while_in_contact_listener(self.while_in_contact)
+        self.block_damage_timers: dict[Block, float] = {}
 
-    def on_collision(self, rigidbody: RigidBody):
+    def while_in_contact(self, rigidbody: RigidBody):
         if isinstance(rigidbody.entity, Block):
-            self.on_block_collision(rigidbody.entity)
+            block = rigidbody.entity
+            timer = 0
+            if block in self.block_damage_timers.keys():
+                timer = self.block_damage_timers[block]
+            if timer > 0:
+                return
+            self.damage_block(block)
 
-    def on_block_collision(self, block: Block):
+    def damage_block(self, block: Block):
+
         block_health = block.get_component(Health)
         if block_health == None:
             return
+        
         block_health.damage(self.damage)
         self.entity.location.world.sound_manager.play_sound("stone")
+        self.block_damage_timers[block] = PICKAXE_BREAK_DELAY
+
+    @override
+    def tick(self):
+        for block in self.block_damage_timers.keys():
+            self.block_damage_timers[block] -= DELTA_TIME
+
+        return super().tick()
+
+    

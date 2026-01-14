@@ -1,3 +1,4 @@
+from pprint import isreadable
 from typing import Type, TypeVar, Optional, Dict, cast
 
 from pygame import Vector2
@@ -8,6 +9,7 @@ C = TypeVar("C", bound=Component)
 
 class Entity():
     def __init__(self, location, size) -> None:
+        self.dead = False
         self.components: list[Component] = []
         self.location: Location = location
         self.size: Vector2 = size
@@ -27,6 +29,9 @@ class Entity():
             component.tick()
 
     def remove(self):
+        if self.dead:
+            return
+        self.dead = True
         self.location.world.remove_entity(self)
         for component in self.components:
             component.on_remove()

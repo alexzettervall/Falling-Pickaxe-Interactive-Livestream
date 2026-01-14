@@ -15,6 +15,7 @@ RENDER_DISTANCE = 32
 TNT_FUSE_TIME: float = 4.0
 TNT_FLASH_INTERVAL: float = 0.4
 BLOCK_SIZE = pygame.Vector2(1, 1)
+PICKAXE_BREAK_DELAY = 0.05
 
 camera: "Camera" # type: ignore
 
