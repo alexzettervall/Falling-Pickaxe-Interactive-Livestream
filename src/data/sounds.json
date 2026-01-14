@@ -3,8 +3,12 @@
         "sounds": ["stone_1.wav", "stone_2.wav", "stone_3.wav", "stone_4.wav"],
         "volume": 1.0
     },
-    "tnt_fuse": {
-        "sounds": ["tnt_fuse.mp3"],
+    "fuse": {
+        "sounds": ["fuse.wav"],
+        "volume": 1.0
+    },
+    "explosion": {
+        "sounds": ["explosion.wav"],
         "volume": 1.0
     }
 }

@@ -12,7 +12,7 @@ from entities.tnt import TNT
 from entities.entity import Entity
 from pygame import Vector2
 from location import Location
-from particles.particles import ParticleManager
+from particles.particles import ParticleManager, ParticleType
 import physics
 import random
 import game_data
@@ -107,6 +107,8 @@ class World:
                 if block_health == None:
                     continue
                 block_health.damage(damage)
+        self.particle_manager.emit(ParticleType.EXPLOSION, location, 30)
+        self.sound_manager.play_sound("explosion")
 
     def load_chunks(self):
         location: Location = game_data.camera.location

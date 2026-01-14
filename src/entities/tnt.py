@@ -30,7 +30,7 @@ class TNT(Entity):
         self.flash_sprite_renderer = self.add_component(SpriteRenderer(self, game_data.camera, square))
 
         self.fuse: float = game_data.config.tnt_fuse_time
-        self.location.world.sound_manager.play_sound("tnt_fuse")
+        self.location.world.sound_manager.play_sound("fuse")
 
     @override
     def tick(self):
@@ -41,7 +41,6 @@ class TNT(Entity):
         return super().tick()
     
     def explode(self):
-        self.location.world.particle_manager.emit(ParticleType.EXPLOSION, self.location, 30)
-        self.location.world.create_explosion(self.location, 10, 1000)
+        self.location.world.create_explosion(self.location, game_data.config.tnt_radius, game_data.config.tnt_damage)
         self.remove()
     

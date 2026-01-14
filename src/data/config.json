@@ -1,6 +1,6 @@
 {
-    "screen_height": 800,
-    "screen_width": 400,
+    "screen_height": 1200,
+    "screen_width": 600,
     "chunk_size": [13, 8],
     "camera_size": 13,
     "fps": 60,
@@ -8,8 +8,12 @@
     "delta_time": 0.0166666667,
     "physics_scale": 32,
     "render_distance": 24,
-    "tnt_fuse_time": 4.0,
-    "tnt_flash_interval": 0.3,
+    "tnt": {
+        "fuse_time": 4.0,
+        "flash_interval": 0.3,
+        "radius": 4,
+        "damage": 100
+    },
     "block_size": [1, 1],
     "pickaxe_break_delay": 0.05
 }

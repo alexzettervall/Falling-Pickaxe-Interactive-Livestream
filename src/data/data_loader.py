@@ -76,8 +76,10 @@ def load_config() -> Config:
     delta_time: float = config_json["delta_time"]
     physics_scale: float = config_json["physics_scale"]
     render_distance: float = config_json["render_distance"]
-    tnt_fuse_time: float = config_json["tnt_fuse_time"]
-    tnt_flash_interval: float = config_json["tnt_flash_interval"]
+    tnt_fuse_time: float = config_json["tnt"]["fuse_time"]
+    tnt_flash_interval: float = config_json["tnt"]["flash_interval"]
+    tnt_radius: float = config_json["tnt"]["radius"]
+    tnt_damage: float = config_json["tnt"]["damage"]
     block_size: Vector2 = Vector2(config_json["block_size"])
     pickaxe_break_delay: float = config_json["pickaxe_break_delay"]
 
@@ -93,6 +95,8 @@ def load_config() -> Config:
         render_distance=render_distance,
         tnt_fuse_time=tnt_fuse_time,
         tnt_flash_interval=tnt_flash_interval,
+        tnt_radius=tnt_radius,
+        tnt_damage=tnt_damage,
         block_size=block_size,
         pickaxe_break_delay=pickaxe_break_delay,
     )
