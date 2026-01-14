@@ -11,9 +11,9 @@ class Health(Component):
 
     def damage(self, damage: float):
         self.health -= damage
+        self._notify()
         if self.health <= 0:
             self.entity.remove()
-        self._notify()
             
     def add_listener(self, callback: Callable):
         self._listeners.append(callback)
