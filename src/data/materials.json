@@ -19,6 +19,11 @@
         "max_health": 15,
         "spawn_rate": 40
     },
+    "grass_block_top": {
+        "texture_path": "assets/minecraft/textures/block/grass_block_top.png",
+        "max_health": 15,
+        "spawn_rate": 0
+    },
     "gravel": {
         "texture_path": "assets/minecraft/textures/block/gravel.png",
         "max_health": 10,
@@ -34,15 +39,30 @@
         "max_health": 15,
         "spawn_rate": 20
     },
+    "polished_andesite": {
+        "texture_path": "assets/minecraft/textures/block/polished_andesite.png",
+        "max_health": 18,
+        "spawn_rate": 10
+    },
     "diorite": {
         "texture_path": "assets/minecraft/textures/block/diorite.png",
         "max_health": 15,
         "spawn_rate": 20
     },
+    "polished_diorite": {
+        "texture_path": "assets/minecraft/textures/block/polished_diorite.png",
+        "max_health": 18,
+        "spawn_rate": 10
+    },
     "granite": {
         "texture_path": "assets/minecraft/textures/block/granite.png",
         "max_health": 15,
         "spawn_rate": 20
+    },
+    "polished_granite": {
+        "texture_path": "assets/minecraft/textures/block/polished_granite.png",
+        "max_health": 18,
+        "spawn_rate": 10
     },
     "sand": {
         "texture_path": "assets/minecraft/textures/block/sand.png",
@@ -59,24 +79,49 @@
         "max_health": 15,
         "spawn_rate": 20
     },
+    "deepslate_coal_ore": {
+        "texture_path": "assets/minecraft/textures/block/deepslate_coal_ore.png",
+        "max_health": 20,
+        "spawn_rate": 15
+    },
     "iron_ore": {
         "texture_path": "assets/minecraft/textures/block/iron_ore.png",
         "max_health": 20,
         "spawn_rate": 15
+    },
+    "deepslate_iron_ore": {
+        "texture_path": "assets/minecraft/textures/block/deepslate_iron_ore.png",
+        "max_health": 25,
+        "spawn_rate": 12
     },
     "gold_ore": {
         "texture_path": "assets/minecraft/textures/block/gold_ore.png",
         "max_health": 25,
         "spawn_rate": 5
     },
+    "deepslate_gold_ore": {
+        "texture_path": "assets/minecraft/textures/block/deepslate_gold_ore.png",
+        "max_health": 30,
+        "spawn_rate": 4
+    },
     "diamond_ore": {
         "texture_path": "assets/minecraft/textures/block/diamond_ore.png",
         "max_health": 30,
         "spawn_rate": 2
     },
+    "deepslate_diamond_ore": {
+        "texture_path": "assets/minecraft/textures/block/deepslate_diamond_ore.png",
+        "max_health": 35,
+        "spawn_rate": 1
+    },
     "emerald_ore": {
         "texture_path": "assets/minecraft/textures/block/emerald_ore.png",
         "max_health": 35,
+        "spawn_rate": 1
+    },
+    "deepslate_emerald_ore": {
+        "texture_path": "assets/minecraft/textures/block/deepslate_emerald_ore.png",
+        "max_health": 40,
         "spawn_rate": 1
     },
     "redstone_ore": {
@@ -84,119 +129,165 @@
         "max_health": 20,
         "spawn_rate": 10
     },
+    "deepslate_redstone_ore": {
+        "texture_path": "assets/minecraft/textures/block/deepslate_redstone_ore.png",
+        "max_health": 25,
+        "spawn_rate": 8
+    },
     "lapis_ore": {
         "texture_path": "assets/minecraft/textures/block/lapis_ore.png",
         "max_health": 20,
         "spawn_rate": 8
+    },
+    "deepslate_lapis_ore": {
+        "texture_path": "assets/minecraft/textures/block/deepslate_lapis_ore.png",
+        "max_health": 25,
+        "spawn_rate": 6
     },
     "copper_ore": {
         "texture_path": "assets/minecraft/textures/block/copper_ore.png",
         "max_health": 18,
         "spawn_rate": 12
     },
-    "nether_quartz_ore": {
-        "texture_path": "assets/minecraft/textures/block/nether_quartz_ore.png",
+    "deepslate_copper_ore": {
+        "texture_path": "assets/minecraft/textures/block/deepslate_copper_ore.png",
+        "max_health": 22,
+        "spawn_rate": 10
+    },
+    "raw_iron_block": {
+        "texture_path": "assets/minecraft/textures/block/raw_iron_block.png",
+        "max_health": 30,
+        "spawn_rate": 3
+    },
+    "raw_copper_block": {
+        "texture_path": "assets/minecraft/textures/block/raw_copper_block.png",
+        "max_health": 25,
+        "spawn_rate": 5
+    },
+    "raw_gold_block": {
+        "texture_path": "assets/minecraft/textures/block/raw_gold_block.png",
+        "max_health": 35,
+        "spawn_rate": 2
+    },
+    "oak_log": {
+        "texture_path": "assets/minecraft/textures/block/oak_log.png",
         "max_health": 15,
-        "spawn_rate": 6
+        "spawn_rate": 30
+    },
+    "oak_planks": {
+        "texture_path": "assets/minecraft/textures/block/oak_planks.png",
+        "max_health": 15,
+        "spawn_rate": 25
+    },
+    "spruce_planks": {
+        "texture_path": "assets/minecraft/textures/block/spruce_planks.png",
+        "max_health": 15,
+        "spawn_rate": 20
+    },
+    "birch_planks": {
+        "texture_path": "assets/minecraft/textures/block/birch_planks.png",
+        "max_health": 15,
+        "spawn_rate": 20
+    },
+    "jungle_planks": {
+        "texture_path": "assets/minecraft/textures/block/jungle_planks.png",
+        "max_health": 15,
+        "spawn_rate": 15
+    },
+    "acacia_planks": {
+        "texture_path": "assets/minecraft/textures/block/acacia_planks.png",
+        "max_health": 15,
+        "spawn_rate": 15
+    },
+    "dark_oak_planks": {
+        "texture_path": "assets/minecraft/textures/block/dark_oak_planks.png",
+        "max_health": 15,
+        "spawn_rate": 15
+    },
+    "bricks": {
+        "texture_path": "assets/minecraft/textures/block/bricks.png",
+        "max_health": 20,
+        "spawn_rate": 15
+    },
+    "moss_block": {
+        "texture_path": "assets/minecraft/textures/block/moss_block.png",
+        "max_health": 10,
+        "spawn_rate": 20
+    },
+    "calcite": {
+        "texture_path": "assets/minecraft/textures/block/calcite.png",
+        "max_health": 12,
+        "spawn_rate": 10
+    },
+    "tuff": {
+        "texture_path": "assets/minecraft/textures/block/tuff.png",
+        "max_health": 18,
+        "spawn_rate": 15
+    },
+    "dripstone_block": {
+        "texture_path": "assets/minecraft/textures/block/dripstone_block.png",
+        "max_health": 18,
+        "spawn_rate": 10
+    },
+    "mud": {
+        "texture_path": "assets/minecraft/textures/block/mud.png",
+        "max_health": 12,
+        "spawn_rate": 20
+    },
+    "packed_mud": {
+        "texture_path": "assets/minecraft/textures/block/packed_mud.png",
+        "max_health": 18,
+        "spawn_rate": 10
     },
     "obsidian": {
         "texture_path": "assets/minecraft/textures/block/obsidian.png",
         "max_health": 200,
-        "spawn_rate": 5
-    },
-    "netherrack": {
-        "texture_path": "assets/minecraft/textures/block/netherrack.png",
-        "max_health": 15,
-        "spawn_rate": 60
-    },
-    "basalt": {
-        "texture_path": "assets/minecraft/textures/block/basalt_top.png",
-        "max_health": 20,
-        "spawn_rate": 15
-    },
-    "blackstone": {
-        "texture_path": "assets/minecraft/textures/block/blackstone.png",
-        "max_health": 25,
-        "spawn_rate": 10
-    },
-    "gilded_blackstone": {
-        "texture_path": "assets/minecraft/textures/block/gilded_blackstone.png",
-        "max_health": 25,
         "spawn_rate": 2
     },
-    "ancient_debris": {
-        "texture_path": "assets/minecraft/textures/block/ancient_debris_side.png",
+    "coal_block": {
+        "texture_path": "assets/minecraft/textures/block/coal_block.png",
+        "max_health": 30,
+        "spawn_rate": 1
+    },
+    "iron_block": {
+        "texture_path": "assets/minecraft/textures/block/iron_block.png",
+        "max_health": 40,
+        "spawn_rate": 1
+    },
+    "copper_block": {
+        "texture_path": "assets/minecraft/textures/block/copper_block.png",
+        "max_health": 35,
+        "spawn_rate": 1
+    },
+    "gold_block": {
+        "texture_path": "assets/minecraft/textures/block/gold_block.png",
+        "max_health": 45,
+        "spawn_rate": 1
+    },
+    "redstone_block": {
+        "texture_path": "assets/minecraft/textures/block/redstone_block.png",
+        "max_health": 35,
+        "spawn_rate": 1
+    },
+    "lapis_block": {
+        "texture_path": "assets/minecraft/textures/block/lapis_block.png",
+        "max_health": 35,
+        "spawn_rate": 1
+    },
+    "emerald_block": {
+        "texture_path": "assets/minecraft/textures/block/emerald_block.png",
         "max_health": 50,
         "spawn_rate": 1
     },
-    "clay": {
-        "texture_path": "assets/minecraft/textures/block/clay.png",
-        "max_health": 10,
-        "spawn_rate": 20
+    "diamond_block": {
+        "texture_path": "assets/minecraft/textures/block/diamond_block.png",
+        "max_health": 60,
+        "spawn_rate": 1
     },
-    "snow_block": {
-        "texture_path": "assets/minecraft/textures/block/snow.png",
-        "max_health": 10,
-        "spawn_rate": 15
-    },
-    "packed_ice": {
-        "texture_path": "assets/minecraft/textures/block/packed_ice.png",
-        "max_health": 15,
-        "spawn_rate": 5
-    },
-    "glowstone": {
-        "texture_path": "assets/minecraft/textures/block/glowstone.png",
-        "max_health": 15,
-        "spawn_rate": 5
-    },
-    "prismarine_bricks": {
-        "texture_path": "assets/minecraft/textures/block/prismarine_bricks.png",
-        "max_health": 25,
-        "spawn_rate": 6
-    },
-    "dark_prismarine": {
-        "texture_path": "assets/minecraft/textures/block/dark_prismarine.png",
-        "max_health": 25,
-        "spawn_rate": 4
-    },
-    "sandstone": {
-        "texture_path": "assets/minecraft/textures/block/sandstone.png",
-        "max_health": 15,
-        "spawn_rate": 20
-    },
-    "red_sandstone": {
-        "texture_path": "assets/minecraft/textures/block/red_sandstone.png",
-        "max_health": 15,
-        "spawn_rate": 15
-    },
-    "smooth_stone": {
-        "texture_path": "assets/minecraft/textures/block/smooth_stone.png",
-        "max_health": 15,
-        "spawn_rate": 25
-    },
-    "stone_bricks": {
-        "texture_path": "assets/minecraft/textures/block/stone_bricks.png",
-        "max_health": 20,
-        "spawn_rate": 15
-    },
-    "mossy_stone_bricks": {
-        "texture_path": "assets/minecraft/textures/block/mossy_stone_bricks.png",
-        "max_health": 20,
-        "spawn_rate": 10
-    },
-    "cracked_stone_bricks": {
-        "texture_path": "assets/minecraft/textures/block/cracked_stone_bricks.png",
-        "max_health": 20,
-        "spawn_rate": 10
-    },
-    "chiseled_stone_bricks": {
-        "texture_path": "assets/minecraft/textures/block/chiseled_stone_bricks.png",
-        "max_health": 20,
-        "spawn_rate": 5
-    },
-    "brick_block": {
-        "texture_path": "assets/minecraft/textures/block/bricks.png",
-        "max_health": 20,
-        "spawn_rate": 15
+    "netherite_block": {
+        "texture_path": "assets/minecraft/textures/block/netherite_block.png",
+        "max_health": 200,
+        "spawn_rate": 0
     }
+    
 }

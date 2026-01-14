@@ -1,9 +1,8 @@
 import pygame
 pygame.mixer.init()
-pygame.mixer.set_num_channels(256)
+pygame.mixer.set_num_channels(1000)
 from location import Location
 from physics import PhysicsManager
-import physics
 import render
 from camera import Camera
 from world import World
@@ -52,7 +51,6 @@ while running:
     pygame.display.flip()
 
     clock.tick(FPS)
-    if game_data.DEBUG:
-        print(clock.get_fps())
+    pygame.display.set_caption(str(clock.get_fps()))
 
 pygame.quit()

@@ -42,6 +42,6 @@ class TNT(Entity):
     
     def explode(self):
         self.location.world.particle_manager.emit(ParticleType.EXPLOSION, self.location, 30)
-        self.location.world.create_explosion(self.location, 4, 100)
+        self.location.world.create_explosion(self.location, 10, 1000)
         self.remove()
     

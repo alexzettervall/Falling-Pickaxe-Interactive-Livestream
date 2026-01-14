@@ -5,7 +5,7 @@ from typing import Any, TYPE_CHECKING
 from bidict import bidict
 from pygame import Vector2
 import pymunk
-from pymunk import Arbiter, Body, PointQueryInfo, Poly, Shape, ShapeFilter, Space, Vec2d
+from pymunk import Arbiter, Body, PointQueryInfo, Poly, ShapeFilter, Space, Vec2d
 import pymunk.pygame_util
 from entities.entity import Entity
 from game_data import DELTA_TIME

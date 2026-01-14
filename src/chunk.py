@@ -29,7 +29,7 @@ class Chunk:
                     material = "bedrock"
                 elif y_pos > -5:
                     continue
-                elif y_pos % 40 == 0:
+                elif y_pos % 40 < 3:
                     material = "obsidian"
                 else:
                     material = self.get_random_material()

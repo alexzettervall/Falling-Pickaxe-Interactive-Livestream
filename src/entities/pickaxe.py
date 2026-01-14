@@ -94,6 +94,6 @@ class Pickaxe(Entity):
             (0.0, -0.4375),
             ]
 
-        self.add_component(RigidBody(self, [vertices]))
+        self.rigidbody = self.add_component(RigidBody(self, [vertices]))
         self.add_component(SpriteRenderer(self, None, sprite))
         self.add_component(BlockBreaker(self, 10))

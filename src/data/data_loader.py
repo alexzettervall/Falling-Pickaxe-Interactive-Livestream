@@ -13,7 +13,8 @@ def load_texture(path):
     texture_packs = "..//texture-packs//"
     dirs = os.listdir(texture_packs)
     for dir in dirs:
-        
+        if dir == ".DS_Store":
+            continue
         pack = texture_packs + dir
         path = pack + "//" + path
         if os.path.isfile(path):

@@ -18,6 +18,7 @@ import random
 import game_data
 from sound import SoundManager
 tick = 0
+
 class World:
     def __init__(self, chunk_size: tuple[int, int]):
         self.sound_manager: SoundManager = SoundManager()
@@ -36,11 +37,12 @@ class World:
     def tick(self):
         global tick
         tick += 1
-        if random.randint(1, 600) == 3:
-            tnt = self.add_entity(TNT(Location(self, Vector2(self.pickaxe.location.position.x, self.pickaxe.location.position.y + 3))))
-            rb = tnt.get_component(RigidBody)
-            if rb != None:
-                rb.rotate_degrees(random.uniform(0, 360))
+        if random.randint(1, 200) == 1:
+            for i in range(1):
+                tnt = self.add_entity(TNT(Location(self, Vector2(self.pickaxe.location.position.x, self.pickaxe.location.position.y + 3))))
+                rb = tnt.get_component(RigidBody)
+                if rb != None:
+                    rb.rotate_degrees(random.uniform(0, 360))
 
         for entity in self.entities_to_remove:
             if entity in self.entities:
