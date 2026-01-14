@@ -59,7 +59,7 @@ class BlockParticle(Particle):
     @override
     def __init__(self, particle_manager, location: Location, sprite: Surface | None) -> None:
         size = Vector2(0.125, 0.125)
-        self.life_span = 0.25
+        self.life_span = random.uniform(0.25, 0.5)
         time = self.life_span
         spread = 0.5
         location.move(random.uniform(-spread, spread), random.uniform(-spread, spread))
