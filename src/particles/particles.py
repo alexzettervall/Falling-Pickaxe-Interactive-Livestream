@@ -36,11 +36,14 @@ class ExplosionParticle(Particle):
     def __init__(self, particle_manager, location: Location) -> None:
         spread = 2
         location.move(random.uniform(-spread, spread), random.uniform(-spread, spread))
-        self.size = Vector2(1, 1)
+        size = random.uniform(1.0, 2.0)
+        self.size = Vector2(size, size)
         self.life_span = 0.25
         self.time = self.life_span
         self.sprite_index = 0
+        location.rotation = random.uniform(0, 360)
         super().__init__(particle_manager, location, self.size, game_data.explosion_sprites[0], self.time)
+        
 
     @override
     def tick(self):

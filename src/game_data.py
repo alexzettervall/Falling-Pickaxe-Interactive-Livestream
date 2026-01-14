@@ -23,66 +23,6 @@ camera: "Camera" # type: ignore
 MATERIAL_DATA: dict[str, MaterialData] = data_loader.load_material_data()
 SOUND_DATA: dict[str, SoundData] = data_loader.load_sound_data()
 
-
-"""MATERIAL_SPAWN_RATE = {
-    Material.BEDROCK: 0,
-
-    Material.DIRT: 40,
-    Material.STONE: 60,
-    Material.ANDESITE: 15,
-    Material.DIORITE: 15,
-    Material.GRANITE: 15,
-    Material.MOSSY_COBBLESTONE: 5,
-
-    Material.COAL_ORE: 12,
-    Material.IRON_ORE: 10,
-    Material.COPPER_ORE: 10,
-    Material.REDSTONE_ORE: 8,
-    Material.LAPIS_ORE: 6,
-    Material.GOLD_ORE: 5,
-    Material.DIAMOND_ORE: 2,
-    Material.EMERALD_ORE: 1,
-
-    Material.OBSIDIAN: 1,
-}
-
-def get_material_health(material) -> float:
-    if material == Material.BEDROCK:
-        return 10_000_000_000
-
-    elif material == Material.OBSIDIAN:
-        return 200
-
-    elif material in (
-        Material.DIAMOND_ORE,
-        Material.EMERALD_ORE,
-        Material.GOLD_ORE
-    ):
-        return 25
-
-    elif material in (
-        Material.IRON_ORE,
-        Material.COPPER_ORE,
-        Material.REDSTONE_ORE,
-        Material.LAPIS_ORE,
-        Material.COAL_ORE
-    ):
-        return 20
-
-    # Standard blocks
-    elif material in (
-        Material.DIRT,
-        Material.STONE,
-        Material.ANDESITE,
-        Material.DIORITE,
-        Material.GRANITE,
-        Material.MOSSY_COBBLESTONE
-    ):
-        return 15
-
-    else:
-        return 15
-"""
 def load_sprites():
     global sprite_tnt
     sprite_tnt = data_loader.load_texture("assets//minecraft//textures//block//tnt_side.png")
