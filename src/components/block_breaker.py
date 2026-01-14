@@ -24,3 +24,4 @@ class BlockBreaker(Component):
         if block_health == None:
             return
         block_health.damage(self.damage)
+        self.entity.location.world.sound_manager.play_sound("stone")

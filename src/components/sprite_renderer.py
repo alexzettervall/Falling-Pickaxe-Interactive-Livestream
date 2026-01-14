@@ -3,7 +3,7 @@ from typing import override
 import pygame
 from camera import Camera
 from component import Component
-import variables
+import game_data
 
 
 class SpriteRenderer(Component):
@@ -20,7 +20,7 @@ class SpriteRenderer(Component):
 
     def render(self, camera: Camera | None, sprite):
         if camera == None:
-            camera = variables.camera
+            camera = game_data.camera
         if camera == None:
             return
         

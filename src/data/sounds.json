@@ -1,0 +1,10 @@
+{
+    "stone": {
+        "sounds": ["stone_1.wav", "stone_2.wav", "stone_3.wav", "stone_4.wav"],
+        "volume": 1.0
+    },
+    "tnt_fuse": {
+        "sounds": ["tnt_fuse.mp3"],
+        "volume": 1.0
+    }
+}

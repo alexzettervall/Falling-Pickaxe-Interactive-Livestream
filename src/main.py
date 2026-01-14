@@ -1,4 +1,6 @@
 import pygame
+pygame.mixer.init()
+pygame.mixer.set_num_channels(256)
 from location import Location
 from physics import PhysicsManager
 import physics
@@ -8,7 +10,6 @@ from world import World
 from material import *
 from pygame import Vector2
 import game_data
-
 FPS = 60
 CHUNK_SIZE = (16, 9)
 CAMERA_SIZE = 16

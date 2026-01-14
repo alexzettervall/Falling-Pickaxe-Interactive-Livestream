@@ -4,16 +4,16 @@ from math import floor
 from components.rigidbody import RigidBody
 from entities.entity import Entity
 from physics import BodyType, CollisionType
-from variables import PHYSICS_SCALE
-import variables
+from game_data import PHYSICS_SCALE
+import game_data
 
 
 class Block(Entity):
-    def __init__(self, chunk, material, location):
-        super().__init__(location, size = variables.BLOCK_SIZE)
+    def __init__(self, chunk, material: str, location):
+        super().__init__(location, size = game_data.BLOCK_SIZE)
         self.dead = False
         self.chunk = chunk
-        self.material = material
+        self.material: str = material
 
         vertices = [
             (-0.5, 0.5),

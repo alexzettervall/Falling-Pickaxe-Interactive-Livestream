@@ -9,8 +9,8 @@ import pygame
 
 from camera import Camera
 from location import Location
-import variables
-from variables import DELTA_TIME
+import game_data
+from game_data import DELTA_TIME
 
 class ParticleType(Enum):
     EXPLOSION = 1,
@@ -40,12 +40,12 @@ class ExplosionParticle(Particle):
         self.life_span = 0.25
         self.time = self.life_span
         self.sprite_index = 0
-        super().__init__(particle_manager, location, self.size, variables.explosion_sprites[0], self.time)
+        super().__init__(particle_manager, location, self.size, game_data.explosion_sprites[0], self.time)
 
     @override
     def tick(self):
         self.sprite_index = floor(0 + 15 * ((self.life_span - self.time) / self.life_span))
-        self.sprite = variables.explosion_sprites[self.sprite_index]
+        self.sprite = game_data.explosion_sprites[self.sprite_index]
         super().tick()
 
 class ParticleManager():
@@ -65,7 +65,7 @@ class ParticleManager():
         for particle in self.particles:
             location = particle.location
             size = particle.size
-            camera = variables.camera
+            camera = game_data.camera
             screen_position = camera.world_to_screen_point(location.position)
             screen_size_x = camera.world_to_screen_size(size.x)
             screen_size_y = camera.world_to_screen_size(size.y)

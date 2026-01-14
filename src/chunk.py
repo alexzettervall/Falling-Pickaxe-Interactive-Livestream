@@ -1,10 +1,9 @@
 from entities.block import Block
 from entities.damageable_block import DamageableBlock
-from material import Material
 from location import Location
 from pygame import Vector2
 import random
-import variables
+import game_data
 
 class Chunk:
     def __init__(self, location: Location, size: tuple[int, int]):
@@ -25,17 +24,17 @@ class Chunk:
             for y in range(size[1]):
                 x_pos = x + center_offset_x + self.location.position.x
                 y_pos = y + center_offset_y + self.location.position.y
-                material = Material.STONE
+                material: str = "stone"
                 if x == 0 or x == size[0] - 1:
-                    material = Material.BEDROCK
+                    material = "bedrock"
                 elif y_pos > -5:
                     continue
                 elif y_pos % 40 == 0:
-                    material = Material.OBSIDIAN
+                    material = "obsidian"
                 else:
                     material = self.get_random_material()
 
-                if material == Material.BEDROCK:
+                if material == "bedrock":
                     blocks.append(Block(self, material, Location(self.location.world, Vector2(x_pos, y_pos))))
                 else:
                     blocks.append(DamageableBlock(self, material, Location(self.location.world, Vector2(x_pos, y_pos))))
@@ -66,13 +65,14 @@ class Chunk:
             block.remove()
         self.location.world.chunks_to_remove.append(self)
 
-    def get_random_material(self):
+    def get_random_material(self) -> str:
         total_weight = 0
-        for spawn_rate in variables.MATERIAL_SPAWN_RATE.values():
-            total_weight += spawn_rate
-        for material in variables.MATERIAL_SPAWN_RATE.keys():
+        for material in game_data.MATERIAL_DATA.values():
+            total_weight += material.spawn_rate
+        for material in game_data.MATERIAL_DATA.keys():
             rand = random.uniform(0, total_weight)
-            spawn_rate = variables.MATERIAL_SPAWN_RATE[material]
+            spawn_rate = game_data.MATERIAL_DATA[material].spawn_rate
             if rand < spawn_rate:
                 return material
             total_weight -= spawn_rate
+        return "none"

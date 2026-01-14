@@ -6,14 +6,14 @@ from components.rigidbody import RigidBody
 from components.sprite_renderer import SpriteRenderer
 from entities.entity import Entity
 from particles.particles import ParticleManager, ParticleType
-from variables import PHYSICS_SCALE
-import variables
+from game_data import PHYSICS_SCALE
+import game_data
 
 class Pickaxe(Entity):
     def __init__(self, location) -> None:
         super().__init__(location, Vector2(2, 2))
 
-        sprite = variables.sprite_wooden_pickaxe
+        sprite = game_data.sprite_wooden_pickaxe
         vertices: list[tuple[float, float]] = [
             (-0.375, 0.375),
             (0.0, -0.125),

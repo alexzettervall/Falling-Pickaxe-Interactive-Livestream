@@ -15,9 +15,11 @@ from particles.particles import ParticleManager
 import physics
 import random
 import game_data
+from sound import SoundManager
 tick = 0
 class World:
     def __init__(self, chunk_size: tuple[int, int]):
+        self.sound_manager: SoundManager = SoundManager()
         self.physics_manager: physics.PhysicsManager = physics.PhysicsManager()
         self.particle_manager = ParticleManager()
         self.chunk_size = chunk_size
@@ -32,7 +34,7 @@ class World:
     def tick(self):
         global tick
         tick += 1
-        if tick % 6 == 0:
+        if random.randint(1, 400) == 3:
             tnt = self.add_entity(TNT(Location(self, Vector2(self.pickaxe.location.position.x, self.pickaxe.location.position.y + 3))))
             rb = tnt.get_component(RigidBody)
             if rb != None:

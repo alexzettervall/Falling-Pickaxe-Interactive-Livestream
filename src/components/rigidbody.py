@@ -1,7 +1,7 @@
 from pygame import Vector2
 from component import Component
 from typing import Callable, override, TYPE_CHECKING
-from variables import PHYSICS_SCALE
+from game_data import PHYSICS_SCALE
 from physics import CollisionType, BodyType
 
 class RigidBody(Component):

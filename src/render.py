@@ -1,7 +1,7 @@
 import pygame
 from components.crack_visual import CrackVisual
 from entities.entity import Entity
-import variables
+import game_data
 from world import World
 from chunk import Chunk
 from entities.block import Block
@@ -19,10 +19,10 @@ def render_chunk(camera: Camera, chunk: Chunk):
 def render_block(camera: Camera, block: Block,):
     position = block.location.position
     screen_position = camera.world_to_screen_point(position)
-    screen_size_x = camera.world_to_screen_size(variables.BLOCK_SIZE.x)
-    screen_size_y = camera.world_to_screen_size(variables.BLOCK_SIZE.y)
+    screen_size_x = camera.world_to_screen_size(game_data.BLOCK_SIZE.x)
+    screen_size_y = camera.world_to_screen_size(game_data.BLOCK_SIZE.y)
     
-    material_data = variables.material_data
+    material_data = game_data.MATERIAL_DATA
 
     material = block.material
     if not material in material_data:
@@ -38,7 +38,7 @@ def render_block(camera: Camera, block: Block,):
     destroy_index = crack_visual.destroy_stage_index - 1
     if destroy_index < 0:
         return
-    destroy_sprite = variables.destroy_stage_sprites[destroy_index]
+    destroy_sprite = game_data.destroy_stage_sprites[destroy_index]
     sized_destroy_sprite = pygame.transform.scale(destroy_sprite, (screen_size_x, screen_size_y))
     camera.surface.blit(sized_destroy_sprite, rect)
 
