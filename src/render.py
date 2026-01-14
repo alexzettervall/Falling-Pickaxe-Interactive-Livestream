@@ -9,6 +9,7 @@ from camera import Camera
 from material import *
 
 def render_world(camera: Camera, world: World):
+    world.background.render()
     for chunk in world.chunks:
         render_chunk(camera, chunk)
 

@@ -21,6 +21,9 @@ def load_texture(path):
     
     raise ValueError(f"Couldn't find texture: {path}!")
 
+def load_sprite(path):
+    return pygame.image.load("assets//sprites//" + path)
+
 def load_material_data() -> dict[str, MaterialData]:
     path = "data//materials.json"
 

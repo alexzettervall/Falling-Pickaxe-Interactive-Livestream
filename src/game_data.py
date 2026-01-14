@@ -6,6 +6,7 @@ from data import data_loader
 if TYPE_CHECKING:
     from sound_data import SoundData
     from material import MaterialData
+    from camera import Camera
 
 SCREEN_WIDTH, SCREEN_HEIGHT = 700,1300
 DEBUG = False
@@ -17,7 +18,7 @@ TNT_FLASH_INTERVAL: float = 0.4
 BLOCK_SIZE = pygame.Vector2(1, 1)
 PICKAXE_BREAK_DELAY = 0.05
 
-camera: "Camera" # type: ignore
+camera: Camera
 
 # Material Data
 MATERIAL_DATA: dict[str, MaterialData] = data_loader.load_material_data()
@@ -35,6 +36,10 @@ def load_sprites():
     global sprite_smoke_particle
     sprite_smoke_particle = data_loader.load_texture("assets//minecraft//textures//particle//spark_6.png")
     sprite_smoke_particle = sprite_smoke_particle.convert_alpha()
+
+    global sprite_background
+    sprite_background = data_loader.load_sprite("background.png")
+    sprite_background = sprite_background.convert_alpha()
 
     global explosion_sprites
     explosion_sprites = []

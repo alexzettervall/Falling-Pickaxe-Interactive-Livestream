@@ -4,6 +4,7 @@ import random
 from numpy import isin
 from chunk import Chunk
 from components.health import Health
+from entities.background import Background
 from entities.block import Block
 from components.rigidbody import RigidBody
 from entities.pickaxe import Pickaxe
@@ -29,12 +30,13 @@ class World:
         self.entities_to_remove: list[Entity] = []
         self.chunks_to_remove: list[Chunk] = []
         self.pickaxe = self.add_entity(Pickaxe(Location(self, Vector2(0, 10))))
+        self.background = Background()
 
 
     def tick(self):
         global tick
         tick += 1
-        if random.randint(1, 400) == 3:
+        if random.randint(1, 600) == 3:
             tnt = self.add_entity(TNT(Location(self, Vector2(self.pickaxe.location.position.x, self.pickaxe.location.position.y + 3))))
             rb = tnt.get_component(RigidBody)
             if rb != None:
