@@ -1,31 +1,29 @@
-import pygame
-import selenium.webdriver
-pygame.mixer.init(frequency=41000)
-pygame.mixer.set_num_channels(1000)
-from entities.tnt import TNT
-import game_data
-from location import Location
-from physics import PhysicsManager
-import render
-from camera import Camera
-from world import World
-from material import *
-from pygame import Vector2
-import threading
-import youtube
 from multiprocessing import Queue, Process, freeze_support
 from console import Console, init_console
 
 
 def init():
+    import pygame
+    pygame.init()
+    pygame.font.init()
+    pygame.mixer.init(frequency=41000)
+    pygame.mixer.set_num_channels(1000)
+    import game_data
+    from location import Location
+    from physics import PhysicsManager
+    from camera import Camera
+    from world import World
+    from pygame import Vector2
+    import threading
+    import youtube
+    from render import Renderer
+
     # Start listening to chat messages
     if game_data.config.listen_to_stream:
         def listen_to_chat():
             youtube.init(game_data.config.stream_url)
         threading.Thread(target=listen_to_chat, daemon=True).start()
 
-    pygame.init()
-    pygame.font.init()
     screen = pygame.display.set_mode((game_data.config.screen_width, game_data.config.screen_height))
     clock = pygame.time.Clock()
     running = True
@@ -51,8 +49,8 @@ def init():
     console = Process(target = init_console, args = (to_console, from_console), daemon = True)
     console.start()
 
-    font_name = "arial"
-    #font = pygame.font.SysFont(font_name, 300)
+    game_data.renderer = Renderer(world)
+
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -60,8 +58,8 @@ def init():
 
         screen.fill("black")
 
-        # RENDER
-        render.render_world(game_data.camera, world)
+        
+        game_data.renderer.tick()
         world.tick()
 
         # Send livestream messages to the world chat
@@ -73,9 +71,6 @@ def init():
             msg = from_console.get()
             world.chat.send_chat_message(msg)
 
-        #test = font.render("test", False, "white")
-        #print(test)
-        #game_data.camera.surface.blit(test, Rect(0, 0, 1000, 1).center)
         
         game_data.camera.move_towards(world.pickaxe.location.position.y)
         

@@ -2,16 +2,13 @@ from enum import Enum
 from math import cos, floor, sin
 import random
 from typing import override
-
 from numpy import var
 from pygame import Surface, Vector2
 import pygame
-
-from camera import Camera
-import direction
 from location import Location
 import game_data
 from game_data import config
+from render import SpriteData
 
 class ParticleType(Enum):
     EXPLOSION = 1,
@@ -108,7 +105,7 @@ class ParticleManager():
             rotated_sprite = pygame.transform.rotate(sized_sprite, location.rotation)
             rotated_sprite.set_alpha(round(particle.alpha * 255))
             rotated_rect = rotated_sprite.get_rect(center=rect.center)
-            camera.surface.blit(rotated_sprite, rotated_rect)
+            game_data.renderer.particles.append(SpriteData(rotated_sprite, rotated_rect, z = -1))
 
     def tick(self):
         for particle in self.particles_to_remove:

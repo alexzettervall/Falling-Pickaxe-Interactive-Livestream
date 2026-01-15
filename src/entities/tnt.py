@@ -2,11 +2,13 @@ import math
 from typing import override
 from pygame import Vector2
 import pygame
+from components.text_renderer import TextRenderer
 from components.rigidbody import RigidBody
 from components.sprite_renderer import SpriteRenderer
 from entities.entity import Entity
 from location import Location
 from particles.particles import ParticleType
+from text import AlignmentType
 import game_data
 
 class TNT(Entity):
@@ -28,6 +30,8 @@ class TNT(Entity):
         self.add_component(RigidBody(self, [vertices]))
         self.sprite_renderer = self.add_component(SpriteRenderer(self, game_data.camera, sprite))
         self.flash_sprite_renderer = self.add_component(SpriteRenderer(self, game_data.camera, square))
+        self.text_renderer = self.add_component(TextRenderer(self, Vector2(0, 1.5), alignment_type = AlignmentType.Center))
+        self.text_renderer.text = "USER"
 
         self.fuse: float = game_data.config.tnt_fuse_time
         self.location.world.sound_manager.play_sound("fuse")

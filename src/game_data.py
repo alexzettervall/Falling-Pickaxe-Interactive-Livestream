@@ -4,10 +4,12 @@ import pygame
 from data import data_loader
 from data.config import Config
 
+
 if TYPE_CHECKING:
     from sound_data import SoundData
     from material import MaterialData
     from camera import Camera
+    from render import Renderer
 
 """SCREEN_WIDTH, SCREEN_HEIGHT = 1400,800
 DEBUG = False
@@ -24,6 +26,10 @@ config: Config = data_loader.load_config()
 MATERIAL_DATA: dict[str, MaterialData] = data_loader.load_material_data()
 SOUND_DATA: dict[str, SoundData] = data_loader.load_sound_data()
 camera: Camera
+renderer: Renderer
+
+font_name = "arial"
+font = pygame.font.SysFont(font_name, 50)
 
 def load_sprites():
     global sprite_tnt

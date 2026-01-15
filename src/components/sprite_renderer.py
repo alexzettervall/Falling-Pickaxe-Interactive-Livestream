@@ -4,6 +4,7 @@ import pygame
 from camera import Camera
 from component import Component
 import game_data
+from render import SpriteData
 
 
 class SpriteRenderer(Component):
@@ -34,4 +35,4 @@ class SpriteRenderer(Component):
         rotated_sprite = pygame.transform.rotate(sized_sprite, location.rotation)
         rotated_sprite.set_alpha(round(self.alpha * 255))
         rotated_rect = rotated_sprite.get_rect(center=rect.center)
-        camera.surface.blit(rotated_sprite, rotated_rect)
+        game_data.renderer.sprites.append(SpriteData(rotated_sprite, rotated_rect, z = -1))
