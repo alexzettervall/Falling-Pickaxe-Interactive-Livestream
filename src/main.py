@@ -2,6 +2,7 @@ import pygame
 import selenium.webdriver
 pygame.mixer.init(frequency=41000)
 pygame.mixer.set_num_channels(1000)
+from console import Console
 from entities.tnt import TNT
 import game_data
 from location import Location
@@ -19,11 +20,6 @@ if game_data.config.listen_to_stream:
     def listen_to_chat():
         youtube.init(game_data.config.stream_url)
     threading.Thread(target=listen_to_chat, daemon=True).start()
-
-def test():
-    import console
-threading.Thread(target=test, daemon=True).start()
-
 
 pygame.init()
 screen = pygame.display.set_mode((game_data.config.screen_width, game_data.config.screen_height))
@@ -44,6 +40,12 @@ game_data.camera = Camera(screen, Location(world, Vector2(0, 0)), game_data.conf
 # Set world of camera
 # We have to set this after because the world has to be created after the camera
 game_data.camera.location.world = world
+
+console: Console
+def init_console():
+    global console
+    console = Console(world)
+threading.Thread(target=init_console, daemon=True).start()
 
 while running:
     for event in pygame.event.get():

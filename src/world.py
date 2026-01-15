@@ -1,7 +1,7 @@
 from math import ceil
-import random
 
 from numpy import isin
+from chat import Chat
 from chunk import Chunk
 from components.health import Health
 from entities.background import Background
@@ -32,17 +32,11 @@ class World:
         self.chunks_to_remove: list[Chunk] = []
         self.pickaxe = self.add_entity(Pickaxe(Location(self, Vector2(0, 10))))
         self.background = Background()
+        self.chat = Chat(self)
 
 
     def tick(self):
         global tick
-        tick += 1
-        if random.randint(1, 200) == 1000:
-            for i in range(1):
-                tnt = self.add_entity(TNT(Location(self, Vector2(self.pickaxe.location.position.x, self.pickaxe.location.position.y + 3))))
-                rb = tnt.get_component(RigidBody)
-                if rb != None:
-                    rb.rotate_degrees(random.uniform(0, 360))
 
         for entity in self.entities_to_remove:
             if entity in self.entities:
@@ -67,6 +61,7 @@ class World:
 
         self.particle_manager.tick()
         self.particle_manager.render()
+        self.chat.execute_messages()
 
     def get_block_at_position(self, position: Vector2, block_size: float = 1) -> Block | None:
         chunk = self.get_chunk_at_position(position, block_size)
