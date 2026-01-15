@@ -8,6 +8,7 @@ from data.config import Config
 from material import MaterialData
 from sound_data import SoundData
 from pygame.mixer import Sound
+import biome
 
 
 def load_texture(path):
@@ -106,3 +107,20 @@ def load_config() -> Config:
     )
 
     return config
+
+def load_biome_data() -> dict[str, biome.BiomeData]:
+    path = "data//biomes.json"
+
+    biomes_json: dict[str, Any] = json.loads(open(path, 'r').read())
+    biomes: dict[str, biome.BiomeData] = {}
+
+    for biome_name in biomes_json.keys():
+        biome_json = biomes_json[biome_name]
+        blocks_json = biome_json["blocks"]
+        blocks: list[biome.BlockData] = []
+        for block_name in blocks_json.keys():
+            block_json = blocks_json[block_name]
+            blocks.append(biome.BlockData(block_name, block_json["frequency"]))
+        biomes[biome_name] = biome.BiomeData(blocks, biome_json["frequency"])
+
+    return biomes

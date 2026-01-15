@@ -1,6 +1,7 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
 import pygame
+
 from data import data_loader
 from data.config import Config
 
@@ -10,6 +11,7 @@ if TYPE_CHECKING:
     from material import MaterialData
     from camera import Camera
     from render import Renderer
+    import biome
 
 """SCREEN_WIDTH, SCREEN_HEIGHT = 1400,800
 DEBUG = False
@@ -25,6 +27,7 @@ PICKAXE_BREAK_DELAY = 0.05"""
 config: Config = data_loader.load_config()
 MATERIAL_DATA: dict[str, MaterialData] = data_loader.load_material_data()
 SOUND_DATA: dict[str, SoundData] = data_loader.load_sound_data()
+BIOME_DATA: dict[str, biome.BiomeData] = data_loader.load_biome_data()
 camera: Camera
 renderer: Renderer
 

@@ -1,10 +1,50 @@
 {
-    "desert": {
-        "blocks_weights": {
-            "blocks": weight
-        }
-
-        "frequency": 1,
-        "amplitude": 
+    "mines": {
+        "blocks": {
+            "stone": {"frequency": 40},
+            "andesite": {"frequency": 10},
+            "diorite": {"frequency": 5},
+            "granite": {"frequency": 5},
+            "coal_ore": {"frequency": 8},
+            "iron_ore": {"frequency": 6},
+            "gold_ore": {"frequency": 3},
+            "redstone_ore": {"frequency": 2},
+            "diamond_ore": {"frequency": 2},
+            "copper_ore": {"frequency": 4},
+            "cobblestone": {"frequency": 10},
+            "tuff": {"frequency": 2}
+        },
+        "frequency": 1
+    },
+    "deep_dark": {
+        "blocks": {
+            "deepslate": {"frequency": 15},
+            "deepslate_coal_ore": {"frequency": 6},
+            "deepslate_iron_ore": {"frequency": 5},
+            "deepslate_gold_ore": {"frequency": 2},
+            "deepslate_diamond_ore": {"frequency": 2},
+            "deepslate_redstone_ore": {"frequency": 2},
+            "deepslate_emerald_ore": {"frequency": 2}
+        },
+        "frequency": 0.8
+    },
+    "nether": {
+        "blocks": {
+            "netherrack": {"frequency": 50},
+            "basalt": {"frequency": 10},
+            "blackstone": {"frequency": 15},
+            "nether_quartz_ore": {"frequency": 5},
+            "ancient_debris": {"frequency": 1},
+            "gravel": {"frequency": 5}
+        },
+        "frequency": 1
+    },
+    "diamond_paradise": {
+        "blocks": {
+            "deepslate_diamond_ore": {"frequency": 10},
+            "diamond_ore": {"frequency": 10},
+            "diamond_block": {"frequency": 10}
+        },
+        "frequency": 1
     }
 }

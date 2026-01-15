@@ -5,12 +5,15 @@ from components.crack_visual import CrackVisual
 import game_data
 from entities.block import Block
 from pygame import Rect, Surface
-from collections import namedtuple
+from typing import NamedTuple
 if TYPE_CHECKING:
     from world import World
     from chunk import Chunk
 
-SpriteData = namedtuple('SpriteData', ['surface', 'rect', 'z'])
+class SpriteData(NamedTuple):
+    surface: Surface
+    rect: Rect
+    z: int
 
 class Renderer():
     def __init__(self, world: World) -> None:

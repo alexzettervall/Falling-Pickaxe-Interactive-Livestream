@@ -26,6 +26,7 @@ class World:
         self.particle_manager = ParticleManager()
         self.chunk_size = chunk_size
         self.chunks: list[Chunk] = []
+        self.chunks.append(Chunk(Location(self, Vector2(0, chunk_size[1])), chunk_size))
         self.chunks.append(Chunk(Location(self, Vector2(0, 0)), chunk_size))
         self.entities: list[Entity] = []
         self.entities_to_remove: list[Entity] = []
@@ -111,7 +112,7 @@ class World:
             return
         min: int = round((location.position.y - game_data.config.render_distance) / self.chunk_size[1])
         max: int = round(location.position.y / self.chunk_size[1])
-        for i in range(min, max + 1, 1):
+        for i in range(max, min, -1):
             chunk = self.get_chunk_at_position(Vector2(0, i * self.chunk_size[1]))
             if chunk == None:
                 self.chunks.append(Chunk(Location(self, Vector2(0, i * self.chunk_size[1])), self.chunk_size))

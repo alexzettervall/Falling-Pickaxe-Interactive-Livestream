@@ -34,6 +34,26 @@
         "max_health": 15,
         "spawn_rate": 60
     },
+    "cobblestone": {
+        "texture_path": "assets/minecraft/textures/block/cobblestone.png",
+        "max_health": 30,
+        "spawn_rate": 15
+    },
+    "blackstone": {
+        "texture_path": "assets/minecraft/textures/block/blackstone.png",
+        "max_health": 20,
+        "spawn_rate": 60
+    },
+    "deepslate": {
+        "texture_path": "assets/minecraft/textures/block/deepslate.png",
+        "max_health": 30,
+        "spawn_rate": 60
+    },
+    "cobbled_deepslate": {
+        "texture_path": "assets/minecraft/textures/block/cobbled_deepslate.png",
+        "max_health": 30,
+        "spawn_rate": 60
+    },
     "andesite": {
         "texture_path": "assets/minecraft/textures/block/andesite.png",
         "max_health": 15,
@@ -288,6 +308,25 @@
         "texture_path": "assets/minecraft/textures/block/netherite_block.png",
         "max_health": 200,
         "spawn_rate": 0
+    },
+    "netherrack": {
+        "texture_path": "assets/minecraft/textures/block/netherrack.png",
+        "max_health": 15,
+        "spawn_rate": 60
+    },
+    "nether_quartz_ore": {
+        "texture_path": "assets/minecraft/textures/block/nether_quartz_ore.png",
+        "max_health": 15,
+        "spawn_rate": 6
+    },
+    "basalt": {
+        "texture_path": "assets/minecraft/textures/block/basalt_side.png",
+        "max_health": 20,
+        "spawn_rate": 30
+    },
+    "ancient_debris": {
+        "texture_path": "assets/minecraft/textures/block/ancient_debris_side.png",
+        "max_health": 200,
+        "spawn_rate": 3
     }
-    
 }

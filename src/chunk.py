@@ -4,11 +4,13 @@ from location import Location
 from pygame import Vector2
 import random
 import game_data
+from biome import get_biome, get_block
 
 class Chunk:
     def __init__(self, location: Location, size: tuple[int, int]):
         self.size = size
         self.location = location # Chunk position is in the center of the chunk and blocks are generated around it
+        self.biome = get_biome()
         self.blocks: list[Block] = self.generate_blocks(size)
         self.blocks_to_remove = []
 
@@ -24,15 +26,18 @@ class Chunk:
             for y in range(size[1]):
                 x_pos = x + center_offset_x + self.location.position.x
                 y_pos = y + center_offset_y + self.location.position.y
+
+                
+                
                 material: str = "stone"
                 if x == 0 or x == size[0] - 1:
                     material = "bedrock"
                 elif y_pos > -5:
                     continue
-                elif y_pos % 40 < 3:
+                elif y == 0:
                     material = "obsidian"
                 else:
-                    material = self.get_random_material()
+                    material = get_block(self.biome)
                     
 
                 if material == "bedrock":

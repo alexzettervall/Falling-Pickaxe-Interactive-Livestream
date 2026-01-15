@@ -1,15 +1,15 @@
 {
     "stream_url": "https://www.youtube.com/watch?v=XFRYPlrmS98",
-    "listen_to_stream": true,
+    "listen_to_stream": false,
     "screen_height": 1248,
     "screen_width": 624,
-    "chunk_size": [13, 8],
+    "chunk_size": [13, 25],
     "camera_size": 13,
     "fps": 60,
     "debug": false,
     "delta_time": 0.0166666667,
     "physics_scale": 32,
-    "render_distance": 24,
+    "render_distance": 50,
     "tnt": {
         "fuse_time": 4.0,
         "flash_interval": 0.3,
