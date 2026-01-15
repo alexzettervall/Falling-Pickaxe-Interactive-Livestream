@@ -2,7 +2,10 @@ from pygame import Vector2
 
 
 class Config():
-    def __init__(self, screen_width: int, 
+    def __init__(self, 
+                 stream_url: str,
+                 listen_to_stream: bool,
+                 screen_width: int, 
                  screen_height: int, 
                  chunk_size: tuple[int, int], 
                  camera_size: int, 
@@ -18,6 +21,8 @@ class Config():
                  block_size: Vector2, 
                  pickaxe_break_delay: float
     ) -> None:
+        self.stream_url = stream_url
+        self.listen_to_stream = listen_to_stream
         self.screen_width = screen_width
         self.screen_height = screen_height
         self.chunk_size = chunk_size

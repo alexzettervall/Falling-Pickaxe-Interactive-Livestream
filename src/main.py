@@ -1,6 +1,8 @@
 import pygame
-pygame.mixer.init()
+import selenium.webdriver
+pygame.mixer.init(frequency=41000)
 pygame.mixer.set_num_channels(1000)
+from entities.tnt import TNT
 import game_data
 from location import Location
 from physics import PhysicsManager
@@ -9,6 +11,19 @@ from camera import Camera
 from world import World
 from material import *
 from pygame import Vector2
+import threading
+import youtube
+
+# Start listening to chat messages
+if game_data.config.listen_to_stream:
+    def listen_to_chat():
+        youtube.init(game_data.config.stream_url)
+    threading.Thread(target=listen_to_chat, daemon=True).start()
+
+def test():
+    import console
+threading.Thread(target=test, daemon=True).start()
+
 
 pygame.init()
 screen = pygame.display.set_mode((game_data.config.screen_width, game_data.config.screen_height))
@@ -40,6 +55,14 @@ while running:
     # RENDER
     render.render_world(game_data.camera, world)
     world.tick()
+
+
+    for msg in youtube.chat_messages:
+        print(str(msg))
+        if "tnt" in msg[1]:
+            world.add_entity(TNT(Location(world, Vector2(world.pickaxe.location.position.x, world.pickaxe.location.position.y + 3))))
+        youtube.chat_messages = []
+
 
     
     game_data.camera.move_towards(world.pickaxe.location.position.y)

@@ -67,6 +67,8 @@ def load_config() -> Config:
 
     config_json: dict[str, Any] = json.loads(open(path, 'r').read())
 
+    stream_url: str = config_json["stream_url"]
+    listen_to_stream: bool = config_json["listen_to_stream"]
     screen_width: int = config_json["screen_width"]
     screen_height: int = config_json["screen_height"]
     chunk_size: tuple[int, int] = tuple(config_json["chunk_size"])
@@ -84,6 +86,8 @@ def load_config() -> Config:
     pickaxe_break_delay: float = config_json["pickaxe_break_delay"]
 
     config = Config(
+        stream_url=stream_url,
+        listen_to_stream=listen_to_stream,
         screen_width=screen_width,
         screen_height=screen_height,
         chunk_size=chunk_size,

@@ -37,7 +37,7 @@ class World:
     def tick(self):
         global tick
         tick += 1
-        if random.randint(1, 200) == 1:
+        if random.randint(1, 200) == 1000:
             for i in range(1):
                 tnt = self.add_entity(TNT(Location(self, Vector2(self.pickaxe.location.position.x, self.pickaxe.location.position.y + 3))))
                 rb = tnt.get_component(RigidBody)

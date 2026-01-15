@@ -1,6 +1,8 @@
 {
-    "screen_height": 1200,
-    "screen_width": 600,
+    "stream_url": "https://www.youtube.com/watch?v=CKhJWR5xn-g",
+    "listen_to_stream": false,
+    "screen_height": 1248,
+    "screen_width": 624,
     "chunk_size": [13, 8],
     "camera_size": 13,
     "fps": 60,

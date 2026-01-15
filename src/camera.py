@@ -1,4 +1,4 @@
-from math import ceil
+from math import ceil, floor
 from pygame import Surface
 from location import Location
 from pygame import Vector2
