@@ -28,4 +28,8 @@ class Chat():
                 threading.Thread(target = self.world.speed_fast, args = [user]).start()
             elif "slow" in message:
                 threading.Thread(target = self.world.speed_slow, args = [user]).start()
+            elif "big" in message:
+                threading.Thread(target = self.world.size_big, args = [user]).start()
+            elif "small" in message:
+                threading.Thread(target = self.world.size_small, args = [user]).start()
         self.chat_messages = []

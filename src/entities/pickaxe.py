@@ -5,6 +5,7 @@ from components.rigidbody import RigidBody
 from components.sprite_renderer import SpriteRenderer
 from entities.entity import Entity
 import game_data
+from pickaxe_size import PickaxeSize
 
 class Pickaxe(Entity):
     @override
@@ -20,7 +21,23 @@ class Pickaxe(Entity):
                 point = shape[j]
                 shape[j] = (point[0] / 16, -point[1] / 16)
 
-
+        self._pickaxe_size = PickaxeSize.NORMAL
         self.rigidbody = self.add_component(RigidBody(self, shapes))
         self.add_component(SpriteRenderer(self, None, sprite))
         self.add_component(BlockBreaker(self, 10))
+
+    @override
+    def tick(self):
+        return super().tick()
+    
+    def set_pickaxe_size(self, pickaxe_size: PickaxeSize):
+        self._pickaxe_size = pickaxe_size
+        size = game_data.config.normal_pickaxe_size
+        if pickaxe_size == PickaxeSize.BIG:
+            size = game_data.config.big_pickaxe_size
+        elif pickaxe_size == PickaxeSize.SMALL:
+            size = game_data.config.small_pickaxe_size
+        self.rigidbody.set_size(Vector2(size, size))
+
+    def get_pickaxe_size(self) -> PickaxeSize:
+        return self._pickaxe_size

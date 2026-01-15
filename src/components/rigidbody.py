@@ -64,6 +64,11 @@ class RigidBody(Component):
     def set_velocity(self, velocity: Vector2):
         self.entity.location.world.physics_manager.set_rigidbody_velocity(self, velocity)
 
+    def set_size(self, new_size: Vector2):
+        prev_size = self.entity.size
+        self.entity.location.world.physics_manager.set_rigidbody_size(self, prev_size, new_size)
+        self.entity.size = new_size
+
     @override
     def tick(self):
         to_remove: list[RigidBody] = []

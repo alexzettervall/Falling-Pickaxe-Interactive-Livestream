@@ -5,7 +5,7 @@ from typing import Any, TYPE_CHECKING
 from bidict import bidict
 from pygame import Vector2
 import pymunk
-from pymunk import Arbiter, Body, PointQueryInfo, Poly, ShapeFilter, Space, Vec2d
+from pymunk import Arbiter, Body, PointQueryInfo, Poly, ShapeFilter, Space, Transform, Vec2d
 import pymunk.pygame_util
 from entities.entity import Entity
 from game_data import config
@@ -137,4 +137,20 @@ class PhysicsManager():
             return
         body.velocity = (velocity.x * config.physics_scale, velocity.y * config.physics_scale)
 
-
+    """
+    Set the size of the pymunk body associated with the rigidbody.
+    Works but multiplying each vertex by a muliplier determined from the previous size.
+    Currently only works with shapes that are instances of Poly.
+    """
+    def set_rigidbody_size(self, rigidbody: RigidBody, prev_size: Vector2, size: Vector2):
+        multiplier: Vector2 = Vector2(size.x / prev_size.x, size.y / prev_size.y)
+        body = self.body_rigidbodies.inverse.get(rigidbody)
+        if body == None:
+            return
+        for shape in body.shapes:
+            if not isinstance(shape, Poly):
+                raise ValueError("set_rigidbody_size currently only works with shapes of type Poly")
+        for shape in body.shapes:
+            original_vertices = shape.get_vertices()
+            new_vertices = [(x * multiplier.x, y * multiplier.y) for x, y in original_vertices]
+            shape.unsafe_set_vertices(new_vertices)

@@ -1,7 +1,7 @@
 from math import ceil
 import math
 import time
-
+from typing import TypeVar
 from numpy import isin
 from chat import Chat
 from chunk import Chunk
@@ -19,9 +19,12 @@ from particles.particles import ParticleManager, ParticleType
 import physics
 import random
 import game_data
+from pickaxe_size import PickaxeSize
 from sound import SoundManager
 from time_speed import TimeSpeed
 tick = 0
+
+E = TypeVar("E", bound = Entity)
 
 class World:
     def __init__(self, chunk_size: tuple[int, int]):
@@ -35,10 +38,10 @@ class World:
         self.entities: list[Entity] = []
         self.entities_to_remove: list[Entity] = []
         self.chunks_to_remove: list[Chunk] = []
-        self.pickaxe = self.add_entity(Pickaxe(Location(self, Vector2(0, 10))))
+        self.pickaxe: Pickaxe = self.add_entity(Pickaxe(Location(self, Vector2(0, 10))))
         self.background = Background()
         self.chat = Chat(self)
-        self.time_speed = TimeSpeed.normal
+        self.time_speed = TimeSpeed.NORMAL
 
 
     def tick(self):
@@ -73,11 +76,11 @@ class World:
     def update_delta_time(self):
         config = game_data.config
         normal_delta_time = 1 / config.fps
-        if self.time_speed == TimeSpeed.normal:
+        if self.time_speed == TimeSpeed.NORMAL:
             config.delta_time = normal_delta_time * config.normal_speed
-        elif self.time_speed == TimeSpeed.fast:
+        elif self.time_speed == TimeSpeed.FAST:
             config.delta_time = normal_delta_time * config.fast_speed
-        elif self.time_speed == TimeSpeed.slow:
+        elif self.time_speed == TimeSpeed.SLOW:
             config.delta_time = normal_delta_time * config.slow_speed
 
     def get_block_at_position(self, position: Vector2, block_size: float = 1) -> Block | None:
@@ -94,7 +97,7 @@ class World:
                 return chunk
         return None
     
-    def add_entity(self, entity: Entity):
+    def add_entity(self, entity: E) -> E:
         self.entities.append(entity)
         return entity
 
@@ -157,15 +160,29 @@ class World:
         self.sound_manager.play_sound("avalanche")
 
     def speed_fast(self, user: str):
-        if self.time_speed != TimeSpeed.normal:
+        if self.time_speed != TimeSpeed.NORMAL:
             return
-        self.time_speed = TimeSpeed.fast
+        self.time_speed = TimeSpeed.FAST
         time.sleep(game_data.config.speed_change_duration)
-        self.time_speed = TimeSpeed.normal
+        self.time_speed = TimeSpeed.NORMAL
 
     def speed_slow(self, user: str):
-        if self.time_speed != TimeSpeed.normal:
+        if self.time_speed != TimeSpeed.NORMAL:
             return
-        self.time_speed = TimeSpeed.slow
+        self.time_speed = TimeSpeed.SLOW
         time.sleep(game_data.config.speed_change_duration)
-        self.time_speed = TimeSpeed.normal
+        self.time_speed = TimeSpeed.NORMAL
+
+    def size_big(self, user: str):
+        if self.pickaxe.get_pickaxe_size() != PickaxeSize.NORMAL:
+            return
+        self.pickaxe.set_pickaxe_size(PickaxeSize.BIG)
+        time.sleep(game_data.config.pickaxe_size_changee_duration)
+        self.pickaxe.set_pickaxe_size(PickaxeSize.NORMAL)
+
+    def size_small(self, user: str):
+        if self.pickaxe.get_pickaxe_size() != PickaxeSize.NORMAL:
+            return
+        self.pickaxe.set_pickaxe_size(PickaxeSize.SMALL)
+        time.sleep(game_data.config.pickaxe_size_changee_duration)
+        self.pickaxe.set_pickaxe_size(PickaxeSize.NORMAL)

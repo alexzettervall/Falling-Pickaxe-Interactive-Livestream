@@ -2,6 +2,6 @@ from enum import Enum
 
 
 class TimeSpeed(Enum):
-    normal = 1,
-    fast = 2,
-    slow = 3
+    NORMAL = 1,
+    FAST = 2,
+    SLOW = 3

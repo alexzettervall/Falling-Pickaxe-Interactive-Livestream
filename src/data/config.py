@@ -23,7 +23,11 @@ class Config():
                  normal_speed: float,
                  fast_speed: float,
                  slow_speed: float,
-                 speed_change_duration: float
+                 speed_change_duration: float,
+                 normal_pickaxe_size: float,
+                 big_pickaxe_size: float,
+                 small_pickaxe_size: float,
+                 pickaxe_size_change_duration: float
     ) -> None:
         self.stream_url = stream_url
         self.listen_to_stream = listen_to_stream
@@ -46,4 +50,8 @@ class Config():
         self.fast_speed = fast_speed
         self.slow_speed = slow_speed
         self.speed_change_duration = speed_change_duration
+        self.normal_pickaxe_size = normal_pickaxe_size
+        self.big_pickaxe_size = big_pickaxe_size
+        self.small_pickaxe_size = small_pickaxe_size
+        self.pickaxe_size_changee_duration = pickaxe_size_change_duration
 

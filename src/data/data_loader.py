@@ -109,7 +109,11 @@ def load_config() -> Config:
         normal_speed=config_json["normal_speed"],
         fast_speed=config_json["fast_speed"],
         slow_speed=config_json["slow_speed"],
-        speed_change_duration=config_json["speed_change_duration"]
+        speed_change_duration=config_json["speed_change_duration"],
+        normal_pickaxe_size=config_json["normal_pickaxe_size"],
+        big_pickaxe_size=config_json["big_pickaxe_size"],
+        small_pickaxe_size=config_json["small_pickaxe_size"],
+        pickaxe_size_change_duration=config_json["pickaxe_size_change_duration"]
     )
 
     return config
