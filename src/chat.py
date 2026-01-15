@@ -1,10 +1,5 @@
 from __future__ import annotations
-import random
 from typing import TYPE_CHECKING
-from pygame import Vector2
-from components.rigidbody import RigidBody
-from entities.tnt import TNT
-from location import Location
 if TYPE_CHECKING:
     from world import World
 
