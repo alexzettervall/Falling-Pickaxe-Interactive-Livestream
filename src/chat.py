@@ -25,9 +25,5 @@ class Chat():
             user: str = chat_message[0]
             message: str = chat_message[1].lower()
             if "tnt" in message:
-                pickaxe = self.world.pickaxe
-                tnt = self.world.add_entity(TNT(Location(self.world, Vector2(pickaxe.location.position.x, pickaxe.location.position.y + 3))))
-                rb = tnt.get_component(RigidBody)
-                if rb != None:
-                    rb.rotate_degrees(random.uniform(0, 360))
+                self.world.spawn_tnt()
         self.chat_messages = []
