@@ -29,7 +29,7 @@ camera: Camera
 renderer: Renderer
 
 font_name = "arial"
-font = pygame.font.SysFont(font_name, 50)
+font = pygame.font.SysFont(font_name, 30)
 
 def load_sprites():
     global sprite_tnt

@@ -20,5 +20,5 @@ class Chat():
             user: str = chat_message[0]
             message: str = chat_message[1].lower()
             if "tnt" in message:
-                self.world.spawn_tnt()
+                self.world.spawn_tnt(user)
         self.chat_messages = []

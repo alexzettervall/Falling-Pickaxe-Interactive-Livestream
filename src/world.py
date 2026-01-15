@@ -125,8 +125,8 @@ class World:
                 chunk.remove()
 
     # Command implementations
-    def spawn_tnt(self):
-        tnt = self.add_entity(TNT(Location(self, Vector2(self.pickaxe.location.position.x, self.pickaxe.location.position.y + 3))))
+    def spawn_tnt(self, user: str):
+        tnt = self.add_entity(TNT(Location(self, Vector2(self.pickaxe.location.position.x, self.pickaxe.location.position.y + 3)), user = user))
         rb = tnt.get_component(RigidBody)
         if rb != None:
             rb.rotate_degrees(random.uniform(0, 360))

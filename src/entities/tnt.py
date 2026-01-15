@@ -12,7 +12,7 @@ from text import AlignmentType
 import game_data
 
 class TNT(Entity):
-    def __init__(self, location) -> None:
+    def __init__(self, location, user: str | None = None) -> None:
         super().__init__(location, size = Vector2(1, 1))
 
         sprite = game_data.sprite_tnt
@@ -30,8 +30,9 @@ class TNT(Entity):
         self.add_component(RigidBody(self, [vertices]))
         self.sprite_renderer = self.add_component(SpriteRenderer(self, game_data.camera, sprite))
         self.flash_sprite_renderer = self.add_component(SpriteRenderer(self, game_data.camera, square))
-        self.text_renderer = self.add_component(TextRenderer(self, Vector2(0, 1.5), alignment_type = AlignmentType.Center))
-        self.text_renderer.text = "USER"
+        self.text_renderer = self.add_component(TextRenderer(self, Vector2(0, 1.2), alignment_type = AlignmentType.Center))
+        if user != None:
+            self.text_renderer.text = user
 
         self.fuse: float = game_data.config.tnt_fuse_time
         self.location.world.sound_manager.play_sound("fuse")
