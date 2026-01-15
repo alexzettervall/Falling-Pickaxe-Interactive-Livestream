@@ -1,4 +1,6 @@
 from math import ceil
+import math
+import time
 
 from numpy import isin
 from chat import Chat
@@ -18,6 +20,7 @@ import physics
 import random
 import game_data
 from sound import SoundManager
+from time_speed import TimeSpeed
 tick = 0
 
 class World:
@@ -35,6 +38,7 @@ class World:
         self.pickaxe = self.add_entity(Pickaxe(Location(self, Vector2(0, 10))))
         self.background = Background()
         self.chat = Chat(self)
+        self.time_speed = TimeSpeed.normal
 
 
     def tick(self):
@@ -64,6 +68,17 @@ class World:
         self.particle_manager.tick()
         self.particle_manager.render()
         self.chat.execute_messages()
+        self.update_delta_time()
+
+    def update_delta_time(self):
+        config = game_data.config
+        normal_delta_time = 1 / config.fps
+        if self.time_speed == TimeSpeed.normal:
+            config.delta_time = normal_delta_time * config.normal_speed
+        elif self.time_speed == TimeSpeed.fast:
+            config.delta_time = normal_delta_time * config.fast_speed
+        elif self.time_speed == TimeSpeed.slow:
+            config.delta_time = normal_delta_time * config.slow_speed
 
     def get_block_at_position(self, position: Vector2, block_size: float = 1) -> Block | None:
         chunk = self.get_chunk_at_position(position, block_size)
@@ -105,7 +120,7 @@ class World:
                     continue
                 block_health.damage(damage)
                 block.dislodge()
-        self.particle_manager.emit(ParticleType.EXPLOSION, location, 30)
+        self.particle_manager.emit(ParticleType.EXPLOSION, location, 10)
         self.sound_manager.play_sound("explosion")
 
     def load_chunks(self):
@@ -140,3 +155,17 @@ class World:
             if block.material != "bedrock":
                 block.dislodge()
         self.sound_manager.play_sound("avalanche")
+
+    def speed_fast(self, user: str):
+        if self.time_speed != TimeSpeed.normal:
+            return
+        self.time_speed = TimeSpeed.fast
+        time.sleep(game_data.config.speed_change_duration)
+        self.time_speed = TimeSpeed.normal
+
+    def speed_slow(self, user: str):
+        if self.time_speed != TimeSpeed.normal:
+            return
+        self.time_speed = TimeSpeed.slow
+        time.sleep(game_data.config.speed_change_duration)
+        self.time_speed = TimeSpeed.normal

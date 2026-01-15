@@ -18,6 +18,7 @@ class Block(Entity):
     def __init__(self, chunk, material: str, location):
         super().__init__(location, size = game_data.config.block_size)
         self.dead = False
+        self.dislodged = False
         self.chunk = chunk
         self.material: str = material
 
@@ -30,6 +31,9 @@ class Block(Entity):
         self.rigidbody = self.add_component(RigidBody(self, [vertices], collision_type = CollisionType.BLOCK, body_type = BodyType.STATIC))
 
     def dislodge(self):
+        if self.dislodged:
+            return
+        self.dislodged = True
         self.rigidbody.set_body_type(physics.BodyType.DYNAMIC)
         self.rigidbody.set_velocity(Vector2(random.uniform(-5, 5), random.uniform(0, 5)))
         self.add_component(BlockBreaker(self, 1, self_damage = 1))

@@ -1,5 +1,5 @@
 {
-    "stream_url": "https://www.youtube.com/watch?v=XFRYPlrmS98",
+    "stream_url": "https://www.youtube.com/watch?v=sTo6sUDlzuo",
     "listen_to_stream": false,
     "screen_height": 1248,
     "screen_width": 624,
@@ -17,5 +17,9 @@
         "damage": 300
     },
     "block_size": [1, 1],
-    "pickaxe_break_delay": 0.05
+    "pickaxe_break_delay": 0.05,
+    "normal_speed": 1.0,
+    "fast_speed": 3.0,
+    "slow_speed": 0.3,
+    "speed_change_duration": 5.0
 }

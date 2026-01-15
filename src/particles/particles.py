@@ -37,7 +37,7 @@ class ExplosionParticle(Particle):
     def __init__(self, particle_manager, location: Location) -> None:
         spread = 2
         location.move(random.uniform(-spread, spread), random.uniform(-spread, spread))
-        size = random.uniform(1.0, 2.0)
+        size = random.uniform(2.0, 3.0)
         self.size = Vector2(size, size)
         self.life_span = 0.25
         self.time = self.life_span

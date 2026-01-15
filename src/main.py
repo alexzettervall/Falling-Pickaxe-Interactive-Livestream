@@ -1,4 +1,4 @@
-from multiprocessing import Queue, Process, freeze_support
+from multiprocessing import Queue, Process
 from console import Console, init_console
 
 
@@ -8,7 +8,7 @@ def init():
     pygame.font.init()
     pygame.mixer.init(frequency=41000)
     pygame.mixer.set_num_channels(1000)
-    pygame.display.set_mode()
+    pygame.display.set_mode((100, 100))
     import game_data
     from location import Location
     from physics import PhysicsManager

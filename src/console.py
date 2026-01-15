@@ -1,5 +1,5 @@
 import tkinter
-from tkinter import StringVar, ttk
+from tkinter import IntVar, StringVar, ttk
 from multiprocessing import Queue
 
 def init_console(from_main: Queue, to_main: Queue):
@@ -14,17 +14,21 @@ class Console():
         frame = tkinter.Frame(self.window, padx=10, pady=10)
         frame.grid()
         button = ttk.Button(frame, text="Enter", command=self.send_chat_message)
-        button.grid(column = 2, row = 0)
+        button.grid(column = 3, row = 0)
         self.input = StringVar(frame)
-        entry = ttk.Entry(frame, textvariable=self.input)
-        entry.grid(column = 1, row = 0)
+        message_entry = ttk.Entry(frame, textvariable=self.input)
+        message_entry.grid(column = 1, row = 0)
+        self.amount = IntVar(frame)
+        amount_entry = ttk.Entry(frame, textvariable = self.amount)
+        amount_entry.grid(column = 2, row = 0)
 
         self.window.mainloop()
 
     def send_chat_message(self):
-        chat_message: tuple[str, str] = ("@ADMIN", self.input.get())
-        print(f"CHAT MESSAGE: user: {chat_message[0]}, message: {chat_message[1]}")
-        self.to_main.put(chat_message)
+        for i in range(self.amount.get()):
+            chat_message: tuple[str, str] = ("@ADMIN", self.input.get())
+            print(f"CHAT MESSAGE: user: {chat_message[0]}, message: {chat_message[1]}")
+            self.to_main.put(chat_message)
         
 
     

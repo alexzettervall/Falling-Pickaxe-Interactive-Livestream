@@ -1,5 +1,6 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
+import threading
 if TYPE_CHECKING:
     from world import World
 
@@ -23,4 +24,8 @@ class Chat():
                 self.world.spawn_tnt(user)
             elif "avalanche" in message:
                 self.world.spawn_avalanche(user)
+            elif "fast" in message:
+                threading.Thread(target = self.world.speed_fast, args = [user]).start()
+            elif "slow" in message:
+                threading.Thread(target = self.world.speed_slow, args = [user]).start()
         self.chat_messages = []

@@ -106,6 +106,10 @@ def load_config() -> Config:
         tnt_damage=tnt_damage,
         block_size=block_size,
         pickaxe_break_delay=pickaxe_break_delay,
+        normal_speed=config_json["normal_speed"],
+        fast_speed=config_json["fast_speed"],
+        slow_speed=config_json["slow_speed"],
+        speed_change_duration=config_json["speed_change_duration"]
     )
 
     return config

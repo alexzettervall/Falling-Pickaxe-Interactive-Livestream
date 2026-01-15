@@ -19,7 +19,11 @@ class Config():
                  tnt_radius: float,
                  tnt_damage: float,
                  block_size: Vector2, 
-                 pickaxe_break_delay: float
+                 pickaxe_break_delay: float,
+                 normal_speed: float,
+                 fast_speed: float,
+                 slow_speed: float,
+                 speed_change_duration: float
     ) -> None:
         self.stream_url = stream_url
         self.listen_to_stream = listen_to_stream
@@ -38,4 +42,8 @@ class Config():
         self.tnt_damage = tnt_damage
         self.block_size = block_size
         self.pickaxe_break_delay = pickaxe_break_delay
+        self.normal_speed = normal_speed
+        self.fast_speed = fast_speed
+        self.slow_speed = slow_speed
+        self.speed_change_duration = speed_change_duration
 
