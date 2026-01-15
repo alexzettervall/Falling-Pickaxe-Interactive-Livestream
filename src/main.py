@@ -59,11 +59,9 @@ while running:
     world.tick()
 
 
-    for msg in youtube.chat_messages:
-        print(str(msg))
-        if "tnt" in msg[1]:
-            world.add_entity(TNT(Location(world, Vector2(world.pickaxe.location.position.x, world.pickaxe.location.position.y + 3))))
-        youtube.chat_messages = []
+    # Send livestream messages to the world chat
+    world.chat.send_chat_messages(youtube.chat_messages)
+    youtube.chat_messages = []
 
 
     
