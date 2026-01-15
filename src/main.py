@@ -11,7 +11,7 @@ import render
 from camera import Camera
 from world import World
 from material import *
-from pygame import Vector2
+from pygame import Rect, Vector2
 import threading
 import youtube
 
@@ -22,6 +22,7 @@ if game_data.config.listen_to_stream:
     threading.Thread(target=listen_to_chat, daemon=True).start()
 
 pygame.init()
+pygame.font.init()
 screen = pygame.display.set_mode((game_data.config.screen_width, game_data.config.screen_height))
 clock = pygame.time.Clock()
 running = True
@@ -47,6 +48,9 @@ def init_console():
     console = Console(world)
 threading.Thread(target=init_console, daemon=True).start()
 
+font_name = "arial"
+font = pygame.font.SysFont(font_name, 300)
+
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -63,7 +67,9 @@ while running:
     world.chat.send_chat_messages(youtube.chat_messages)
     youtube.chat_messages = []
 
-
+    test = font.render("test", False, "white")
+    print(test)
+    game_data.camera.surface.blit(test, Rect(0, 0, 1000, 1).center)
     
     game_data.camera.move_towards(world.pickaxe.location.position.y)
     
