@@ -21,7 +21,7 @@ class Block(Entity):
             (0.5, -0.5),
             (-0.5, -0.5)
         ]
-        self.add_component(RigidBody(self, [vertices], collision_type = CollisionType.BLOCK, body_type = BodyType.STATIC))
+        self.rigidbody = self.add_component(RigidBody(self, [vertices], collision_type = CollisionType.BLOCK, body_type = BodyType.STATIC))
 
     """@override
     def damage(self, damage: float):

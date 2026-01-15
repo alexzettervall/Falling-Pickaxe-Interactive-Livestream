@@ -33,10 +33,7 @@ class PhysicsManager():
     def add_rigidbody(self, rigidbody: RigidBody, shapes: list[list[tuple[float, float]]], collision_type: CollisionType, body_type: BodyType):
         # Set up body
         body = pymunk.Body()
-        if body_type == BodyType.STATIC:
-            body.body_type = pymunk.Body.STATIC
-        elif body_type == BodyType.DYNAMIC:
-            body.body_type = pymunk.Body.DYNAMIC
+        self._set_body_type(body, body_type)
 
         entity = rigidbody.entity
         body.position = (entity.location.position.x * config.physics_scale, entity.location.position.y * config.physics_scale)
@@ -52,6 +49,12 @@ class PhysicsManager():
             shape.elasticity = 0.8
             shape.friction = 0.3
             self.space.add(shape)
+
+    def _set_body_type(self, body: Body, body_type: BodyType):
+        if body_type == BodyType.STATIC:
+            body.body_type = pymunk.Body.STATIC
+        elif body_type == BodyType.DYNAMIC:
+            body.body_type = pymunk.Body.DYNAMIC
 
     def remove_rigidbody(self, rigidbody: RigidBody):
         self.rigidbodies_to_remove.add(rigidbody)
@@ -121,7 +124,17 @@ class PhysicsManager():
                 continue
             entities.append(self.body_rigidbodies[query.shape.body].entity)
         return entities
-
     
+    def set_rigidbody_body_type(self, rigidbody: RigidBody, body_type: BodyType):
+        body = self.body_rigidbodies.inverse.get(rigidbody)
+        if body == None:
+            return
+        self._set_body_type(body, body_type)
+
+    def set_rigidbody_velocity(self, rigidbody: RigidBody, velocity: Vector2):
+        body = self.body_rigidbodies.inverse.get(rigidbody)
+        if body == None:
+            return
+        body.velocity = (velocity.x * config.physics_scale, velocity.y * config.physics_scale)
 
 

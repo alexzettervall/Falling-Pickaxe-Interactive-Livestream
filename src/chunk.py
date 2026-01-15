@@ -59,6 +59,9 @@ class Chunk:
         return None
     
     def tick(self):
+        for block in self.blocks:
+            block.tick()
+
         for block in self.blocks_to_remove:
             self.blocks.remove(block)
         self.blocks_to_remove = []

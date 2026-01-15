@@ -3,6 +3,7 @@ from math import ceil
 from numpy import isin
 from chat import Chat
 from chunk import Chunk
+from components.block_breaker import BlockBreaker
 from components.health import Health
 from entities.background import Background
 from entities.block import Block
@@ -98,11 +99,14 @@ class World:
         for block in blocks:
             dist = location.position.distance_to(block.location.position)
             if dist < size:
-                damage = strength - strength * (dist / size)
+                damage = strength / (dist ** 2)
                 block_health = block.get_component(Health)
                 if block_health == None:
                     continue
                 block_health.damage(damage)
+                block.rigidbody.set_body_type(physics.BodyType.DYNAMIC)
+                block.rigidbody.set_velocity(Vector2(random.uniform(-5, 5), random.uniform(0, 5)))
+                block.add_component(BlockBreaker(block, 1, self_damage = 1))
         self.particle_manager.emit(ParticleType.EXPLOSION, location, 30)
         self.sound_manager.play_sound("explosion")
 

@@ -60,6 +60,7 @@ class BlockParticle(Particle):
         time = self.life_span
         spread = 0.5
         location.move(random.uniform(-spread, spread), random.uniform(-spread, spread))
+        location.rotation = 0
         if sprite == None:
             raise ValueError("Sprite shouldn't be None for block particles!")
         pixel_sprite = pygame.Surface((1, 1))

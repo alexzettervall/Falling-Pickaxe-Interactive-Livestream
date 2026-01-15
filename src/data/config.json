@@ -13,8 +13,8 @@
     "tnt": {
         "fuse_time": 4.0,
         "flash_interval": 0.3,
-        "radius": 4,
-        "damage": 100
+        "radius": 5.5,
+        "damage": 300
     },
     "block_size": [1, 1],
     "pickaxe_break_delay": 0.05

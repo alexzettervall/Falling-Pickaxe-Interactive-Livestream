@@ -8,6 +8,7 @@ def init():
     pygame.font.init()
     pygame.mixer.init(frequency=41000)
     pygame.mixer.set_num_channels(1000)
+    pygame.display.set_mode()
     import game_data
     from location import Location
     from physics import PhysicsManager

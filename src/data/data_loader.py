@@ -20,7 +20,9 @@ def load_texture(path):
         pack = texture_packs + dir
         path = pack + "//" + path
         if os.path.isfile(path):
-            return pygame.image.load(path)
+            surface = pygame.image.load(path)
+            surface = surface.convert_alpha()
+            return surface
     
     raise ValueError(f"Couldn't find texture: {path}!")
 

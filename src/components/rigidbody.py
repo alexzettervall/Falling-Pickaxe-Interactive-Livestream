@@ -58,6 +58,12 @@ class RigidBody(Component):
         for callback in self._collision_while_listeners:
             callback(colliding_rigidbody)
 
+    def set_body_type(self, body_type: BodyType):
+        self.entity.location.world.physics_manager.set_rigidbody_body_type(self, body_type)
+
+    def set_velocity(self, velocity: Vector2):
+        self.entity.location.world.physics_manager.set_rigidbody_velocity(self, velocity)
+
     @override
     def tick(self):
         to_remove: list[RigidBody] = []

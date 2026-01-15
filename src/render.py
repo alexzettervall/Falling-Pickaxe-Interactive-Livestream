@@ -71,7 +71,8 @@ class Renderer():
         sprite = material_data[material].sprite
         sized_sprite = pygame.transform.scale(sprite, (screen_size_x, screen_size_y))
         rect = pygame.Rect(screen_position.x - screen_size_x / 2, screen_position.y - screen_size_y / 2, screen_size_x, screen_size_y)
-        camera.surface.blit(sized_sprite, rect)
+        rotated_sprite = pygame.transform.rotate(sized_sprite, block.location.rotation)
+        camera.surface.blit(rotated_sprite, rotated_sprite.get_rect(center = rect.center))
 
         crack_visual = block.get_component(CrackVisual)
         if crack_visual == None:
@@ -81,6 +82,7 @@ class Renderer():
             return
         destroy_sprite = game_data.destroy_stage_sprites[destroy_index]
         sized_destroy_sprite = pygame.transform.scale(destroy_sprite, (screen_size_x, screen_size_y))
-        camera.surface.blit(sized_destroy_sprite, rect)
+        rotated_destroy_sprite = pygame.transform.rotate(sized_destroy_sprite, block.location.rotation)
+        camera.surface.blit(rotated_destroy_sprite, rotated_destroy_sprite.get_rect(center = rect.center))
 
 

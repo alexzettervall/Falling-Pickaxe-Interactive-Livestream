@@ -9,9 +9,10 @@ from game_data import config
 
 class BlockBreaker(Component):
     @override
-    def __init__(self, entity, damage: float) -> None:
+    def __init__(self, entity, damage: float, self_damage: float = 0.0) -> None:
         super().__init__(entity)
         self.damage = damage
+        self.self_damage = self_damage
         self.rigidbody = self.entity.get_component(RigidBody)
         if self.rigidbody != None:
             self.rigidbody.add_while_in_contact_listener(self.while_in_contact)
@@ -34,6 +35,9 @@ class BlockBreaker(Component):
             return
         
         block_health.damage(self.damage)
+        health = self.entity.get_component(Health)
+        if health != None:
+            health.damage(self.self_damage)
         self.entity.location.world.sound_manager.play_sound("stone")
         self.block_damage_timers[block] = config.pickaxe_break_delay
 
