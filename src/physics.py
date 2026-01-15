@@ -42,7 +42,7 @@ class PhysicsManager():
         body.position = (entity.location.position.x * config.physics_scale, entity.location.position.y * config.physics_scale)
         for shape in shapes:
             pymunk_shape = Poly(body, shape)
-            pymunk_shape.mass = 1
+            pymunk_shape.density = 1
             pymunk_shape.collision_type = collision_type.value[0]
 
         # Add to simulation
