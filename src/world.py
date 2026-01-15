@@ -3,7 +3,7 @@ from math import ceil
 from numpy import isin
 from chat import Chat
 from chunk import Chunk
-from components.block_breaker import BlockBreaker
+from entities.block import BlockBreaker
 from components.health import Health
 from entities.background import Background
 from entities.block import Block
@@ -104,9 +104,7 @@ class World:
                 if block_health == None:
                     continue
                 block_health.damage(damage)
-                block.rigidbody.set_body_type(physics.BodyType.DYNAMIC)
-                block.rigidbody.set_velocity(Vector2(random.uniform(-5, 5), random.uniform(0, 5)))
-                block.add_component(BlockBreaker(block, 1, self_damage = 1))
+                block.dislodge()
         self.particle_manager.emit(ParticleType.EXPLOSION, location, 30)
         self.sound_manager.play_sound("explosion")
 
@@ -136,4 +134,9 @@ class World:
         if rb != None:
             rb.rotate_degrees(random.uniform(0, 360))
 
-    
+    def spawn_avalanche(self, user: str):
+        blocks = self.get_blocks_in_range(self.pickaxe.location.clone(), 8)
+        for block in blocks:
+            if block.material != "bedrock":
+                block.dislodge()
+        self.sound_manager.play_sound("avalanche")

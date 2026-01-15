@@ -21,4 +21,6 @@ class Chat():
             message: str = chat_message[1].lower()
             if "tnt" in message:
                 self.world.spawn_tnt(user)
+            elif "avalanche" in message:
+                self.world.spawn_avalanche(user)
         self.chat_messages = []

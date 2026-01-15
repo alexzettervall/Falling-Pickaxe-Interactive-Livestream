@@ -1,11 +1,17 @@
+import random
 from typing import override
 from numpy import var
 from math import floor
+
+from pygame import Vector2
+from component import Component
+from components.health import Health
 from components.rigidbody import RigidBody
 from entities.entity import Entity
 from physics import BodyType, CollisionType
 from game_data import config
 import game_data
+import physics
 
 
 class Block(Entity):
@@ -23,17 +29,48 @@ class Block(Entity):
         ]
         self.rigidbody = self.add_component(RigidBody(self, [vertices], collision_type = CollisionType.BLOCK, body_type = BodyType.STATIC))
 
-    """@override
-    def damage(self, damage: float):
-        self.health -= damage
-        n = len(variables.destroy_stage_sprites)
-        self.destroy_state_index = min(floor(n * ((self.max_health - self.health) / self.max_health)), n)
-        if self.health <= 0:
-            self.destroy()
+    def dislodge(self):
+        self.rigidbody.set_body_type(physics.BodyType.DYNAMIC)
+        self.rigidbody.set_velocity(Vector2(random.uniform(-5, 5), random.uniform(0, 5)))
+        self.add_component(BlockBreaker(self, 1, self_damage = 1))
 
-    def destroy(self):
-        if self.dead:
+class BlockBreaker(Component):
+    @override
+    def __init__(self, entity, damage: float, self_damage: float = 0.0) -> None:
+        super().__init__(entity)
+        self.damage = damage
+        self.self_damage = self_damage
+        self.rigidbody = self.entity.get_component(RigidBody)
+        if self.rigidbody != None:
+            self.rigidbody.add_while_in_contact_listener(self.while_in_contact)
+        self.block_damage_timers: dict[Block, float] = {}
+
+    def while_in_contact(self, rigidbody: RigidBody):
+        if isinstance(rigidbody.entity, Block):
+            block = rigidbody.entity
+            timer = 0
+            if block in self.block_damage_timers.keys():
+                timer = self.block_damage_timers[block]
+            if timer > 0:
+                return
+            self.damage_block(block)
+
+    def damage_block(self, block: Block):
+
+        block_health = block.get_component(Health)
+        if block_health == None:
             return
-        self.dead = True
-        physics.physicsManager.remove_entity(self.body)
-        self.chunk.remove_block(self)"""
+
+        block_health.damage(self.damage)
+        health = self.entity.get_component(Health)
+        if health != None:
+            health.damage(self.self_damage)
+        self.entity.location.world.sound_manager.play_sound("stone")
+        self.block_damage_timers[block] = config.pickaxe_break_delay
+
+    @override
+    def tick(self):
+        for block in self.block_damage_timers.keys():
+            self.block_damage_timers[block] -= config.delta_time
+
+        return super().tick()

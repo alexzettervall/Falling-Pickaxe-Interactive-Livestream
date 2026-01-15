@@ -1,6 +1,6 @@
 from typing import override
 from pygame import Vector2, ver
-from components.block_breaker import BlockBreaker
+from entities.block import BlockBreaker
 from components.rigidbody import RigidBody
 from components.sprite_renderer import SpriteRenderer
 from entities.entity import Entity
