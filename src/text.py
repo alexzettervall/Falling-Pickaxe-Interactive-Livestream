@@ -8,4 +8,5 @@ class AlignmentType(Enum):
     Right = 3,
 
 def render_text(font: Font, text: str, surface: Surface, alignment_type: AlignmentType, color: str | Color = "white", antialias: bool = True):
-    surface = font.render(text, True, color)
+    rendered_text = font.render(text, True, color)
+    surface.blit(render_text, ())

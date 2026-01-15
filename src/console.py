@@ -1,28 +1,30 @@
 import tkinter
-from tkinter import Button, Variable, ttk
-import chat
-from world import World
+from tkinter import StringVar, ttk
+from multiprocessing import Queue
+
+def init_console(from_main: Queue, to_main: Queue):
+    Console(from_main, to_main)
+
 
 class Console():
-    def __init__(self, world: World) -> None:
-        self.world: World = world
-        
-        window = tkinter.Tk()
-        frame = tkinter.Frame(window, padx=10, pady=10)
+    def __init__(self, from_main: Queue, to_main: Queue) -> None:
+        self.from_main = from_main
+        self.to_main = to_main
+        self.window = tkinter.Tk()
+        frame = tkinter.Frame(self.window, padx=10, pady=10)
         frame.grid()
-        ttk.Label(frame, text="Hellow World").grid(column = 1, row = 0)
         button = ttk.Button(frame, text="Enter", command=self.send_chat_message)
         button.grid(column = 2, row = 0)
-        self.input = Variable(frame)
+        self.input = StringVar(frame)
         entry = ttk.Entry(frame, textvariable=self.input)
         entry.grid(column = 1, row = 0)
 
-        window.mainloop()
+        self.window.mainloop()
 
     def send_chat_message(self):
         chat_message: tuple[str, str] = ("@ADMIN", self.input.get())
-        print(f"user: {chat_message[0]}, message: {chat_message[1]}")
-        self.world.chat.send_chat_message(chat_message)
+        print(f"CHAT MESSAGE: user: {chat_message[0]}, message: {chat_message[1]}")
+        self.to_main.put(chat_message)
         
 
     
