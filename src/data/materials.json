@@ -200,19 +200,19 @@
         "texture_path": "assets/minecraft/textures/block/raw_iron_block.png",
         "max_health": 30,
         "spawn_rate": 3,
-        "break_sound": "xp"
+        "break_sound": "level_up"
     },
     "raw_copper_block": {
         "texture_path": "assets/minecraft/textures/block/raw_copper_block.png",
         "max_health": 25,
         "spawn_rate": 5,
-        "break_sound": "xp"
+        "break_sound": "level_up"
     },
     "raw_gold_block": {
         "texture_path": "assets/minecraft/textures/block/raw_gold_block.png",
         "max_health": 35,
         "spawn_rate": 2,
-        "break_sound": "xp"
+        "break_sound": "level_up"
     },
     "ancient_debris": {
         "texture_path": "assets/minecraft/textures/block/ancient_debris_side.png",
