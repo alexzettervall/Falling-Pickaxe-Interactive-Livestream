@@ -15,7 +15,7 @@
     "avalanche": {
         "sounds": ["avalanche.wav"],
         "volume": 1.0,
-        "max_play_frequency": 10.0
+        "max_play_frequency": 1.0
     },
     "glass": {
         "sounds": ["Glass_dig1.ogg", "Glass_dig2.ogg", "Glass_dig3.ogg"],
