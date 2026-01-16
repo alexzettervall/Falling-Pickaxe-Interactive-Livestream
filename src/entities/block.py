@@ -38,6 +38,14 @@ class Block(Entity):
         self.rigidbody.set_velocity(Vector2(random.uniform(-5, 5), random.uniform(0, 5)))
         self.add_component(BlockBreaker(self, 1, self_damage = 1))
 
+    @override
+    def remove(self):
+        sound = game_data.MATERIAL_DATA[self.material].break_sound
+        if sound != None:
+            self.location.world.sound_manager.play_sound(sound)
+
+        return super().remove()
+
 class BlockBreaker(Component):
     @override
     def __init__(self, entity, damage: float = 0, dig_speed = game_data.config.default_break_speed, self_damage: float = 0.0) -> None:

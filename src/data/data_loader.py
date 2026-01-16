@@ -46,8 +46,11 @@ def load_material_data() -> dict[str, MaterialData]:
         sprite: Surface = load_texture(material_data_json["texture_path"])
         max_health: float = material_data_json["max_health"]
         spawn_rate: float = material_data_json["spawn_rate"]
+        break_sound: str | None = None
+        if "break_sound" in material_data_json:
+            break_sound = material_data_json["break_sound"]
         
-        material_datas[material] = MaterialData(sprite, max_health, spawn_rate)
+        material_datas[material] = MaterialData(sprite, max_health, spawn_rate, break_sound)
 
     return material_datas
     
@@ -65,8 +68,12 @@ def load_sound_data() -> dict[str, SoundData]:
         for sound_name in sound_names:
             sounds.append(Sound("assets//sounds//" + sound_name))
         volume: float = sound_data_json["volume"]
+
+        max_play_frequency: float = 50.0
+        if "max_play_frequency" in sound_data_json:
+            max_play_frequency = sound_data_json["max_play_frequency"]
         
-        sound_datas[sound] = SoundData(sounds, volume)
+        sound_datas[sound] = SoundData(sounds, volume, max_play_frequency)
 
     return sound_datas
 

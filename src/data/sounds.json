@@ -9,10 +9,24 @@
     },
     "explosion": {
         "sounds": ["explosion.wav"],
-        "volume": 1.0
+        "volume": 1.0,
+        "max_play_frequency": 10.0
     },
     "avalanche": {
         "sounds": ["avalanche.wav"],
+        "volume": 1.0,
+        "max_play_frequency": 10.0
+    },
+    "glass": {
+        "sounds": ["Glass_dig1.ogg", "Glass_dig2.ogg", "Glass_dig3.ogg"],
+        "volume": 1.0
+    },
+    "xp": {
+        "sounds": ["successful_hit.ogg"],
+        "volume": 1.0
+    },
+    "level_up": {
+        "sounds": ["Random_levelup.ogg"],
         "volume": 1.0
     }
 }
