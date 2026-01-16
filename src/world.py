@@ -72,6 +72,7 @@ class World:
         self.particle_manager.render()
         self.chat.tick()
         self.update_delta_time()
+        self.sound_manager.tick()
 
     def update_delta_time(self):
         config = game_data.config

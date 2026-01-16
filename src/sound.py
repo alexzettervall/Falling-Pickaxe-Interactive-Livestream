@@ -9,7 +9,18 @@ from sound_data import SoundData
 class SoundManager():
     def __init__(self) -> None:
         self.sound_last_play_time: dict[str, float] = {}
+        self.sound_queue: dict[str, int] = {}
     
+    def tick(self):
+        for sound_name in self.sound_queue.keys():
+            count = self.sound_queue[sound_name]
+            if count <= 0:
+                continue
+            elif time.time() - self.sound_last_play_time[sound_name] < 1 / SOUND_DATA[sound_name].max_play_frequency:
+                continue
+            self.play_sound(sound_name)
+            self.sound_queue[sound_name] -= 1
+
     def play_sound(self, sound_name: str):
         sound_data: SoundData = SOUND_DATA[sound_name]
 
@@ -17,6 +28,11 @@ class SoundManager():
         if sound_name in self.sound_last_play_time:
             last_play_time = self.sound_last_play_time[sound_name]
         if time.time() - last_play_time < 1 / sound_data.max_play_frequency:
+            if sound_data.queue_rate_limited_sounds:
+                if sound_name in self.sound_queue.keys():
+                    self.sound_queue[sound_name] += 1
+                else:
+                    self.sound_queue[sound_name] = 1
             return
         self.sound_last_play_time[sound_name] = time.time()
 

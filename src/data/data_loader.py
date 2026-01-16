@@ -72,8 +72,12 @@ def load_sound_data() -> dict[str, SoundData]:
         max_play_frequency: float = 50.0
         if "max_play_frequency" in sound_data_json:
             max_play_frequency = sound_data_json["max_play_frequency"]
+
+        queue_rate_limited_sounds: bool = False
+        if "queue_rate_limited_sounds" in sound_data_json:
+            queue_rate_limited_sounds = sound_data_json["queue_rate_limited_sounds"]
         
-        sound_datas[sound] = SoundData(sounds, volume, max_play_frequency)
+        sound_datas[sound] = SoundData(sounds, volume, max_play_frequency, queue_rate_limited_sounds)
 
     return sound_datas
 

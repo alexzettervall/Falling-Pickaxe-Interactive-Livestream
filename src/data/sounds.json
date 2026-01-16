@@ -23,10 +23,12 @@
     },
     "xp": {
         "sounds": ["successful_hit.ogg"],
-        "volume": 1.0
+        "volume": 1.0,
+        "queue_rate_limited_sounds": true
     },
     "level_up": {
         "sounds": ["Random_levelup.ogg"],
-        "volume": 1.0
+        "volume": 1.0,
+        "queue_rate_limited_sounds": true
     }
 }
