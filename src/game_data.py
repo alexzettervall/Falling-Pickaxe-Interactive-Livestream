@@ -28,6 +28,7 @@ config: Config = data_loader.load_config()
 MATERIAL_DATA: dict[str, MaterialData] = data_loader.load_material_data()
 SOUND_DATA: dict[str, SoundData] = data_loader.load_sound_data()
 BIOME_DATA: dict[str, biome.BiomeData] = data_loader.load_biome_data()
+PICKAXE_DATA: dict[str, data_loader.PickaxeData] = data_loader.load_pickaxe_data()
 camera: Camera
 renderer: Renderer
 

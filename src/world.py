@@ -186,3 +186,6 @@ class World:
         self.pickaxe.set_pickaxe_size(PickaxeSize.SMALL)
         time.sleep(game_data.config.pickaxe_size_changee_duration)
         self.pickaxe.set_pickaxe_size(PickaxeSize.NORMAL)
+
+    def set_pickaxe_type(self, user: str, pickaxe_type: str):
+        self.pickaxe.set_pickaxe_type(pickaxe_type)

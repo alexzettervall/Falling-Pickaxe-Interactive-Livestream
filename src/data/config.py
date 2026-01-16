@@ -19,7 +19,7 @@ class Config():
                  tnt_radius: float,
                  tnt_damage: float,
                  block_size: Vector2, 
-                 pickaxe_break_delay: float,
+                 default_break_speed: float,
                  normal_speed: float,
                  fast_speed: float,
                  slow_speed: float,
@@ -45,7 +45,7 @@ class Config():
         self.tnt_radius = tnt_radius
         self.tnt_damage = tnt_damage
         self.block_size = block_size
-        self.pickaxe_break_delay = pickaxe_break_delay
+        self.default_break_speed = default_break_speed
         self.normal_speed = normal_speed
         self.fast_speed = fast_speed
         self.slow_speed = slow_speed

@@ -8,7 +8,7 @@ from render import SpriteData
 
 
 class SpriteRenderer(Component):
-    def __init__(self, entity, camera: Camera | None, sprite) -> None:
+    def __init__(self, entity, camera: Camera | None = None, sprite: pygame.Surface | None = None) -> None:
         super().__init__(entity)
 
         self.sprite = sprite
@@ -19,7 +19,9 @@ class SpriteRenderer(Component):
     def tick(self):
         self.render(self.camera, self.sprite)
 
-    def render(self, camera: Camera | None, sprite):
+    def render(self, camera: Camera | None, sprite: pygame.Surface | None):
+        if sprite == None:
+            return
         if camera == None:
             camera = game_data.camera
         if camera == None:

@@ -40,9 +40,10 @@ class Block(Entity):
 
 class BlockBreaker(Component):
     @override
-    def __init__(self, entity, damage: float, self_damage: float = 0.0) -> None:
+    def __init__(self, entity, damage: float = 0, dig_speed = game_data.config.default_break_speed, self_damage: float = 0.0) -> None:
         super().__init__(entity)
         self.damage = damage
+        self.dig_speed = dig_speed
         self.self_damage = self_damage
         self.rigidbody = self.entity.get_component(RigidBody)
         if self.rigidbody != None:
@@ -70,7 +71,7 @@ class BlockBreaker(Component):
         if health != None:
             health.damage(self.self_damage)
         self.entity.location.world.sound_manager.play_sound("stone")
-        self.block_damage_timers[block] = config.pickaxe_break_delay
+        self.block_damage_timers[block] = 1 / self.dig_speed
 
     @override
     def tick(self):

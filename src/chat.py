@@ -32,4 +32,18 @@ class Chat():
                 threading.Thread(target = self.world.size_big, args = [user]).start()
             elif "small" in message:
                 threading.Thread(target = self.world.size_small, args = [user]).start()
+            elif "wood" in message:
+                self.world.set_pickaxe_type(user, "wood")
+            elif "stone" in message:
+                self.world.set_pickaxe_type(user, "stone")
+            elif "copper" in message:
+                self.world.set_pickaxe_type(user, "copper")
+            elif "iron" in message:
+                self.world.set_pickaxe_type(user, "iron")
+            elif "gold" in message:
+                self.world.set_pickaxe_type(user, "gold")
+            elif "diamond" in message:
+                self.world.set_pickaxe_type(user, "diamond")
+            elif "netherite" in message:
+                self.world.set_pickaxe_type(user, "netherite")
         self.chat_messages = []

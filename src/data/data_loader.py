@@ -9,7 +9,7 @@ from material import MaterialData
 from sound_data import SoundData
 from pygame.mixer import Sound
 import biome
-
+from typing import NamedTuple
 
 def load_texture(path):
     texture_packs = "..//texture-packs//"
@@ -86,7 +86,7 @@ def load_config() -> Config:
     tnt_radius: float = config_json["tnt"]["radius"]
     tnt_damage: float = config_json["tnt"]["damage"]
     block_size: Vector2 = Vector2(config_json["block_size"])
-    pickaxe_break_delay: float = config_json["pickaxe_break_delay"]
+    pickaxe_break_delay: float = config_json["default_break_speed"]
 
     config = Config(
         stream_url=stream_url,
@@ -105,7 +105,7 @@ def load_config() -> Config:
         tnt_radius=tnt_radius,
         tnt_damage=tnt_damage,
         block_size=block_size,
-        pickaxe_break_delay=pickaxe_break_delay,
+        default_break_speed=pickaxe_break_delay,
         normal_speed=config_json["normal_speed"],
         fast_speed=config_json["fast_speed"],
         slow_speed=config_json["slow_speed"],
@@ -134,3 +134,25 @@ def load_biome_data() -> dict[str, biome.BiomeData]:
         biomes[biome_name] = biome.BiomeData(blocks, biome_json["frequency"])
 
     return biomes
+
+class PickaxeData(NamedTuple):
+    sprite: Surface
+    damage: float
+    dig_speed: float
+
+def load_pickaxe_data() -> dict[str, PickaxeData]:
+    path = "data//pickaxes.json"
+
+    pickaxes_json: dict[str, Any] = json.loads(open(path, 'r').read())
+    pickaxes: dict[str, PickaxeData] = {}
+
+    for pickaxe_name in pickaxes_json.keys():
+        pickaxe_json = pickaxes_json[pickaxe_name]
+        pickaxes[pickaxe_name] = PickaxeData(
+            sprite=load_texture(pickaxe_json["texture_path"]),
+            damage=pickaxe_json["damage"],
+            dig_speed=pickaxe_json["dig_speed"]
+        )
+
+    return pickaxes
+
