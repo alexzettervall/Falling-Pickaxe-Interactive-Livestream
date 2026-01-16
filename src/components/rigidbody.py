@@ -83,7 +83,7 @@ class RigidBody(Component):
         return super().tick()
 
     # Used by physics manager to change location
-    def update_position(self, position: Vector2):
+    def on_position_update(self, position: Vector2):
         self.entity.location.position = position
 
     # Used by physics manager to change rotation

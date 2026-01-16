@@ -28,6 +28,8 @@ class Pickaxe(Entity):
 
     @override
     def tick(self):
+        self.keep_within_bounds()
+
         return super().tick()
     
     def set_pickaxe_size(self, pickaxe_size: PickaxeSize):
@@ -41,3 +43,10 @@ class Pickaxe(Entity):
 
     def get_pickaxe_size(self) -> PickaxeSize:
         return self._pickaxe_size
+    
+    def keep_within_bounds(self):
+        chunk_width = game_data.config.chunk_size[0]
+        x_pos = self.location.position.x
+        if x_pos < -chunk_width / 2 or x_pos > chunk_width / 2:
+            self.rigidbody.move_position(Vector2(0, self.location.position.y))
+            self.rigidbody.set_velocity(Vector2(0, 0))

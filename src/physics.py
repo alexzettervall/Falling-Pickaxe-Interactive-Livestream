@@ -77,7 +77,7 @@ class PhysicsManager():
     def update_rigidbody_positions(self):
         for body in self.body_rigidbodies.keys():
             rigidbody = self.body_rigidbodies[body]
-            rigidbody.update_position(Vector2(body.position.x / config.physics_scale, body.position.y / config.physics_scale))
+            rigidbody.on_position_update(Vector2(body.position.x / config.physics_scale, body.position.y / config.physics_scale))
             rigidbody.update_rotation_degrees(math.degrees(body.angle))
 
     def remove_rigidbodies(self):
@@ -108,7 +108,7 @@ class PhysicsManager():
         body = self.body_rigidbodies.inverse.get(rigidbody)
         if body == None:
             return
-        body.position = Vec2d(position.x, position.y)
+        body.position = Vec2d(position.x * config.physics_scale, position.y * config.physics_scale)
 
     def rotate_rigidbody_degrees(self, rigidbody: RigidBody, angle: float):
         body = self.body_rigidbodies.inverse.get(rigidbody)
