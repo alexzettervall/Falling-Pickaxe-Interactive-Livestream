@@ -10,7 +10,32 @@ class AlignmentType(Enum):
     LEFT = 2,
     RIGHT = 3,
 
+COLOR_PREFIXES = {
+    "🔴": "red",
+    "🟢": "green",
+    "🔵": "blue",
+    "🟡": "yellow",
+    "🟠": "orange",
+    "🟣": "purple",
+    "⚫": "black",
+    "⚪": "white",
+}
+
 def render_text(font: Font, text: str, screen_position: tuple[int, int], alignment_type: AlignmentType, color: str | Color = "white", antialias: bool = True):
+    lines: list[str] = str.splitlines(text)
+    text_height = font.get_height()
+    for i in range(len(lines)):
+        line = lines[i]
+        new_screen_position = (screen_position[0], screen_position[1] + i * text_height)
+        _render_line(font, line, new_screen_position, alignment_type, color, antialias)
+    
+def _render_line(font: Font, text: str, screen_position: tuple[int, int], alignment_type: AlignmentType, color: str | Color = "white", antialias: bool = True):
+    for emoji, color_name in COLOR_PREFIXES.items():
+        if text.startswith(emoji):
+            text = text.removeprefix(emoji)
+            color = color_name
+            break
+
     rendered_text = font.render(text, True, color)
     drop_shadows: list[tuple[Surface, tuple[int, int]]] = []
     outline_width = 2

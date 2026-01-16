@@ -170,7 +170,7 @@ def load_pickaxe_data() -> dict[str, PickaxeData]:
 def load_display() -> text.Display:
     path = "data//display.json"
 
-    file = open(path, 'r')
+    file = open(path, 'r', encoding = "utf-8")
     display_json: dict[str, Any] = json.loads(file.read())
     file.close()
 
