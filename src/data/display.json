@@ -1,0 +1,114 @@
+{
+    "commands": {
+        "font": "big",
+        "text": "Commands!",
+        "screen_position": [8, 16],
+        "alignment_type": "LEFT",
+        "color": "yellow",
+        "antialias": true
+    },
+    "tnt": {
+        "font": "default",
+        "text": "tnt",
+        "screen_position": [8, 46],
+        "alignment_type": "LEFT",
+        "color": "red",
+        "antialias": true
+    },
+    "avalanche": {
+        "font": "default",
+        "text": "avalanche",
+        "screen_position": [8, 76],
+        "alignment_type": "LEFT",
+        "color": "red",
+        "antialias": true
+    },
+    "fast": {
+        "font": "default",
+        "text": "fast",
+        "screen_position": [8, 106],
+        "alignment_type": "LEFT",
+        "color": "aqua",
+        "antialias": true
+    },
+    "slow": {
+        "font": "default",
+        "text": "slow",
+        "screen_position": [8, 136],
+        "alignment_type": "LEFT",
+        "color": "brown",
+        "antialias": true
+    },
+    "big": {
+        "font": "default",
+        "text": "big",
+        "screen_position": [8, 166],
+        "alignment_type": "LEFT",
+        "color": "purple",
+        "antialias": true
+    },
+    "small": {
+        "font": "default",
+        "text": "small",
+        "screen_position": [8, 196],
+        "alignment_type": "LEFT",
+        "color": "white",
+        "antialias": true
+    },
+    "wood": {
+        "font": "default",
+        "text": "wood",
+        "screen_position": [8, 226],
+        "alignment_type": "LEFT",
+        "color": "brown",
+        "antialias": true
+    },
+    "stone": {
+        "font": "default",
+        "text": "stone",
+        "screen_position": [8, 256],
+        "alignment_type": "LEFT",
+        "color": "gray",
+        "antialias": true
+    },
+    "copper": {
+        "font": "default",
+        "text": "copper",
+        "screen_position": [8, 286],
+        "alignment_type": "LEFT",
+        "color": "orange",
+        "antialias": true
+    },
+    "iron": {
+        "font": "default",
+        "text": "iron",
+        "screen_position": [8, 316],
+        "alignment_type": "LEFT",
+        "color": "white",
+        "antialias": true
+    },
+    "gold": {
+        "font": "default",
+        "text": "gold",
+        "screen_position": [8, 346],
+        "alignment_type": "LEFT",
+        "color": "yellow",
+        "antialias": true
+    },
+    "diamond": {
+        "font": "default",
+        "text": "diamond",
+        "screen_position": [8, 376],
+        "alignment_type": "LEFT",
+        "color": "aqua",
+        "antialias": true
+    },
+    "netherite": {
+        "font": "default",
+        "text": "netherite",
+        "screen_position": [8, 406],
+        "alignment_type": "LEFT",
+        "color": "maroon",
+        "antialias": true
+    }
+}

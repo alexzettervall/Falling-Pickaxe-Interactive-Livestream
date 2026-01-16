@@ -1,9 +1,8 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING
 import pygame
-
+from pygame.font import Font
 from data import data_loader
-from data.config import Config
 
 
 if TYPE_CHECKING:
@@ -12,6 +11,8 @@ if TYPE_CHECKING:
     from camera import Camera
     from render import Renderer
     import biome
+    from text import Display
+    from data.config import Config
 
 """SCREEN_WIDTH, SCREEN_HEIGHT = 1400,800
 DEBUG = False
@@ -33,7 +34,12 @@ camera: Camera
 renderer: Renderer
 
 font_name = "arial"
-font = pygame.font.SysFont(font_name, 30)
+FONTS: dict[str, Font] = {
+        "default": Font("assets/fonts/PixelEmulator-xq08.ttf", 20),
+        "big": Font("assets/fonts/PixelEmulator-xq08.ttf", 30)
+        }
+DISPLAY: Display = data_loader.load_display()
+#font = pygame.font.SysFont(font_name, 20)
 
 def load_sprites():
     global sprite_tnt

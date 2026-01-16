@@ -30,7 +30,7 @@ class TNT(Entity):
         self.add_component(RigidBody(self, [vertices]))
         self.sprite_renderer = self.add_component(SpriteRenderer(self, game_data.camera, sprite))
         self.flash_sprite_renderer = self.add_component(SpriteRenderer(self, game_data.camera, square))
-        self.text_renderer = self.add_component(TextRenderer(self, Vector2(0, 1.2), alignment_type = AlignmentType.Center))
+        self.text_renderer = self.add_component(TextRenderer(self, Vector2(0, 0.5), alignment_type = AlignmentType.CENTER))
         if user != None:
             self.text_renderer.text = user
 

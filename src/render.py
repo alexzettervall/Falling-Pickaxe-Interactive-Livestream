@@ -3,12 +3,12 @@ from typing import TYPE_CHECKING
 import pygame
 from components.crack_visual import CrackVisual
 import game_data
-from entities.block import Block
 from pygame import Rect, Surface
 from typing import NamedTuple
 if TYPE_CHECKING:
     from world import World
     from chunk import Chunk
+    from entities.block import Block
 
 class SpriteData(NamedTuple):
     surface: Surface
@@ -24,6 +24,7 @@ class Renderer():
         self.texts: list[SpriteData]= []
 
     def tick(self):
+        game_data.DISPLAY.render()
         self.render_background()
         self.render_blocks()
         self.render_sprites()

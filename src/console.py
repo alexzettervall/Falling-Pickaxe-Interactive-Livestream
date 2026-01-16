@@ -15,10 +15,10 @@ class Console():
         frame.grid()
         button = ttk.Button(frame, text="Enter", command=self.send_chat_message)
         button.grid(column = 3, row = 0)
-        self.input = StringVar(frame)
+        self.input = StringVar(frame, value = "tnt")
         message_entry = ttk.Entry(frame, textvariable=self.input)
         message_entry.grid(column = 1, row = 0)
-        self.amount = IntVar(frame)
+        self.amount = IntVar(frame, value = 1)
         amount_entry = ttk.Entry(frame, textvariable = self.amount)
         amount_entry.grid(column = 2, row = 0)
 
