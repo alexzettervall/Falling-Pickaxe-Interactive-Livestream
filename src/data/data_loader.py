@@ -127,7 +127,14 @@ def load_config() -> Config:
         normal_pickaxe_size=config_json["normal_pickaxe_size"],
         big_pickaxe_size=config_json["big_pickaxe_size"],
         small_pickaxe_size=config_json["small_pickaxe_size"],
-        pickaxe_size_change_duration=config_json["pickaxe_size_change_duration"]
+        pickaxe_size_change_duration=config_json["pickaxe_size_change_duration"],
+
+        chat_message_time=config_json["chat_message_time"],
+        chat_color=config_json["chat_color"],
+        chat_font=config_json["chat_font"],
+        chat_max_displayed_messages=config_json["chat_max_displayed_messages"],
+        chat_position=tuple(config_json["chat_position"]),
+        chat_alignment_type=text.AlignmentType[config_json["chat_alignment_type"]],
     )
 
     return config

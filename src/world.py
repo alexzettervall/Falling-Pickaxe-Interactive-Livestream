@@ -70,7 +70,7 @@ class World:
 
         self.particle_manager.tick()
         self.particle_manager.render()
-        self.chat.execute_messages()
+        self.chat.tick()
         self.update_delta_time()
 
     def update_delta_time(self):
@@ -151,18 +151,21 @@ class World:
         rb = tnt.get_component(RigidBody)
         if rb != None:
             rb.rotate_degrees(random.uniform(0, 360))
+        self.chat.add_displayed_message(f"{user} spawned a tnt!")
 
     def spawn_avalanche(self, user: str):
         blocks = self.get_blocks_in_range(self.pickaxe.location.clone(), 8)
         for block in blocks:
             if block.material != "bedrock":
                 block.dislodge()
+        self.chat.add_displayed_message(f"{user} spawned a avalanche!")
         self.sound_manager.play_sound("avalanche")
 
     def speed_fast(self, user: str):
         if self.time_speed != TimeSpeed.NORMAL:
             return
         self.time_speed = TimeSpeed.FAST
+        self.chat.add_displayed_message(f"{user} sped up time!")
         time.sleep(game_data.config.speed_change_duration)
         self.time_speed = TimeSpeed.NORMAL
 
@@ -170,6 +173,7 @@ class World:
         if self.time_speed != TimeSpeed.NORMAL:
             return
         self.time_speed = TimeSpeed.SLOW
+        self.chat.add_displayed_message(f"{user} slowed down time!")
         time.sleep(game_data.config.speed_change_duration)
         self.time_speed = TimeSpeed.NORMAL
 
@@ -177,6 +181,7 @@ class World:
         if self.pickaxe.get_pickaxe_size() != PickaxeSize.NORMAL:
             return
         self.pickaxe.set_pickaxe_size(PickaxeSize.BIG)
+        self.chat.add_displayed_message(f"{user} made the pickaxe big!")
         time.sleep(game_data.config.pickaxe_size_changee_duration)
         self.pickaxe.set_pickaxe_size(PickaxeSize.NORMAL)
 
@@ -184,8 +189,10 @@ class World:
         if self.pickaxe.get_pickaxe_size() != PickaxeSize.NORMAL:
             return
         self.pickaxe.set_pickaxe_size(PickaxeSize.SMALL)
+        self.chat.add_displayed_message(f"{user} made the pickaxe small!")
         time.sleep(game_data.config.pickaxe_size_changee_duration)
         self.pickaxe.set_pickaxe_size(PickaxeSize.NORMAL)
 
     def set_pickaxe_type(self, user: str, pickaxe_type: str):
         self.pickaxe.set_pickaxe_type(pickaxe_type)
+        self.chat.add_displayed_message(f"{user} set pickaxe type to {pickaxe_type}!")

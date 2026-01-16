@@ -73,7 +73,7 @@ def init():
             world.chat.send_chat_message(msg)
 
         
-        game_data.camera.move_towards(world.pickaxe.location.position.y)
+        game_data.camera.move_towards(world.pickaxe.location.position.y - 1)
         
         pygame.display.flip()
 

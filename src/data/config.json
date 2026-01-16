@@ -25,5 +25,12 @@
     "normal_pickaxe_size": 2.0,
     "big_pickaxe_size": 4.0,
     "small_pickaxe_size": 1.0,
-    "pickaxe_size_change_duration": 5.0
+    "pickaxe_size_change_duration": 5.0,
+
+    "chat_message_time": 5.0,
+    "chat_color": "lime",
+    "chat_font": "default",
+    "chat_max_displayed_messages": 9,
+    "chat_position": [614, 300],
+    "chat_alignment_type": "RIGHT"
 }

@@ -1,5 +1,7 @@
 from pygame import Vector2
 
+from text import AlignmentType
+
 
 class Config():
     def __init__(self, 
@@ -27,7 +29,14 @@ class Config():
                  normal_pickaxe_size: float,
                  big_pickaxe_size: float,
                  small_pickaxe_size: float,
-                 pickaxe_size_change_duration: float
+                 pickaxe_size_change_duration: float,
+
+                 chat_message_time: float,
+                 chat_color: str,
+                 chat_font: str,
+                 chat_max_displayed_messages: int,
+                 chat_position: tuple[int, int],
+                 chat_alignment_type: AlignmentType
     ) -> None:
         self.stream_url = stream_url
         self.listen_to_stream = listen_to_stream
@@ -54,4 +63,11 @@ class Config():
         self.big_pickaxe_size = big_pickaxe_size
         self.small_pickaxe_size = small_pickaxe_size
         self.pickaxe_size_changee_duration = pickaxe_size_change_duration
+
+        self.chat_message_time = chat_message_time
+        self.chat_color = chat_color
+        self.chat_font = chat_font
+        self.chat_max_displayed_messages = chat_max_displayed_messages
+        self.chat_position = chat_position
+        self.chat_alignment_type = chat_alignment_type
 

@@ -21,12 +21,15 @@ COLOR_PREFIXES = {
     "⚪": "white",
 }
 
-def render_text(font: Font, text: str, screen_position: tuple[int, int], alignment_type: AlignmentType, color: str | Color = "white", antialias: bool = True):
+def render_text(font: Font, text: str, screen_position: tuple[int, int], alignment_type: AlignmentType, color: str | Color = "white", antialias: bool = True, lines_go_down: bool = True):
     lines: list[str] = str.splitlines(text)
     text_height = font.get_height()
     for i in range(len(lines)):
         line = lines[i]
-        new_screen_position = (screen_position[0], screen_position[1] + i * text_height)
+        if lines_go_down:
+            new_screen_position = (screen_position[0], screen_position[1] + i * text_height)
+        else:
+            new_screen_position = (screen_position[0], screen_position[1] + i * -text_height)
         _render_line(font, line, new_screen_position, alignment_type, color, antialias)
     
 def _render_line(font: Font, text: str, screen_position: tuple[int, int], alignment_type: AlignmentType, color: str | Color = "white", antialias: bool = True):
