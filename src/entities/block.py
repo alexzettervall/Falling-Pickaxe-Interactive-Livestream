@@ -1,5 +1,6 @@
+from __future__ import annotations
 import random
-from typing import override
+from typing import TYPE_CHECKING, override
 from numpy import var
 from math import floor
 
@@ -13,9 +14,11 @@ from game_data import config
 import game_data
 import physics
 
+if TYPE_CHECKING:
+    from chunk import Chunk
 
 class Block(Entity):
-    def __init__(self, chunk, material: str, location):
+    def __init__(self, chunk: Chunk | None, material: str, location):
         super().__init__(location, size = game_data.config.block_size)
         self.dead = False
         self.dislodged = False

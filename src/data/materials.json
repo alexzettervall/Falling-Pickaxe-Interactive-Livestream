@@ -358,5 +358,10 @@
         "texture_path": "assets/minecraft/textures/block/basalt_side.png",
         "max_health": 20,
         "spawn_rate": 30
+    },
+    "tnt": {
+        "texture_path": "assets/minecraft/textures/block/tnt_side.png",
+        "max_health": 10000000000,
+        "spawn_rate": 30
     }
 }

@@ -1,5 +1,6 @@
 from entities.block import Block
 from entities.damageable_block import DamageableBlock
+from entities.tnt import TNT
 from location import Location
 from pygame import Vector2
 import random
@@ -42,6 +43,8 @@ class Chunk:
 
                 if material == "bedrock":
                     blocks.append(Block(self, material, Location(self.location.world, Vector2(x_pos, y_pos))))
+                elif material == "tnt":
+                    blocks.append(TNT(chunk = self, location = Location(self.location.world, Vector2(x_pos, y_pos)), user = None))
                 else:
                     blocks.append(DamageableBlock(self, material, Location(self.location.world, Vector2(x_pos, y_pos))))
 

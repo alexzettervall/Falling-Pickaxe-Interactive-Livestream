@@ -15,7 +15,8 @@
             "raw_copper_block": {"frequency": 2},
             "raw_gold_block": {"frequency": 2},
             "cobblestone": {"frequency": 10},
-            "tuff": {"frequency": 2}
+            "tuff": {"frequency": 2},
+            "tnt": {"frequency": 1}
         },
         "frequency": 1
     },
@@ -30,7 +31,8 @@
             "deepslate_emerald_ore": {"frequency": 2},
             "raw_iron_block": {"frequency": 2},
             "raw_copper_block": {"frequency": 2},
-            "raw_gold_block": {"frequency": 2}
+            "raw_gold_block": {"frequency": 2},
+            "tnt": {"frequency": 1}
         },
         "frequency": 0.8
     },
@@ -41,7 +43,8 @@
             "blackstone": {"frequency": 15},
             "nether_quartz_ore": {"frequency": 5},
             "ancient_debris": {"frequency": 1},
-            "gravel": {"frequency": 5}
+            "gravel": {"frequency": 5},
+            "tnt": {"frequency": 2}
         },
         "frequency": 1
     },
@@ -50,7 +53,8 @@
             "deepslate_diamond_ore": {"frequency": 10},
             "diamond_ore": {"frequency": 10},
             "diamond_block": {"frequency": 10},
-            "emerald_block": {"frequency": 5}
+            "emerald_block": {"frequency": 5},
+            "tnt": {"frequency": 0.5}
         },
         "frequency": 1
     }

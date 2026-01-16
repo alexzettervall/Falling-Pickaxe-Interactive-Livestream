@@ -117,7 +117,7 @@ class World:
         for block in blocks:
             dist = location.position.distance_to(block.location.position)
             if dist < size:
-                damage = strength / (dist ** 2)
+                damage = strength / max(0.001, (dist ** 2))
                 block_health = block.get_component(Health)
                 if block_health == None:
                     continue
@@ -147,10 +147,8 @@ class World:
 
     # Command implementations
     def spawn_tnt(self, user: str):
-        tnt = self.add_entity(TNT(Location(self, Vector2(self.pickaxe.location.position.x, self.pickaxe.location.position.y + 3)), user = user))
-        rb = tnt.get_component(RigidBody)
-        if rb != None:
-            rb.rotate_degrees(random.uniform(0, 360))
+        tnt = self.add_entity(TNT(chunk = None, location = Location(self, Vector2(self.pickaxe.location.position.x, self.pickaxe.location.position.y + 3)), user = user))
+        tnt.ignite()
         self.chat.add_displayed_message(f"{user} spawned a tnt!")
 
     def spawn_avalanche(self, user: str):
