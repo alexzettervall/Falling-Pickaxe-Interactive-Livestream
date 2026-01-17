@@ -27,7 +27,8 @@
     "gravel": {
         "texture_path": "assets/minecraft/textures/block/gravel.png",
         "max_health": 10,
-        "spawn_rate": 30
+        "spawn_rate": 30,
+        "dig_sound": "gravel"
     },
     "stone": {
         "texture_path": "assets/minecraft/textures/block/stone.png",
@@ -395,16 +396,19 @@
     "snow": {
         "texture_path": "assets/minecraft/textures/block/snow.png",
         "max_health": 10,
-        "spawn_rate": 30
+        "spawn_rate": 30,
+        "dig_sound": "snow"
     },
     "ice": {
         "texture_path": "assets/minecraft/textures/block/ice.png",
         "max_health": 5,
-        "spawn_rate": 30
+        "spawn_rate": 30,
+        "dig_sound": "glass"
     },
     "packed_ice": {
         "texture_path": "assets/minecraft/textures/block/packed_ice.png",
         "max_health": 15,
-        "spawn_rate": 30
+        "spawn_rate": 30,
+        "dig_sound": "glass"
     }
 }

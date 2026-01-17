@@ -84,7 +84,7 @@ class BlockBreaker(Component):
         health = self.entity.get_component(Health)
         if health != None:
             health.damage(self.self_damage)
-        self.entity.location.world.sound_manager.play_sound("stone")
+        self.entity.location.world.sound_manager.play_sound(game_data.MATERIAL_DATA[block.material].dig_sound)
         self.block_damage_timers[block] = 1 / self.dig_speed
 
     @override

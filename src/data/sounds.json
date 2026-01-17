@@ -19,7 +19,15 @@
     },
     "glass": {
         "sounds": ["Glass_dig1.ogg", "Glass_dig2.ogg", "Glass_dig3.ogg"],
-        "volume": 1.0
+        "volume": 0.5
+    },
+    "snow": {
+        "sounds": ["Snow_dig1.ogg", "Snow_dig2.ogg", "Snow_dig3.ogg", "Snow_dig4.ogg"],
+        "volume": 0.5
+    },
+    "gravel": {
+        "sounds": ["Gravel_dig1.ogg", "Gravel_dig2.ogg", "Gravel_dig3.ogg", "Gravel_dig4.ogg"],
+        "volume": 0.5
     },
     "xp": {
         "sounds": ["successful_hit.ogg"],

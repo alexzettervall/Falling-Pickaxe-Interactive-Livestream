@@ -54,8 +54,12 @@ def load_material_data() -> dict[str, MaterialData]:
         experience: float = 0.0
         if "experience" in material_data_json:
             experience = material_data_json["experience"]
+
+        dig_sound: str = "stone"
+        if "dig_sound" in material_data_json:
+            dig_sound = material_data_json["dig_sound"]
         
-        material_datas[material] = MaterialData(sprite, max_health, spawn_rate, break_sound, experience)
+        material_datas[material] = MaterialData(sprite, max_health, spawn_rate, break_sound, experience, dig_sound)
 
     return material_datas
     
