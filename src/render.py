@@ -24,7 +24,6 @@ class Renderer():
         self.texts: list[SpriteData]= []
 
     def tick(self):
-        game_data.DISPLAY.render()
         self.render_background()
         self.render_blocks()
         self.render_sprites()

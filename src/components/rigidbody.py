@@ -37,11 +37,20 @@ class RigidBody(Component):
     def add_on_collision_begin_listener(self, callback: Callable):
         self._collision_begin_listeners.append(callback)
 
+    def remove_on_collision_begin_listener(self, callback: Callable):
+        self._collision_begin_listeners.remove(callback)
+
     def add_on_collision_end_listener(self, callback: Callable):
         self._collision_end_listeners.append(callback)
 
+    def remove_on_collision_end_listener(self, callback: Callable):
+        self._collision_end_listeners.remove(callback)
+
     def add_while_in_contact_listener(self, callback: Callable):
         self._collision_while_listeners.append(callback)
+
+    def remove_while_in_contact_listener(self, callback: Callable):
+        self._collision_while_listeners.remove(callback)
 
     def on_collision_begin(self, collided_rigidbody):
         for callback in self._collision_begin_listeners:

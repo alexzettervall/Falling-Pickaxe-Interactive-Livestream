@@ -1,9 +1,13 @@
+from __future__ import annotations
+from typing import TYPE_CHECKING
 from pygame.font import Font
 from enum import Enum
 from pygame import Color, Rect, Surface
 
 import game_data
 from render import SpriteData
+if TYPE_CHECKING:
+    from world import World
 
 class AlignmentType(Enum):
     CENTER = 1,
@@ -70,15 +74,23 @@ class Text():
         self.color: Color | str = color
         self.antialias: bool = antialias
 
+        self.text_to_render = text
+
     def render(self):
-        render_text(self.font, self.text, self.screen_position, self.alignment_type, self.color, self.antialias)
+        render_text(self.font, self.text_to_render, self.screen_position, self.alignment_type, self.color, self.antialias)
 
 class Display():
-    def __init__(self, texts: list[Text] | None = None) -> None:
-        self.texts: list[Text] = []
-        if texts != None:
-            self.texts.extend(texts)
+    def __init__(self, texts: dict[str, Text]) -> None:
+        self.texts = texts
 
-    def render(self):
-        for text in self.texts:
+    def tick(self, world: World):
+        nuke_text = self.texts["nuke"].text
+        nuke_text = str.replace(nuke_text, "{xp}", str(round(world.xp)))
+        nuke_text = str.replace(nuke_text, "{nuke_xp}", str(round(game_data.config.nuke_xp)))
+        self.texts["nuke"].text_to_render = nuke_text
+
+        self._render()
+
+    def _render(self):
+        for text in self.texts.values():
             text.render()

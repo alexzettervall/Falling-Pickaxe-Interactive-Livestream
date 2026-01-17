@@ -3,10 +3,11 @@ import math
 from typing import TYPE_CHECKING, override
 from pygame import Vector2
 import pygame
+from components.health import Health
 from components.text_renderer import TextRenderer
 from components.rigidbody import RigidBody
 from components.sprite_renderer import SpriteRenderer
-from entities.block import Block
+from entities.block import Block, BlockBreaker
 from entities.damageable_block import DamageableBlock
 from entities.entity import Entity
 from location import Location
@@ -29,6 +30,9 @@ class TNT(DamageableBlock):
 
         self.fuse: float = game_data.config.tnt_fuse_time
         self.ignited: bool = False
+
+        self.explosion_radius = game_data.config.tnt_radius
+        self.explosion_damage = game_data.config.tnt_damage
 
     @override
     def on_damaged(self):
@@ -70,9 +74,16 @@ class TNT(DamageableBlock):
         square.fill("white")
         square = square.convert_alpha()
         self.flash_sprite_renderer = self.add_component(SpriteRenderer(self, None, square))
+
+    @override
+    def dislodge(self):
+        super().dislodge()
+        self.ignite()
+        self.remove_component(BlockBreaker)
+        self.remove_component(Health)
         
     
     def explode(self):
-        self.location.world.create_explosion(self.location, game_data.config.tnt_radius, game_data.config.tnt_damage)
+        self.location.world.create_explosion(self.location, self.explosion_radius, self.explosion_damage)
         self.remove()
     

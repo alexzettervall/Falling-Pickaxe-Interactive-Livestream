@@ -5,11 +5,13 @@ from typing import TypeVar
 from numpy import isin
 from chat import Chat
 from chunk import Chunk
+from data import config
 from entities.block import BlockBreaker
 from components.health import Health
 from entities.background import Background
 from entities.block import Block
 from components.rigidbody import RigidBody
+from entities.nuke import Nuke
 from entities.pickaxe import Pickaxe
 from entities.tnt import TNT
 from entities.entity import Entity
@@ -42,11 +44,14 @@ class World:
         self.background = Background()
         self.chat = Chat(self)
         self.time_speed = TimeSpeed.NORMAL
+        self.xp: float = 0.0
 
 
     def tick(self):
         global tick
-
+        if self.xp >= game_data.config.nuke_xp:
+            self.spawn_nuke()
+            self.xp = 0
         for entity in self.entities_to_remove:
             if entity in self.entities:
                 self.entities.remove(entity)
@@ -70,6 +75,7 @@ class World:
 
         self.particle_manager.tick()
         self.particle_manager.render()
+        game_data.DISPLAY.tick(self)
         self.chat.tick()
         self.update_delta_time()
         self.sound_manager.tick()
@@ -147,6 +153,13 @@ class World:
                 chunk.remove()
 
     # Command implementations
+
+    # World commands
+    def spawn_nuke(self):
+        nuke = self.add_entity(Nuke(location = Location(self, Vector2(self.pickaxe.location.position.x, self.pickaxe.location.position.y + 3))))
+        nuke.ignite()
+
+    # User commands
     def spawn_tnt(self, user: str):
         tnt = self.add_entity(TNT(chunk = None, location = Location(self, Vector2(self.pickaxe.location.position.x, self.pickaxe.location.position.y + 3)), user = user))
         tnt.ignite()

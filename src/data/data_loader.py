@@ -46,11 +46,16 @@ def load_material_data() -> dict[str, MaterialData]:
         sprite: Surface = load_texture(material_data_json["texture_path"])
         max_health: float = material_data_json["max_health"]
         spawn_rate: float = material_data_json["spawn_rate"]
+
         break_sound: str | None = None
         if "break_sound" in material_data_json:
             break_sound = material_data_json["break_sound"]
+
+        experience: float = 0.0
+        if "experience" in material_data_json:
+            experience = material_data_json["experience"]
         
-        material_datas[material] = MaterialData(sprite, max_health, spawn_rate, break_sound)
+        material_datas[material] = MaterialData(sprite, max_health, spawn_rate, break_sound, experience)
 
     return material_datas
     
@@ -118,10 +123,16 @@ def load_config() -> Config:
         delta_time=delta_time,
         physics_scale=physics_scale,
         render_distance=render_distance,
+        
         tnt_fuse_time=tnt_fuse_time,
         tnt_flash_interval=tnt_flash_interval,
         tnt_radius=tnt_radius,
         tnt_damage=tnt_damage,
+
+        nuke_radius=config_json["nuke_radius"],
+        nuke_damage=config_json["nuke_damage"],
+        nuke_xp=config_json["nuke_xp"],
+
         block_size=block_size,
         default_break_speed=pickaxe_break_delay,
         normal_speed=config_json["normal_speed"],
@@ -192,7 +203,7 @@ def load_display() -> text.Display:
     display_json: dict[str, Any] = json.loads(file.read())
     file.close()
 
-    texts: list[text.Text] = []
+    texts: dict[str, text.Text] = {}
 
     for text_name in display_json.keys():
         text_json: dict[str, Any] = display_json[text_name]
@@ -204,13 +215,13 @@ def load_display() -> text.Display:
             text_json["screen_position"][1]
         )
         
-        texts.append(text.Text(
+        texts[text_name] = text.Text(
             font=font,
             text=text_json["text"],
             screen_position=screen_position,
             alignment_type=text.AlignmentType[text_json["alignment_type"]],
             color=text_json["color"],
             antialias=text_json["antialias"]
-        ))
+        )
 
     return text.Display(texts)

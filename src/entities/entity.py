@@ -17,6 +17,14 @@ class Entity():
     def add_component(self, component: C) -> C:
         self.components.append(component)
         return component
+    
+    def remove_component(self, component_type: Type[C]) -> bool:
+        for component in self.components:
+            if isinstance(component, component_type):
+                component.on_remove()
+                self.components.remove(component)
+                return True
+        return False
 
     def get_component(self, component_type: Type[C]) -> Optional[C]:
         for component in self.components:

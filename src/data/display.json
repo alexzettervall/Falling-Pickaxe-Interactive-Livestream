@@ -1,9 +1,17 @@
 {
     "commands": {
-        "font": "big",
-        "text": "🟡Commands (more in desc.)\n🔴tnt\n🔴avalanche\n🟢fast\n🟠slow\n🟣big\n⚪small\n🔵diamond",
-        "screen_position": [8, 16],
+        "font": "default",
+        "text": "🟡Commands\n🔴tnt\n🔴avalanche\n🟢fast\n🟠slow\n🟣big\n⚪small\n🔵diamond\n🟡(more in desc.)",
+        "screen_position": [8, 100],
         "alignment_type": "LEFT",
+        "color": "yellow",
+        "antialias": true
+    },
+    "nuke": {
+        "font": "big",
+        "text": "🔴xp until next nuke\n🟢{xp}/{nuke_xp}",
+        "screen_position": [312, 20],
+        "alignment_type": "CENTER",
         "color": "yellow",
         "antialias": true
     }

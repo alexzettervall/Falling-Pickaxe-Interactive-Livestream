@@ -16,10 +16,16 @@ class Config():
                  delta_time: float, 
                  physics_scale: float, 
                  render_distance: float, 
+
                  tnt_fuse_time: float, 
                  tnt_flash_interval: float, 
                  tnt_radius: float,
                  tnt_damage: float,
+
+                 nuke_radius: float,
+                 nuke_damage: float,
+                 nuke_xp: float,
+
                  block_size: Vector2, 
                  default_break_speed: float,
                  normal_speed: float,
@@ -49,10 +55,16 @@ class Config():
         self.delta_time = delta_time
         self.physics_scale = physics_scale
         self.render_distance = render_distance
+
         self.tnt_fuse_time = tnt_fuse_time
         self.tnt_flash_interval = tnt_flash_interval
         self.tnt_radius = tnt_radius
         self.tnt_damage = tnt_damage
+
+        self.nuke_radius = nuke_radius
+        self.nuke_damage = nuke_damage
+        self.nuke_xp = nuke_xp
+
         self.block_size = block_size
         self.default_break_speed = default_break_speed
         self.normal_speed = normal_speed

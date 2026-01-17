@@ -39,13 +39,16 @@ class Block(Entity):
         self.dislodged = True
         self.rigidbody.set_body_type(physics.BodyType.DYNAMIC)
         self.rigidbody.set_velocity(Vector2(random.uniform(-5, 5), random.uniform(0, 5)))
-        self.add_component(BlockBreaker(self, 1, self_damage = 1))
+        damage = game_data.MATERIAL_DATA[self.material].max_health / 5
+        self.add_component(BlockBreaker(self, damage, self_damage = damage))
 
     @override
     def remove(self):
         sound = game_data.MATERIAL_DATA[self.material].break_sound
         if sound != None:
             self.location.world.sound_manager.play_sound(sound)
+        
+        self.location.world.xp += game_data.MATERIAL_DATA[self.material].experience
 
         return super().remove()
 
@@ -90,3 +93,10 @@ class BlockBreaker(Component):
             self.block_damage_timers[block] -= config.delta_time
 
         return super().tick()
+    
+    @override
+    def on_remove(self):
+        if self.rigidbody != None:
+            self.rigidbody.remove_while_in_contact_listener(self.while_in_contact)
+
+        return super().on_remove()
