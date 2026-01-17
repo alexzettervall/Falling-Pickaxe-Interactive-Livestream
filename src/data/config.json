@@ -1,9 +1,9 @@
 {
-    "stream_url": "https://www.youtube.com/watch?v=VWV6KqHLt7w",
-    "listen_to_stream": false,
+    "stream_url": "https://www.youtube.com/live/TWQrCVC7Npk",
+    "listen_to_stream": true,
     "screen_height": 832,
     "screen_width": 416,
-    "chunk_size": [13, 16],
+    "chunk_size": [13, 25],
     "camera_size": 13,
     "fps": 60,
     "debug": false,
@@ -21,7 +21,7 @@
     
     "nuke_radius": 25.0,
     "nuke_damage": 1000000.0,
-    "nuke_xp": 10000.0,
+    "nuke_xp": 50000.0,
 
     "block_size": [1, 1],
     "default_break_speed": 10.0,
