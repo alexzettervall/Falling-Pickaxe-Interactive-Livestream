@@ -1,20 +1,20 @@
 {
     "stone": {
         "sounds": ["stone_1.wav", "stone_2.wav", "stone_3.wav", "stone_4.wav"],
-        "volume": 1.0
+        "volume": 0.5
     },
     "fuse": {
         "sounds": ["fuse.wav"],
-        "volume": 1.0
+        "volume": 0.25
     },
     "explosion": {
         "sounds": ["explosion.wav"],
-        "volume": 1.0,
+        "volume": 0.2,
         "max_play_frequency": 10.0
     },
     "avalanche": {
         "sounds": ["avalanche.wav"],
-        "volume": 1.0,
+        "volume": 0.2,
         "max_play_frequency": 1.0
     },
     "glass": {
@@ -23,12 +23,12 @@
     },
     "xp": {
         "sounds": ["successful_hit.ogg"],
-        "volume": 1.0,
+        "volume": 0.15,
         "queue_rate_limited_sounds": true
     },
     "level_up": {
         "sounds": ["Random_levelup.ogg"],
-        "volume": 1.0,
+        "volume": 0.15,
         "queue_rate_limited_sounds": true
     }
 }
