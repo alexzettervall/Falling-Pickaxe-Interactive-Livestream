@@ -43,6 +43,7 @@
             "blackstone": {"frequency": 15},
             "nether_quartz_ore": {"frequency": 5},
             "ancient_debris": {"frequency": 1},
+            "netherite_block": {"frequency": 0.5},
             "gravel": {"frequency": 5},
             "tnt": {"frequency": 2}
         },
@@ -57,5 +58,16 @@
             "tnt": {"frequency": 0.5}
         },
         "frequency": 1
+    },
+    "frozen": {
+        "blocks": {
+            "snow": {"frequency": 20},
+            "ice": {"frequency": 20},
+            "diamond_ore": {"frequency": 4},
+            "diamond_block": {"frequency": 2},
+            "emerald_ore": {"frequency": 1},
+            "emerald_block": {"frequency": 0.5}
+        },
+        "frequency": 100
     }
 }

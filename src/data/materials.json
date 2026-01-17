@@ -391,5 +391,20 @@
         "texture_path": "assets/minecraft/textures/block/tnt_side.png",
         "max_health": 10000000000,
         "spawn_rate": 30
+    },
+    "snow": {
+        "texture_path": "assets/minecraft/textures/block/snow.png",
+        "max_health": 10,
+        "spawn_rate": 30
+    },
+    "ice": {
+        "texture_path": "assets/minecraft/textures/block/ice.png",
+        "max_health": 5,
+        "spawn_rate": 30
+    },
+    "packed_ice": {
+        "texture_path": "assets/minecraft/textures/block/packed_ice.png",
+        "max_health": 15,
+        "spawn_rate": 30
     }
 }
