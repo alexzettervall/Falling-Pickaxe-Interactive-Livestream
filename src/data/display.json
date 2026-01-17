@@ -10,7 +10,7 @@
     "nuke": {
         "font": "big",
         "text": "🔴xp until next nuke\n🟢{xp}/{nuke_xp}",
-        "screen_position": [312, 20],
+        "screen_position": [208, 20],
         "alignment_type": "CENTER",
         "color": "yellow",
         "antialias": true

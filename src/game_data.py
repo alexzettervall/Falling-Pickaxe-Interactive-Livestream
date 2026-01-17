@@ -34,9 +34,12 @@ camera: Camera
 renderer: Renderer
 
 font_name = "arial"
+
+_normalized_font_size: float = 0.0320512821 * config.screen_width
+
 FONTS: dict[str, Font] = {
-        "default": Font("assets/fonts/PixelEmulator-xq08.ttf", 20),
-        "big": Font("assets/fonts/PixelEmulator-xq08.ttf", 30)
+        "default": Font("assets/fonts/PixelEmulator-xq08.ttf", round(1 * _normalized_font_size)),
+        "big": Font("assets/fonts/PixelEmulator-xq08.ttf", round(1.5 * _normalized_font_size))
         }
 DISPLAY: Display = data_loader.load_display()
 #font = pygame.font.SysFont(font_name, 20)

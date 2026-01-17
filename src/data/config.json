@@ -1,9 +1,9 @@
 {
     "stream_url": "https://www.youtube.com/watch?v=VWV6KqHLt7w",
     "listen_to_stream": false,
-    "screen_height": 1248,
-    "screen_width": 624,
-    "chunk_size": [13, 10],
+    "screen_height": 832,
+    "screen_width": 416,
+    "chunk_size": [13, 16],
     "camera_size": 13,
     "fps": 60,
     "debug": false,
@@ -38,6 +38,6 @@
     "chat_color": "lime",
     "chat_font": "default",
     "chat_max_displayed_messages": 9,
-    "chat_position": [614, 290],
+    "chat_position": [408, 228],
     "chat_alignment_type": "RIGHT"
 }
