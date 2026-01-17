@@ -18,3 +18,4 @@ class Nuke(TNT):
         self.text_renderer.font = "big"
         self.text_renderer.text = "🔴NUKE"
         self.text_renderer.offset = Vector2(0, 1.5)
+        self.fuse *= 2
