@@ -15,6 +15,7 @@ import material
 from particles.particles import ParticleType
 from text import AlignmentType
 import game_data
+import random
 
 if TYPE_CHECKING:
     from chunk import Chunk
@@ -28,7 +29,7 @@ class TNT(DamageableBlock):
         if user != None:
             self.text_renderer.text = user
 
-        self.fuse: float = game_data.config.tnt_fuse_time
+        self.fuse: float = game_data.config.tnt_fuse_time + random.uniform(-0.5, 0.5)
         self.ignited: bool = False
 
         self.explosion_radius = game_data.config.tnt_radius
