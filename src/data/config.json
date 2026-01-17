@@ -3,7 +3,7 @@
     "listen_to_stream": false,
     "screen_height": 1248,
     "screen_width": 624,
-    "chunk_size": [13, 25],
+    "chunk_size": [13, 10],
     "camera_size": 13,
     "fps": 60,
     "debug": false,

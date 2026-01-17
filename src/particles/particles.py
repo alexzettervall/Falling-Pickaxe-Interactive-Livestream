@@ -84,6 +84,8 @@ class ParticleManager():
         self.particles_to_remove: list[Particle] = []
 
     def emit(self, particle_type: ParticleType, location: Location, count: int, sprite: Surface | None = None):
+        if not game_data.camera.on_screen(location.position):
+            return
         for i in range(count):
             if particle_type == ParticleType.EXPLOSION:
                 self.particles.append(ExplosionParticle(self, location.clone()))

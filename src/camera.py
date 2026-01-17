@@ -41,6 +41,14 @@ class Camera:
     def screen_to_world_size(self, screen_size: int) -> float:
         return screen_size * (self.size / self.surface.get_width())
     
+    def on_screen(self, position: Vector2) -> bool:
+        screen_position = self.world_to_screen_point(position)
+        if screen_position.x < 0 or screen_position.x >= self.surface.get_width():
+            return False
+        if screen_position.y < 0 or screen_position.y >= self.surface.get_height():
+            return False
+        return True
+
     def move_towards(self, pos_y):
         t = 0.05
         a = self.location.position.y
