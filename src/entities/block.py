@@ -39,8 +39,8 @@ class Block(Entity):
         self.dislodged = True
         self.rigidbody.set_body_type(physics.BodyType.DYNAMIC)
         self.rigidbody.set_velocity(Vector2(random.uniform(-5, 5), random.uniform(0, 5)))
-        damage = game_data.MATERIAL_DATA[self.material].max_health / 5
-        self.add_component(BlockBreaker(self, damage, self_damage = damage))
+        damage = game_data.MATERIAL_DATA[self.material].max_health / 15
+        self.add_component(BlockBreaker(self, damage, self_damage = damage, dig_speed = 5))
 
     @override
     def remove(self):
