@@ -1,6 +1,6 @@
 {
     "stream_url": "https://www.youtube.com/live/TWQrCVC7Npk",
-    "listen_to_stream": true,
+    "listen_to_stream": false,
     "screen_height": 832,
     "screen_width": 416,
     "chunk_size": [13, 25],
@@ -38,6 +38,6 @@
     "chat_color": "lime",
     "chat_font": "default",
     "chat_max_displayed_messages": 9,
-    "chat_position": [408, 228],
-    "chat_alignment_type": "RIGHT"
+    "chat_position": [208, 658],
+    "chat_alignment_type": "CENTER"
 }
