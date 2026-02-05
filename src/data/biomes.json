@@ -66,9 +66,16 @@
             "diamond_ore": {"frequency": 4},
             "diamond_block": {"frequency": 2},
             "emerald_ore": {"frequency": 1},
-            "tnt": {"frequency": 5},
+            "tnt": {"frequency": 1},
             "emerald_block": {"frequency": 0.5}
         },
         "frequency": 1
+    },
+    "tnt_land": {
+         "blocks": {
+            "redstone_block": {"frequency": 0.5},
+            "tnt": {"frequency": 1}
+        },
+        "frequency": 100
     }
 }

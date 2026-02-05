@@ -130,6 +130,8 @@ class World:
                     continue
                 block_health.damage(damage)
                 block.dislodge()
+                if isinstance(block, TNT):
+                    block.fuse = random.uniform(0.5, 1)
         self.particle_manager.emit(ParticleType.EXPLOSION, location, 10)
         self.sound_manager.play_sound("explosion")
 
