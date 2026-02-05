@@ -5,7 +5,7 @@
     "screen_width": 416,
     "chunk_size": [13, 25],
     "camera_size": 13,
-    "fps": 60,
+    "fps": 63,
     "debug": false,
     "delta_time": 0.0166666667,
     "physics_scale": 32,
