@@ -1,8 +1,10 @@
 from multiprocessing import Queue, Process
 from console import Console, init_console
+import sql
 
 
 def init():
+    sql.init_db()
     import pygame
     pygame.init()
     pygame.font.init()

@@ -3,6 +3,7 @@ from queue import Queue
 import time
 from typing import TYPE_CHECKING
 import threading
+import sql
 
 import game_data
 from text import AlignmentType, render_text
@@ -27,6 +28,7 @@ class Chat():
         if self.chat_message_queue.empty():
             return
         chat_message = self.chat_message_queue.get()
+        sql.add_message(chat_message)
         
         user: str = chat_message[0]
         message: str = chat_message[1].lower()
