@@ -1,9 +1,13 @@
 import sqlite3
 import datetime
+import os
 
+if not os.path.exists("../data"):
+        os.mkdir("../data")
 connection = sqlite3.connect("../data/data.db")
 
 def init_db():
+
     cursor = connection.cursor()
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS users (
