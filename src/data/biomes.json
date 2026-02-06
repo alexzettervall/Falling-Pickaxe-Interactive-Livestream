@@ -76,6 +76,6 @@
             "redstone_block": {"frequency": 0.5},
             "tnt": {"frequency": 1}
         },
-        "frequency": 1
+        "frequency": 0.5
     }
 }
