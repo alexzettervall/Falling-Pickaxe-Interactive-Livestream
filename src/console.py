@@ -48,7 +48,7 @@ class Console():
         commands_list.grid(sticky = W, column = 1, row = 2)
 
     def init_help_display(self, frame: Frame):
-        help_message = "This is a helper console. Enter in chat messages in the Message box.\
+        help_message = "Enter in chat messages in the Message box.\
  Enter the amount of that message you want to send in the Amount box, then hit inject chat message. \
 View a list of avaliable commands to the left."
         help_label = Label(frame, wraplength = 400, text = help_message)
