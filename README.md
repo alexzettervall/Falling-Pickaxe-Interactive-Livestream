@@ -1,6 +1,7 @@
-# Minecraft-Stream-Simulation
+# Falling-Pickaxe-Interactive-Livestream
 Vertical falling pickaxe simulation for YouTube interactive livestream.
 
+This project does not stream the simulation for you. You must use your own tool for livestreaming, such as OBS.
 To use, put your livestream url in the config.json file and set listen_to_stream to true, then run main.py from the src directory.
 
 IMPORTANT: For clean rendering, screen width and height should always be multiples of the block texture resolution times the camera size (Eg. 624x1248 with camera_size=13).
