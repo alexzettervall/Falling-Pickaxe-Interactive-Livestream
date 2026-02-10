@@ -133,9 +133,9 @@ def load_config() -> Config:
         tnt_radius=tnt_radius,
         tnt_damage=tnt_damage,
 
-        nuke_radius=config_json["nuke_radius"],
-        nuke_damage=config_json["nuke_damage"],
-        nuke_xp=config_json["nuke_xp"],
+        nuke_radius=config_json["nuke"]["radius"],
+        nuke_damage=config_json["nuke"]["damage"],
+        nuke_xp=config_json["nuke"]["xp"],
 
         block_size=block_size,
         default_break_speed=pickaxe_break_delay,
