@@ -11,7 +11,8 @@ def init_db():
     cursor = connection.cursor()
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS users (
-        name TEXT PRIMARY KEY
+        name TEXT PRIMARY KEY,
+        first_seen Text
     )
     """)
 
@@ -28,11 +29,11 @@ def add_message(chat_message: tuple[str, str]):
     user: str = chat_message[0].removeprefix("@")
     message: str = chat_message[1]
 
-    cursor = connection.cursor()
-    cursor.execute("INSERT OR IGNORE INTO users (name) VALUES (?)",
-        (user,)  
-    )
     time: str = str(datetime.datetime.now())
+    cursor = connection.cursor()
+    cursor.execute("INSERT OR IGNORE INTO users (name, first_seen) VALUES (?, ?)",
+        (user, time)  
+    )
     cursor.execute("INSERT INTO messages (user, message, time) VALUES (?, ?, ?)",
         (user, message, time)  
     )
