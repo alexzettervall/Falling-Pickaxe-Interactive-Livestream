@@ -21,7 +21,7 @@
     "nuke": {
         "radius": 25.0,
         "damage": 1000000.0,
-        "xp": 50.0
+        "xp": 50000.0
     },
 
     "block_size": [1, 1],
@@ -35,10 +35,12 @@
     "small_pickaxe_size": 1.0,
     "pickaxe_size_change_duration": 5.0,
 
-    "chat_message_time": 5.0,
-    "chat_color": "lime",
-    "chat_font": "default",
-    "chat_max_displayed_messages": 9,
-    "chat_position": [208, 658],
-    "chat_alignment_type": "CENTER"
+    "chat": {
+        "message_time": 5.0,
+        "color": "lime",
+        "font": "default",
+        "max_displayed_messages": 9,
+        "position": [208, 658],
+        "alignment_type": "CENTER"
+    }
 }
