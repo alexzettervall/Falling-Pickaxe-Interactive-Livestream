@@ -54,8 +54,7 @@ View a list of avaliable commands to the left."
         for i, command in enumerate(Command):
 
             command_button = Button(command_frame, text = command.name,
-                                    command = lambda c=command: self.send_chat_message(
-                                        ("@ADMIN", c.name), 1))
+                                    command = lambda c=command: self.send_chat_message(("@ADMIN", c.name), 1))
             command_button.grid(column = 0, row = i)
 
     def on_message_enter(self, entry):
