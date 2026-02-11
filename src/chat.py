@@ -40,13 +40,13 @@ class Chat():
         elif "avalanche" in message:
             self.world.spawn_avalanche(user)
         elif "fast" in message:
-            threading.Thread(target = self.world.speed_fast, args = [user]).start()
+            threading.Thread(target = self.world.speed_fast, args = [user], daemon = True).start()
         elif "slow" in message:
-            threading.Thread(target = self.world.speed_slow, args = [user]).start()
+            threading.Thread(target = self.world.speed_slow, args = [user], daemon = True).start()
         elif "big" in message:
-            threading.Thread(target = self.world.size_big, args = [user]).start()
+            threading.Thread(target = self.world.size_big, args = [user], daemon = True).start()
         elif "small" in message:
-            threading.Thread(target = self.world.size_small, args = [user]).start()
+            threading.Thread(target = self.world.size_small, args = [user], daemon = True).start()
         elif "wood" in message:
             self.world.set_pickaxe_type(user, "wood")
         elif "stone" in message:
