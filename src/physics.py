@@ -10,8 +10,10 @@ import pymunk.pygame_util
 from entities.entity import Entity
 from game_data import config
 import game_data
+
 if TYPE_CHECKING:
     from components.rigidbody import RigidBody
+    from world import World
 
 class CollisionType(Enum):
     BLOCK = 1,
@@ -22,7 +24,8 @@ class BodyType(Enum):
     DYNAMIC = 2,
 
 class PhysicsManager():
-    def __init__(self) -> None:
+    def __init__(self, world: World) -> None:
+        self.world: World = world
         self.body_rigidbodies: bidict[Body, RigidBody] = bidict()
         self.space = pymunk.Space()
         self.space.gravity = (0, -400)

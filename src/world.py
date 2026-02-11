@@ -32,7 +32,7 @@ E = TypeVar("E", bound = Entity)
 class World:
     def __init__(self, chunk_size: tuple[int, int]):
         self.sound_manager: SoundManager = SoundManager()
-        self.physics_manager: physics.PhysicsManager = physics.PhysicsManager()
+        self.physics_manager: physics.PhysicsManager = physics.PhysicsManager(self)
         self.particle_manager = ParticleManager()
         self.chunk_size = chunk_size
         self.chunks: list[Chunk] = []
