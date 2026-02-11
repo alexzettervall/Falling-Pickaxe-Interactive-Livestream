@@ -3,8 +3,10 @@
         "url": "https://www.youtube.com/live/TWQrCVC7Npk",
         "enabled": false
     },
-    "screen_height": 832,
-    "screen_width": 416,
+    "screen": {
+        "height": 832,
+        "width": 416
+    },
     "chunk_size": [13, 25],
     "camera_size": 13,
     "fps": 63,

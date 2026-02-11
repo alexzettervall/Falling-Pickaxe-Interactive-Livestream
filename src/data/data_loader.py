@@ -99,8 +99,8 @@ def load_config() -> Config:
 
     stream_url: str = config_json["stream"]["url"]
     listen_to_stream: bool = config_json["stream"]["enabled"]
-    screen_width: int = config_json["screen_width"]
-    screen_height: int = config_json["screen_height"]
+    screen_width: int = config_json["screen"]["width"]
+    screen_height: int = config_json["screen"]["height"]
     chunk_size: tuple[int, int] = tuple(config_json["chunk_size"])
     camera_size: int = config_json["camera_size"]
     fps: float = config_json["fps"]
