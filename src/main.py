@@ -20,6 +20,7 @@ def init():
     import threading
     import youtube
     from render import Renderer
+    import os
 
     # Start listening to chat messages
     if game_data.config.listen_to_stream:
@@ -30,9 +31,6 @@ def init():
     screen = pygame.display.set_mode((game_data.config.screen_width, game_data.config.screen_height))
     clock = pygame.time.Clock()
     running = True
-
-    # Physics Manager
-    physics_manager = PhysicsManager()
 
     # Load sprites
     game_data.load_sprites()
