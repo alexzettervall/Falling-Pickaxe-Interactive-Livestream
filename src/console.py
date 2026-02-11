@@ -1,6 +1,7 @@
 import tkinter
 from tkinter import W, IntVar, StringVar, ttk, Frame, Label, Button, Entry, Event
 from multiprocessing import Queue
+from command import Command
 
 def init_console(from_main: Queue, to_main: Queue):
     Console(from_main, to_main)
@@ -16,8 +17,8 @@ class Console():
         frame.grid()
 
         self.init_chat_injector(frame)
-        self.init_command_display(frame)
         self.init_help_display(frame)
+        self.init_command_buttons(frame)
 
         self.window.mainloop()
 
@@ -28,7 +29,7 @@ class Console():
         amount_label = Label(frame, text = "Amount")
         amount_label.grid(column = 2, row = 0)
 
-        send_message_button = Button(frame, text = "Inject Chat Message", command = self.send_chat_message)
+        send_message_button = Button(frame, text = "Inject Chat Message", command = self.on_send_pressed)
         send_message_button.grid(column = 3, row = 1)
 
         self.message_input = StringVar(frame, value = "tnt")
@@ -40,13 +41,6 @@ class Console():
         amount_entry = Entry(frame, textvariable = self.amount_input)
         amount_entry.grid(column = 2, row = 1)
 
-    def init_command_display(self, frame: Frame):
-        commands = "Commands:\n\n"
-        commands += "tnt\n" + "avalanche\n" + "big\n" +  "small\n" + "fast\n" + "slow\n"\
-            + "wood\n" + "stone\n" + "copper\n" + "iron\n" + "gold\n" + "diamond\n" + "netherite\n"
-        commands_list = Label(frame, text = commands, justify = "left", compound= "left")
-        commands_list.grid(sticky = W, column = 1, row = 2)
-
     def init_help_display(self, frame: Frame):
         help_message = "Enter in chat messages in the Message box.\
  Enter the amount of that message you want to send in the Amount box, then hit inject chat message. \
@@ -54,12 +48,24 @@ View a list of avaliable commands to the left."
         help_label = Label(frame, wraplength = 400, text = help_message)
         help_label.grid(column = 2, row = 2, columnspan = 2)
 
-    def on_message_enter(self, entry):
-        self.send_chat_message()
+    def init_command_buttons(self, frame: Frame):
+        command_frame = Frame(frame)
+        command_frame.grid(column = 1, row = 2)
+        for i, command in enumerate(Command):
 
-    def send_chat_message(self):
-        for i in range(self.amount_input.get()):
-            chat_message: tuple[str, str] = ("@ADMIN", self.message_input.get())
+            command_button = Button(command_frame, text = command.name,
+                                    command = lambda c=command: self.send_chat_message(
+                                        ("@ADMIN", c.name), 1))
+            command_button.grid(column = 0, row = i)
+
+    def on_message_enter(self, entry):
+        self.on_send_pressed()
+
+    def on_send_pressed(self):
+        self.send_chat_message(("@ADMIN", self.message_input.get()), self.amount_input.get())
+
+    def send_chat_message(self, chat_message: tuple[str, str], amount: int):
+        for i in range(amount):
             print(f"CHAT MESSAGE: user: {chat_message[0]}, message: {chat_message[1]}")
             self.to_main.put(chat_message)
         
