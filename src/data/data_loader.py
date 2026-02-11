@@ -139,14 +139,16 @@ def load_config() -> Config:
 
         block_size=block_size,
         default_break_speed=pickaxe_break_delay,
-        normal_speed=config_json["normal_speed"],
-        fast_speed=config_json["fast_speed"],
-        slow_speed=config_json["slow_speed"],
-        speed_change_duration=config_json["speed_change_duration"],
-        normal_pickaxe_size=config_json["normal_pickaxe_size"],
-        big_pickaxe_size=config_json["big_pickaxe_size"],
-        small_pickaxe_size=config_json["small_pickaxe_size"],
-        pickaxe_size_change_duration=config_json["pickaxe_size_change_duration"],
+        
+        normal_speed=config_json["speed"]["normal"],
+        fast_speed=config_json["speed"]["fast"],
+        slow_speed=config_json["speed"]["slow"],
+        speed_change_duration=config_json["speed"]["change_duration"],
+
+        normal_pickaxe_size=config_json["pickaxe_size"]["normal"],
+        big_pickaxe_size=config_json["pickaxe_size"]["big"],
+        small_pickaxe_size=config_json["pickaxe_size"]["small"],
+        pickaxe_size_change_duration=config_json["pickaxe_size"]["change_duration"],
 
         chat_message_time=config_json["chat"]["message_time"],
         chat_color=config_json["chat"]["color"],
