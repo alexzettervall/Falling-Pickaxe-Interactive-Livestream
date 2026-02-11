@@ -213,8 +213,11 @@ class World:
         self.chat.add_displayed_message(f"{user} set pickaxe type to {pickaxe_type}!")
 
     def clone_pickaxe(self, user: str):
-        cloned_pickaxe = Pickaxe(self.pickaxe.location.clone())
+        location: Location = self.pickaxe.location.clone()
+        location.position.y += game_data.config.clone_y_offset
+        cloned_pickaxe = Pickaxe(location)
         cloned_pickaxe.set_pickaxe_type(self.pickaxe.get_pickaxe_type())
         cloned_pickaxe.set_pickaxe_size(self.pickaxe.get_pickaxe_size())
         self.add_entity(cloned_pickaxe)
+        cloned_pickaxe.remove(time = game_data.config.clone_lifetime)
         self.chat.add_displayed_message(f"{user} cloned the pickaxe!")

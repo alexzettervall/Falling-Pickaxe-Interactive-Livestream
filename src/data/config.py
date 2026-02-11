@@ -37,6 +37,9 @@ class Config():
                  small_pickaxe_size: float,
                  pickaxe_size_change_duration: float,
 
+                 clone_lifetime: float,
+                 clone_y_offset: float,
+
                  chat_message_time: float,
                  chat_color: str,
                  chat_font: str,
@@ -75,6 +78,9 @@ class Config():
         self.big_pickaxe_size = big_pickaxe_size
         self.small_pickaxe_size = small_pickaxe_size
         self.pickaxe_size_changee_duration = pickaxe_size_change_duration
+
+        self.clone_lifetime = clone_lifetime
+        self.clone_y_offset = clone_y_offset
 
         self.chat_message_time = chat_message_time
         self.chat_color = chat_color

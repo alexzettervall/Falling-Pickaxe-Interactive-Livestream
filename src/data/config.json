@@ -46,6 +46,11 @@
         "change_duration": 5.0
     },
 
+    "clone": {
+        "lifetime": 60.0,
+        "y_offset": 2.0
+    },
+
     "chat": {
         "message_time": 5.0,
         "color": "lime",

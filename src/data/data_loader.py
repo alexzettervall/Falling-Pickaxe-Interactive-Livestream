@@ -150,6 +150,9 @@ def load_config() -> Config:
         small_pickaxe_size=config_json["pickaxe_size"]["small"],
         pickaxe_size_change_duration=config_json["pickaxe_size"]["change_duration"],
 
+        clone_lifetime=config_json["clone"]["lifetime"],
+        clone_y_offset=config_json["clone"]["y_offset"],
+
         chat_message_time=config_json["chat"]["message_time"],
         chat_color=config_json["chat"]["color"],
         chat_font=config_json["chat"]["font"],
