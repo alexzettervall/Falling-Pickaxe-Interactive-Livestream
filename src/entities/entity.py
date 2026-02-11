@@ -6,12 +6,16 @@ from component import Component
 from location import Location
 from time import sleep
 from threading import Thread
+import game_data
 
 C = TypeVar("C", bound=Component)
 
 class Entity():
     def __init__(self, location, size) -> None:
         self.dead = False
+        self.lifetime: float = 0.0
+        self.life_timer: bool = False
+
         self.components: list[Component] = []
         self.location: Location = location
         self.size: Vector2 = size
@@ -38,17 +42,19 @@ class Entity():
         for component in self.components:
             component.tick()
 
+        if self.life_timer:
+            self.lifetime -= game_data.config.delta_time
+            if self.lifetime <= 0:
+                self.remove()
+
     def remove(self, time: float = 0):
-        if self.dead:
-            return
-        Thread(target = self._remove, args = [time], daemon = True).start()
-        
-    def _remove(self, time: float = 0):
         if self.dead:
             return
         
         if time > 0:
-            sleep(time)
+            self.lifetime = time
+            self.life_timer = True
+            return
         
         self.dead = True
         self.location.world.remove_entity(self)
