@@ -410,5 +410,34 @@
         "max_health": 15,
         "spawn_rate": 30,
         "dig_sound": "glass"
+    },
+    "end_stone": {
+        "texture_path": "assets/minecraft/textures/block/end_stone.png",
+        "max_health": 40,
+        "spawn_rate": 20
+    },
+    "purpur_block": {
+        "texture_path": "assets/minecraft/textures/block/purpur_block.png",
+        "max_health": 20,
+        "spawn_rate": 15
+    },
+    "end_bricks": {
+        "texture_path": "assets/minecraft/textures/block/end_stone_bricks.png",
+        "max_health": 25,
+        "spawn_rate": 10
+    },
+    "chorus_flower": {
+        "texture_path": "assets/minecraft/textures/block/chorus_flower.png",
+        "max_health": 5,
+        "spawn_rate": 5,
+        "experience": 50,
+        "break_sound": "level_up"
+    },
+    "chorus_plant": {
+        "texture_path": "assets/minecraft/textures/block/chorus_plant.png",
+        "max_health": 5,
+        "spawn_rate": 5,
+        "experience": 10,
+        "break_sound": "xp"
     }
 }
