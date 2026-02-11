@@ -1,5 +1,6 @@
 from typing import override
 from pygame import Surface, Vector2, ver
+from components.text_renderer import TextRenderer
 from data import data_loader
 from entities.block import BlockBreaker
 from components.rigidbody import RigidBody
@@ -7,15 +8,19 @@ from components.sprite_renderer import SpriteRenderer
 from entities.entity import Entity
 import game_data
 from pickaxe_size import PickaxeSize
+from text import AlignmentType
 
 class Pickaxe(Entity):
     @override
-    def __init__(self, location) -> None:
+    def __init__(self, location, user: str | None = None) -> None:
         super().__init__(location, Vector2(2, 2))
        
         self.pickaxe_type: str
         self.pickaxe_data: data_loader.PickaxeData
         
+        self.text_renderer = self.add_component(TextRenderer(self, Vector2(0, 0.8), alignment_type = AlignmentType.CENTER))
+        if user != None:
+            self.text_renderer.text = user
 
         shapes: list[list[tuple[float, float]]] = [[(-4.0, -7.0), (-4.0, -5.0), (-6.0, -5.0), (-6.0, -7.0)], [(-3.0, -6.0), (-3.0, -4.0), (-5.0, -4.0), (-5.0, -6.0)], [(-2.0, -5.0), (-2.0, -3.0), (-4.0, -3.0), (-4.0, -5.0)], [(-1.0, -4.0), (-1.0, -2.0), (-3.0, -2.0), (-3.0, -4.0)], [(0.0, -3.0), (0.0, -1.0), (-2.0, -1.0), (-2.0, -3.0)], [(1.0, -2.0), (1.0, 0.0), (-1.0, 0.0), (-1.0, -2.0)], [(2.0, -1.0), (2.0, 1.0), (0.0, 1.0), (0.0, -1.0)], [(3.0, 0.0), (3.0, 2.0), (1.0, 2.0), (1.0, 0.0)], [(6.0, 1.0), (6.0, 5.0), (2.0, 5.0), (2.0, 1.0)], [(3.0, 3.0), (3.0, 6.0), (-2.0, 6.0), (-2.0, 3.0)], [(-2.0, 4.0), (-2.0, 5.0), (-3.0, 5.0), (-3.0, 4.0)], [(7.0, -3.0), (7.0, 2.0), (4.0, 2.0), (4.0, -3.0)], [(6.0, -4.0), (6.0, -3.0), (5.0, -3.0), (5.0, -4.0)]]
 

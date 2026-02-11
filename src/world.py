@@ -215,7 +215,7 @@ class World:
     def clone_pickaxe(self, user: str):
         location: Location = self.pickaxe.location.clone()
         location.position.y += game_data.config.clone_y_offset
-        cloned_pickaxe = Pickaxe(location)
+        cloned_pickaxe = Pickaxe(location, user)
         cloned_pickaxe.set_pickaxe_type(self.pickaxe.get_pickaxe_type())
         cloned_pickaxe.set_pickaxe_size(self.pickaxe.get_pickaxe_size())
         self.add_entity(cloned_pickaxe)
