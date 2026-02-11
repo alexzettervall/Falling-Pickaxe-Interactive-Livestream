@@ -66,7 +66,6 @@ class PhysicsManager():
         self.space.step(config.delta_time)
         self.remove_rigidbodies()
         self.update_rigidbody_positions()
-        self.debug()
 
     def debug(self):
         if config.debug:

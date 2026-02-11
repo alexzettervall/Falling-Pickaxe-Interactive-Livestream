@@ -59,10 +59,12 @@ def init():
 
         screen.fill("black")
 
-        game_data.renderer.tick()
         
         game_data.camera.move_towards(world.pickaxe.location.position.y - 1)
         world.tick()
+        game_data.renderer.tick()
+        if game_data.config.debug:
+            world.physics_manager.debug()
 
         # Send livestream messages to the world chat
         world.chat.send_chat_messages(youtube.chat_messages)
