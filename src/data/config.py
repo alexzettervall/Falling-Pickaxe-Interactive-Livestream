@@ -5,9 +5,7 @@ from typing import Any
 
 
 class Config():
-    def __init__(self, 
-                 stream_url: str,
-                 listen_to_stream: bool,
+    def __init__(self,
                  screen_width: int, 
                  screen_height: int, 
                  chunk_size: tuple[int, int], 
@@ -50,8 +48,6 @@ class Config():
 
                  auto_commands: dict[str, Any]
     ) -> None:
-        self.stream_url = stream_url
-        self.listen_to_stream = listen_to_stream
         self.screen_width = screen_width
         self.screen_height = screen_height
         self.chunk_size = chunk_size
