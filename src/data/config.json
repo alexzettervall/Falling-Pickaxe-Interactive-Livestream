@@ -1,21 +1,23 @@
 {
-    "stream": {
-        "url": "https://www.youtube.com/live/TWQrCVC7Npk",
-        "enabled": false
-    },
+    "fps": 63,
+    "delta_time": 0.0166666667,
+    "physics_scale": 32,
+    "render_distance": 50,
+    "chunk_size": [13, 25],
+    "camera_size": 13,
+    "block_size": [1, 1],
+    "default_break_speed": 10.0,
+    "debug": false,
+
     "screen": {
         "height": 832,
         "width": 416
     },
-    "chunk_size": [13, 25],
-    "camera_size": 13,
-    "fps": 63,
-    "debug": false,
-    "delta_time": 0.0166666667,
-    "physics_scale": 32,
-    "render_distance": 50,
-    "block_size": [1, 1],
-    "default_break_speed": 10.0,
+    
+    "stream": {
+        "url": "https://www.youtube.com/live/TWQrCVC7Npk",
+        "enabled": false
+    },
 
     "tnt": {
         "fuse_time": 4.0,
