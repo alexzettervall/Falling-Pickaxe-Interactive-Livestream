@@ -221,3 +221,4 @@ class World:
         self.add_entity(cloned_pickaxe)
         cloned_pickaxe.remove(time = game_data.config.clone_lifetime)
         self.chat.add_displayed_message(f"{user} cloned the pickaxe!")
+        self.sound_manager.play_sound("clone")

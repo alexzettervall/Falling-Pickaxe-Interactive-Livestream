@@ -38,5 +38,11 @@
         "sounds": ["Random_levelup.ogg"],
         "volume": 0.15,
         "queue_rate_limited_sounds": true
+    },
+    "clone": {
+        "sounds": ["End_portal_eye_place1.mp3", "End_portal_eye_place2.mp3", "End_portal_eye_place3.mp3"],
+        "volume": 1.0,
+        "queue_rate_limited_sounds": false
+        
     }
 }
