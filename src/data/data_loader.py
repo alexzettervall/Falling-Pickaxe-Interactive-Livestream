@@ -159,6 +159,8 @@ def load_config() -> Config:
         chat_max_displayed_messages=config_json["chat"]["max_displayed_messages"],
         chat_position=tuple(config_json["chat"]["position"]),
         chat_alignment_type=text.AlignmentType[config_json["chat"]["alignment_type"]],
+
+        auto_commands=config_json["auto_commands"]
     )
 
     return config

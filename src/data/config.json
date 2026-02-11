@@ -58,5 +58,12 @@
         "max_displayed_messages": 9,
         "position": [208, 658],
         "alignment_type": "CENTER"
+    },
+
+    "auto_commands": {
+        "tnt": {
+            "interval": 10.0,
+            "variation": 5.0
+        }
     }
 }

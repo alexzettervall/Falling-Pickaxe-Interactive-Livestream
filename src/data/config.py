@@ -1,6 +1,7 @@
 from pygame import Vector2
 
 from text import AlignmentType
+from typing import Any
 
 
 class Config():
@@ -45,7 +46,9 @@ class Config():
                  chat_font: str,
                  chat_max_displayed_messages: int,
                  chat_position: tuple[int, int],
-                 chat_alignment_type: AlignmentType
+                 chat_alignment_type: AlignmentType,
+
+                 auto_commands: dict[str, Any]
     ) -> None:
         self.stream_url = stream_url
         self.listen_to_stream = listen_to_stream
@@ -88,4 +91,5 @@ class Config():
         self.chat_max_displayed_messages = chat_max_displayed_messages
         self.chat_position = chat_position
         self.chat_alignment_type = chat_alignment_type
+        self.auto_commands = auto_commands
 
