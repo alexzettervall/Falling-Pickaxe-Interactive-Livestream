@@ -97,8 +97,8 @@ def load_config() -> Config:
     config_json: dict[str, Any] = json.loads(file.read())
     file.close()
 
-    stream_url: str = config_json["stream_url"]
-    listen_to_stream: bool = config_json["listen_to_stream"]
+    stream_url: str = config_json["stream"]["url"]
+    listen_to_stream: bool = config_json["stream"]["enabled"]
     screen_width: int = config_json["screen_width"]
     screen_height: int = config_json["screen_height"]
     chunk_size: tuple[int, int] = tuple(config_json["chunk_size"])
@@ -139,7 +139,7 @@ def load_config() -> Config:
 
         block_size=block_size,
         default_break_speed=pickaxe_break_delay,
-        
+
         normal_speed=config_json["speed"]["normal"],
         fast_speed=config_json["speed"]["fast"],
         slow_speed=config_json["speed"]["slow"],

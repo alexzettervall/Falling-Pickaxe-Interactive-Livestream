@@ -1,6 +1,8 @@
 {
-    "stream_url": "https://www.youtube.com/live/TWQrCVC7Npk",
-    "listen_to_stream": false,
+    "stream": {
+        "url": "https://www.youtube.com/live/TWQrCVC7Npk",
+        "enabled": false
+    },
     "screen_height": 832,
     "screen_width": 416,
     "chunk_size": [13, 25],
