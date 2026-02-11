@@ -59,6 +59,7 @@ def init():
 
         screen.fill("black")
 
+        game_data.renderer.tick()
         
         game_data.camera.move_towards(world.pickaxe.location.position.y - 1)
         world.tick()
@@ -72,7 +73,6 @@ def init():
             msg = from_console.get()
             world.chat.send_chat_message(msg)
         
-        game_data.renderer.tick()
 
         pygame.display.flip()
 

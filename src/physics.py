@@ -154,3 +154,4 @@ class PhysicsManager():
             original_vertices = shape.get_vertices()
             new_vertices = [(x * multiplier.x, y * multiplier.y) for x, y in original_vertices]
             shape.unsafe_set_vertices(new_vertices)
+            
