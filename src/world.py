@@ -24,6 +24,7 @@ import game_data
 from pickaxe_size import PickaxeSize
 from sound import SoundManager
 from time_speed import TimeSpeed
+from copy import deepcopy
 tick = 0
 
 E = TypeVar("E", bound = Entity)
@@ -210,3 +211,10 @@ class World:
     def set_pickaxe_type(self, user: str, pickaxe_type: str):
         self.pickaxe.set_pickaxe_type(pickaxe_type)
         self.chat.add_displayed_message(f"{user} set pickaxe type to {pickaxe_type}!")
+
+    def clone_pickaxe(self, user: str):
+        cloned_pickaxe = Pickaxe(self.pickaxe.location.clone())
+        cloned_pickaxe.set_pickaxe_type(self.pickaxe.get_pickaxe_type())
+        cloned_pickaxe.set_pickaxe_size(self.pickaxe.get_pickaxe_size())
+        self.add_entity(cloned_pickaxe)
+        self.chat.add_displayed_message(f"{user} cloned the pickaxe!")

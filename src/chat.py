@@ -58,6 +58,8 @@ class Chat():
             self.world.set_pickaxe_type(user, "diamond")
         elif "netherite" in message:
             self.world.set_pickaxe_type(user, "netherite")
+        elif "clone" in message:
+            self.world.clone_pickaxe(user)
         
     def add_displayed_message(self, message: str):
         self._displayed_messages.append((message, time.time()))

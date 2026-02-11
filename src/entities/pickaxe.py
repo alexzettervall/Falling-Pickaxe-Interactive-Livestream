@@ -45,6 +45,9 @@ class Pickaxe(Entity):
         self.block_breaker.damage = self.pickaxe_data.damage
         self.block_breaker.dig_speed = self.pickaxe_data.dig_speed
 
+    def get_pickaxe_type(self) -> str:
+        return self.pickaxe_type
+
     def set_pickaxe_size(self, pickaxe_size: PickaxeSize):
         self._pickaxe_size = pickaxe_size
         size = game_data.config.normal_pickaxe_size
