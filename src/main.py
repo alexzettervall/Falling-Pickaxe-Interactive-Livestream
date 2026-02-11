@@ -22,12 +22,6 @@ def init():
     from render import Renderer
     import os
 
-    # Start listening to chat messages
-    if game_data.config.listen_to_stream:
-        def listen_to_chat():
-            youtube.init(game_data.config.stream_url)
-        threading.Thread(target=listen_to_chat, daemon=True).start()
-
     screen = pygame.display.set_mode((game_data.config.screen_width, game_data.config.screen_height))
     clock = pygame.time.Clock()
     running = True
@@ -47,7 +41,8 @@ def init():
     # Start the console on a different process
     to_console: Queue = Queue()
     from_console: Queue = Queue()
-    console = Process(target = init_console, args = (to_console, from_console), daemon = True)
+    console_open_stream: Queue = Queue()
+    console = Process(target = init_console, args = (to_console, from_console, console_open_stream), daemon = True)
     console.start()
 
     game_data.renderer = Renderer(world)
@@ -75,6 +70,14 @@ def init():
             msg = from_console.get()
             world.chat.send_chat_message(msg)
         
+        # Open stream if console requests it
+        if not console_open_stream.empty():
+            request: tuple[str, bool] = console_open_stream.get()
+            url = request[0]
+            headless = request[1]
+            def listen_to_chat():
+                youtube.init(url, headless)
+            threading.Thread(target=listen_to_chat, daemon=True).start()
 
         pygame.display.flip()
 

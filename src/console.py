@@ -1,22 +1,24 @@
 import tkinter
-from tkinter import W, IntVar, StringVar, ttk, Frame, Label, Button, Entry, Event
-from multiprocessing import Queue
+from tkinter import W, IntVar, StringVar, ttk, Frame, Label, Button, Entry, Event, Checkbutton, BooleanVar
+from multiprocessing import Queue, Event
 from command import Command
 
-def init_console(from_main: Queue, to_main: Queue):
-    Console(from_main, to_main)
+def init_console(from_main: Queue, to_main: Queue, open_stream: Queue):
+    Console(from_main, to_main, open_stream)
 
 
 class Console():
-    def __init__(self, from_main: Queue, to_main: Queue) -> None:
+    def __init__(self, from_main: Queue, to_main: Queue, open_stream: Queue) -> None:
         self.from_main = from_main
         self.to_main = to_main
+        self.open_stream_queue = open_stream
         self.window = tkinter.Tk()
         self.window.title("Console")
         frame = Frame(self.window, padx=10, pady=10)
         frame.grid()
 
         self.init_chat_injector(frame)
+        self.init_stream_control(frame)
         self.init_help_display(frame)
         self.init_command_buttons(frame)
 
@@ -29,11 +31,11 @@ class Console():
         amount_label = Label(frame, text = "Amount")
         amount_label.grid(column = 2, row = 0)
 
-        send_message_button = Button(frame, text = "Inject Chat Message", command = self.on_send_pressed)
+        send_message_button = Button(frame, text = "Inject Chat Message", command=self.on_send_pressed)
         send_message_button.grid(column = 3, row = 1)
 
         self.message_input = StringVar(frame, value = "tnt")
-        message_entry = Entry(frame, textvariable = self.message_input)
+        message_entry = Entry(frame, textvariable=self.message_input)
         message_entry.grid(column = 1, row = 1)
         message_entry.bind("<Return>", self.on_message_enter)
 
@@ -46,16 +48,35 @@ class Console():
  Enter the amount of that message you want to send in the Amount box, then hit inject chat message. \
 View a list of avaliable commands to the left."
         help_label = Label(frame, wraplength = 400, text = help_message)
-        help_label.grid(column = 2, row = 2, columnspan = 2)
+        help_label.grid(column = 2, row = 4, columnspan = 2)
 
     def init_command_buttons(self, frame: Frame):
         command_frame = Frame(frame)
-        command_frame.grid(column = 1, row = 2)
+        command_frame.grid(column = 1, row = 4)
         for i, command in enumerate(Command):
 
             command_button = Button(command_frame, text = command.name,
                                     command = lambda c=command: self.send_chat_message(("@ADMIN", c.name), 1))
             command_button.grid(column = 0, row = i)
+
+    def init_stream_control(self, frame: Frame):
+        url_label = Label(frame, text="Stream URL")
+        url_label.grid(column=1, row=2)
+
+        headless_label = Label(frame, text="Headless Mode")
+        headless_label.grid(column=2, row=2)
+
+        self.stream_url = StringVar(frame, value = "https://")
+        url_entry = Entry(frame, textvariable=self.stream_url)
+        url_entry.grid(column=1, row=3)
+
+        self.stream_headless = BooleanVar()
+        headless_checkbutton = Checkbutton(frame, variable=self.stream_headless)
+        headless_checkbutton.grid(column=2, row=3)
+
+        open_button = Button(frame, text="Open Stream", command=self.open_stream)
+        open_button.grid(column=3, row=3)
+
 
     def on_message_enter(self, entry):
         self.on_send_pressed()
@@ -68,5 +89,7 @@ View a list of avaliable commands to the left."
             print(f"CHAT MESSAGE: user: {chat_message[0]}, message: {chat_message[1]}")
             self.to_main.put(chat_message)
         
+    def open_stream(self):
+        self.open_stream_queue.put((self.stream_url.get(), self.stream_headless.get()))
 
     

@@ -8,20 +8,17 @@ from selenium.webdriver.common.by import By
 
 chat_messages: list[tuple[str, str]] = []
 
-def init(url: str):
-    # Optional: run in headless mode
+def init(url: str, headless: bool):
     options = Options()
-    #options.add_argument("--headless")
 
-    # Path to your chromedriver (omit Service() if chromedriver is in PATH)
-    #service = Service("/path/to/chromedriver")
+    if headless:
+        options.add_argument("--headless")
 
     driver = webdriver.Chrome()
     driver.get(url)
 
     wait = WebDriverWait(driver, 30)
 
-    # Wait for chat iframe and switch to it
     chat_iframe = wait.until(
         EC.presence_of_element_located((By.ID, "chatframe"))
     )
@@ -54,7 +51,7 @@ def init(url: str):
         observer.observe(target, { childList: true });
     """)
 
-    print("Listening for live chat messages...\n")
+    print("Sucessfully Loaded Stream!\n")
 
     try:
         while True:
