@@ -70,10 +70,12 @@ class PhysicsManager():
 
     def debug(self):
         if config.debug:
+            offset: Vector2 = game_data.camera.location.position
             draw_options = pymunk.pygame_util.DrawOptions(game_data.camera.surface)
             draw_options.transform = pymunk.Transform(
                 a=1, b=0, c=0, d=-1, tx=config.screen_width / 2, ty=config.screen_height / 2
-            )
+            ).translated(offset.x * config.physics_scale, -offset.y * config.physics_scale)
+
             self.space.debug_draw(draw_options)
 
 
