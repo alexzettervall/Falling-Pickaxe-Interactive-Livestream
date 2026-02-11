@@ -88,6 +88,6 @@
             "obsidian": {"frequency": 5},
             "tnt": {"frequency": 0.5}
         },
-        "frequency": 100
+        "frequency": 1
     }
 }
