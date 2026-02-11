@@ -1,9 +1,11 @@
 from __future__ import annotations
 from queue import Queue
 import time
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 import threading
 import sql
+from command import Command
+import random
 
 import game_data
 from text import AlignmentType, render_text
@@ -15,6 +17,7 @@ class Chat():
         self.world: World = world
         self.chat_message_queue: Queue[tuple[str, str]] = Queue()
         self._displayed_messages: list[tuple[str, float]] = []
+        self._auto_message_timers: dict[Command, float] = {}
 
     def send_chat_messages(self, chat_messages: list[tuple[str, str]]):
         for chat_message in chat_messages:
@@ -85,7 +88,22 @@ class Chat():
         for remove in to_remove:
             self._displayed_messages.remove(remove)
 
+    def _auto_messages(self):
+        for i, command in enumerate(Command):
+            if command.name not in game_data.config.auto_commands.keys():
+                continue
+            auto_command_config: dict[str, Any] = game_data.config.auto_commands[command.name]
+            interval: float = auto_command_config["interval"]
+            variation: float = auto_command_config["variation"]
+            if command not in self._auto_message_timers:
+                self._auto_message_timers[command] = interval + random.uniform(-variation, variation)
+            self._auto_message_timers[command] -= game_data.config.delta_time
+            if self._auto_message_timers[command] <= 0:
+                self._auto_message_timers[command] = interval + random.uniform(-variation, variation)
+                self.send_chat_message(("@ADMIN", command.name))
+
     def tick(self):
+        self._auto_messages()
         self._execute_messages()
         self._update_displayed_messages()
         self._render()
