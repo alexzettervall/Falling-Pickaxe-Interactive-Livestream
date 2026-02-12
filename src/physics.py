@@ -28,8 +28,8 @@ class PhysicsManager():
         self.world: World = world
         self.body_rigidbodies: bidict[Body, RigidBody] = bidict()
         self.space = pymunk.Space()
-        self.space.gravity = (0, -400)
-        self.space.iterations = 30
+        self.space.gravity = (0, -600)
+        self.space.iterations = 10
         self.space.on_collision(None, None, self.on_collision_begin, None, None, self.on_collision_end)
         self.rigidbodies_to_remove: set[RigidBody] = set()
 
@@ -49,8 +49,8 @@ class PhysicsManager():
         self.body_rigidbodies.put(body, rigidbody)
         self.space.add(body)
         for shape in body.shapes:
-            shape.elasticity = 0.8
-            shape.friction = 0.3
+            shape.elasticity = 0.85
+            shape.friction = 0.95
             self.space.add(shape)
 
     def _set_body_type(self, body: Body, body_type: BodyType):
