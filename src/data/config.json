@@ -3,15 +3,15 @@
     "delta_time": 0.0166666667,
     "physics_scale": 32,
     "render_distance": 50,
-    "chunk_size": [13, 25],
-    "camera_size": 13,
+    "chunk_size": [9, 25],
+    "camera_size": 8.5,
     "block_size": [1, 1],
     "default_break_speed": 10.0,
     "debug": false,
 
     "screen": {
-        "height": 832,
-        "width": 416
+        "height": 864,
+        "width": 432
     },
     
     "tnt": {
