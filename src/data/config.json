@@ -71,48 +71,48 @@
             "variation": 25.0
         },
         "FAST": {
-            "interval": 40.0,
-            "variation": 35.0
+            "interval": 150.0,
+            "variation": 145.0
         },
         "SLOW": {
-            "interval": 50.0,
-            "variation": 45.0
+            "interval": 150.0,
+            "variation": 145.0
         },
         "BIG": {
-            "interval": 36.0,
-            "variation": 31.0
+            "interval": 100.0,
+            "variation": 95.0
         },
         "SMALL": {
-            "interval": 44.0,
-            "variation": 39.0
+            "interval": 100.0,
+            "variation": 95.0
         },
         "WOOD": {
-            "interval": 60.0,
-            "variation": 55.0
+            "interval": 300.0,
+            "variation": 295.0
         },
         "STONE": {
-            "interval": 56.0,
-            "variation": 51.0
+            "interval": 300.0,
+            "variation": 295.0
         },
         "COPPER": {
-            "interval": 52.0,
-            "variation": 47.0
+            "interval": 200.0,
+            "variation": 195.0
         },
         "IRON": {
-            "interval": 48.0,
-            "variation": 43.0
+            "interval": 200.0,
+            "variation": 195.0
         },
         "GOLD": {
-            "interval": 44.0,
-            "variation": 39.0
+            "interval": 200.0,
+            "variation": 195.0
         },
         "DIAMOND": {
-            "interval": 40.0,
-            "variation": 35.0
+            "interval": 200.0,
+            "variation": 195.0
         },
         "NETHERITE": {
-            "interval": 36.0,
-            "variation": 31.0
+            "interval": 200.0,
+            "variation": 195.0
         },
         "CLONE": {
             "interval": 130.0,
