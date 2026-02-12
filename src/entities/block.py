@@ -8,6 +8,7 @@ from pygame import Vector2
 from component import Component
 from components.health import Health
 from components.rigidbody import RigidBody
+from components.sprite_renderer import SpriteRenderer
 from entities.entity import Entity
 from physics import BodyType, CollisionType
 from game_data import config
@@ -23,6 +24,8 @@ class Block(Entity):
         self.dead = False
         self.dislodged = False
         self.chunk = chunk
+        if self.chunk != None:
+            self.chunk.blocks.append(self)
         self.material: str = material
 
         vertices = [

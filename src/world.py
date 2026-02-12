@@ -11,6 +11,7 @@ from components.health import Health
 from entities.background import Background
 from entities.block import Block
 from components.rigidbody import RigidBody
+from entities.damageable_block import DamageableBlock
 from entities.nuke import Nuke
 from entities.pickaxe import Pickaxe
 from entities.tnt import TNT
@@ -219,6 +220,17 @@ class World:
         cloned_pickaxe.set_pickaxe_type(self.pickaxe.get_pickaxe_type())
         cloned_pickaxe.set_pickaxe_size(self.pickaxe.get_pickaxe_size())
         self.add_entity(cloned_pickaxe)
-        cloned_pickaxe.remove(time = game_data.config.clone_lifetime)
+        cloned_pickaxe.remove_after(time = game_data.config.clone_lifetime)
         self.chat.add_displayed_message(f"{user} cloned the pickaxe!")
         self.sound_manager.play_sound("clone")
+
+    def spawn_blocks(self, user: str):
+        for _ in range(50):
+            location: Location = self.pickaxe.location.clone()
+            location.position.y += random.uniform(15, 30)
+            location.position.x = random.uniform(-game_data.config.chunk_size[0]/2+1.5, game_data.config.chunk_size[0]/2-1.5)
+            material: str = random.choice(list(game_data.MATERIAL_DATA.keys()))
+            block = DamageableBlock(self.get_chunk_at_position(self.pickaxe.location.position), material, location)
+            block.dislodge()
+            block.remove_after(60)
+        self.chat.add_displayed_message(f"{user} is making it rain blocks!")

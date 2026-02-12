@@ -47,13 +47,16 @@ class Entity():
             if self.lifetime <= 0:
                 self.remove()
 
-    def remove(self, time: float = 0):
+    def remove_after(self, time: float):
         if self.dead:
             return
         
-        if time > 0:
-            self.lifetime = time
-            self.life_timer = True
+        self.lifetime = time
+        self.life_timer = True
+        return
+
+    def remove(self):
+        if self.dead:
             return
         
         self.dead = True

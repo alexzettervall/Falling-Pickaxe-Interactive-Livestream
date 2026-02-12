@@ -111,6 +111,10 @@
         "CLONE": {
             "interval": 130.0,
             "variation": 125.0
+        },
+        "BLOCKS": {
+            "interval": 130.0,
+            "variation": 125.0
         }
     }
 }

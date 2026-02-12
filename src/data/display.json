@@ -1,7 +1,7 @@
 {
     "commands": {
         "font": "big",
-        "text": "🟡Commands\n🔴tnt\n🔴avalanche\n🟢fast\n🟠slow\n🟣big\n⚪small\n🔵diamond\n🟡(more in desc.)",
+        "text": "🟡Commands\n🔴tnt\n🔵clone\n⚪blocks\n🔴avalanche\n🟢fast\n🟣big\n🔵diamond\n🟡(more in desc.)",
         "screen_position": [28, 120],
         "alignment_type": "LEFT",
         "color": "yellow",

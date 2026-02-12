@@ -15,3 +15,4 @@ class Command(Enum):
     DIAMOND = 11
     NETHERITE = 12
     CLONE = 13
+    BLOCKS = 14

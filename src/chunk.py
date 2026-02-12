@@ -12,15 +12,15 @@ class Chunk:
         self.size = size
         self.location = location # Chunk position is in the center of the chunk and blocks are generated around it
         self.biome = get_biome()
-        self.blocks: list[Block] = self.generate_blocks(size)
+        self.blocks: list[Block] = []
+        self.generate_blocks(size)
         self.blocks_to_remove = []
 
     # Generate blocks and returns a list of lists containing them. 
     # The outer list contains each x segment of blocks.
     # Each segment contains a list of vertically alligned blocks.
     # Verticle blocks are ordered by y position. 0 = lowers, 1 = higher
-    def generate_blocks(self, size: tuple[int, int]) -> list[Block]:
-        blocks: list[Block] = []
+    def generate_blocks(self, size: tuple[int, int]):
         center_offset_x = -(size[0] - 1) / 2
         center_offset_y = -(size[1] - 1) / 2
         for x in range(size[0]):
@@ -42,13 +42,11 @@ class Chunk:
                     
 
                 if material == "bedrock":
-                    blocks.append(Block(self, material, Location(self.location.world, Vector2(x_pos, y_pos))))
+                    Block(self, material, Location(self.location.world, Vector2(x_pos, y_pos)))
                 elif material == "tnt":
-                    blocks.append(TNT(chunk = self, location = Location(self.location.world, Vector2(x_pos, y_pos)), user = None))
+                    TNT(chunk = self, location = Location(self.location.world, Vector2(x_pos, y_pos)), user = None)
                 else:
-                    blocks.append(DamageableBlock(self, material, Location(self.location.world, Vector2(x_pos, y_pos))))
-
-        return blocks
+                    DamageableBlock(self, material, Location(self.location.world, Vector2(x_pos, y_pos)))
     
     def get_block_at_position(self, position: Vector2, block_size: float = 1) -> Block | None:
         for block in self.blocks:
