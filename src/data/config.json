@@ -15,6 +15,7 @@
     
     "physics": {
         "scale": 32,
+        "iterations": 30,
         "gravity": -1000.0,
         "default_elasticity": 0.85,
         "default_friction": 0.95
