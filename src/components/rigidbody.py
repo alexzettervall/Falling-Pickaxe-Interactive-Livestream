@@ -12,7 +12,7 @@ class RigidBody(Component):
         for vertices in shapes:
             for i in range(len(vertices)):
                 vertex = vertices[i]
-                vertices[i] = ((vertex[0]) * self.entity.size.x * config.physics_scale, (-vertex[1]) * self.entity.size.y * config.physics_scale)
+                vertices[i] = ((vertex[0]) * self.entity.size.x * config.physics["scale"], (-vertex[1]) * self.entity.size.y * config.physics["scale"])
 
         self.entity.location.world.physics_manager.add_rigidbody(self, shapes, collision_type, body_type)
         self._rigidbodies_in_contact: set[RigidBody] = set()

@@ -13,7 +13,6 @@ class Config():
                  fps: float,
                  debug: bool, 
                  delta_time: float, 
-                 physics_scale: float, 
                  render_distance: float, 
 
                  tnt_fuse_time: float, 
@@ -46,7 +45,9 @@ class Config():
                  chat_position: tuple[int, int],
                  chat_alignment_type: AlignmentType,
 
-                 auto_commands: dict[str, Any]
+                 auto_commands: dict[str, Any],
+
+                 physics: dict[str, Any]
     ) -> None:
         self.screen_width = screen_width
         self.screen_height = screen_height
@@ -55,7 +56,6 @@ class Config():
         self.fps = fps
         self.debug = debug
         self.delta_time = delta_time
-        self.physics_scale = physics_scale
         self.render_distance = render_distance
 
         self.tnt_fuse_time = tnt_fuse_time
@@ -88,4 +88,5 @@ class Config():
         self.chat_position = chat_position
         self.chat_alignment_type = chat_alignment_type
         self.auto_commands = auto_commands
+        self.physics = physics
 

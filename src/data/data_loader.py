@@ -104,7 +104,6 @@ def load_config() -> Config:
     fps: float = config_json["fps"]
     debug: bool = config_json["debug"]
     delta_time: float = config_json["delta_time"]
-    physics_scale: float = config_json["physics_scale"]
     render_distance: float = config_json["render_distance"]
     tnt_fuse_time: float = config_json["tnt"]["fuse_time"]
     tnt_flash_interval: float = config_json["tnt"]["flash_interval"]
@@ -121,7 +120,6 @@ def load_config() -> Config:
         fps=fps,
         debug=debug,
         delta_time=delta_time,
-        physics_scale=physics_scale,
         render_distance=render_distance,
         
         tnt_fuse_time=tnt_fuse_time,
@@ -156,7 +154,9 @@ def load_config() -> Config:
         chat_position=tuple(config_json["chat"]["position"]),
         chat_alignment_type=text.AlignmentType[config_json["chat"]["alignment_type"]],
 
-        auto_commands=config_json["auto_commands"]
+        auto_commands=config_json["auto_commands"],
+
+        physics=config_json["physics"]
     )
 
     return config

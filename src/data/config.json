@@ -1,7 +1,6 @@
 {
     "fps": 63,
     "delta_time": 0.0166666667,
-    "physics_scale": 32,
     "render_distance": 50,
     "chunk_size": [9, 25],
     "camera_size": 8.5,
@@ -14,6 +13,13 @@
         "width": 432
     },
     
+    "physics": {
+        "scale": 32,
+        "gravity": -1000.0,
+        "default_elasticity": 0.85,
+        "default_friction": 0.95
+    },
+
     "tnt": {
         "fuse_time": 4.0,
         "flash_interval": 0.3,
