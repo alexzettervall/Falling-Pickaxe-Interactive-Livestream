@@ -9,8 +9,8 @@
     "debug": false,
 
     "screen": {
-        "height": 864,
-        "width": 432
+        "height": 816,
+        "width": 408
     },
     
     "physics": {
