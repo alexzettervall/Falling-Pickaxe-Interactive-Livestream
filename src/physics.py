@@ -28,7 +28,7 @@ class PhysicsManager():
         self.world: World = world
         self.body_rigidbodies: bidict[Body, RigidBody] = bidict()
         self.space = pymunk.Space()
-        self.space.gravity = (0, config.physics["gravity"])
+        self.space.gravity = (0, config.physics["gravity"] * config.physics["scale"])
         self.space.iterations = config.physics["iterations"]
         self.space.on_collision(None, None, self.on_collision_begin, None, None, self.on_collision_end)
         self.rigidbodies_to_remove: set[RigidBody] = set()
