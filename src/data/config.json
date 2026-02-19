@@ -25,7 +25,7 @@
         "fuse_time": 4.0,
         "flash_interval": 0.3,
         "radius": 5.5,
-        "damage": 300
+        "damage": 300.0
     },
 
     "nuke": {
