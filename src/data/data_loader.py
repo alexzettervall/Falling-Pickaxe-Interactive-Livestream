@@ -6,7 +6,7 @@ import text
 from typing import TYPE_CHECKING, Any
 import pygame
 from pygame import Surface, Vector2
-from data.config import Config, PhysicsConfig
+from data.config import Config, PhysicsConfig, TNTConfig
 from material import MaterialData
 from sound_data import SoundData
 from pygame.mixer import Sound
@@ -112,6 +112,14 @@ def load_config() -> Config:
     block_size: Vector2 = Vector2(config_json["block_size"])
     pickaxe_break_delay: float = config_json["default_break_speed"]
 
+    config_tnt = config_json["tnt"]
+    tnt: TNTConfig = TNTConfig(
+        fuse_time=config_tnt["fuse_time"],
+        flash_interval=config_tnt["flash_interval"],
+        radius=config_tnt["radius"],
+        damage=config_tnt["damage"]
+    )
+
     config_physics = config_json["physics"]
     physics: PhysicsConfig = PhysicsConfig(
         scale=config_physics["scale"],
@@ -131,10 +139,7 @@ def load_config() -> Config:
         delta_time=delta_time,
         render_distance=render_distance,
         
-        tnt_fuse_time=tnt_fuse_time,
-        tnt_flash_interval=tnt_flash_interval,
-        tnt_radius=tnt_radius,
-        tnt_damage=tnt_damage,
+        tnt=tnt,
 
         nuke_radius=config_json["nuke"]["radius"],
         nuke_damage=config_json["nuke"]["damage"],

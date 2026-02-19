@@ -14,6 +14,13 @@ class PhysicsConfig:
     default_friction: float
 
 @dataclass(slots=True)
+class TNTConfig:
+    fuse_time: float
+    flash_interval: float
+    radius: float
+    damage: float
+
+@dataclass(slots=True)
 class Config:
     screen_width: int
     screen_height: int
@@ -24,10 +31,7 @@ class Config:
     delta_time: float
     render_distance: float
     
-    tnt_fuse_time: float
-    tnt_flash_interval: float
-    tnt_radius: float
-    tnt_damage: float
+    tnt: TNTConfig
     
     nuke_radius: float
     nuke_damage: float

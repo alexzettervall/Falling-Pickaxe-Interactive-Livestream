@@ -29,11 +29,11 @@ class TNT(DamageableBlock):
         if user != None:
             self.text_renderer.text = user
 
-        self.fuse: float = game_data.config.tnt_fuse_time + random.uniform(-0.5, 0.5)
+        self.fuse: float = game_data.config.tnt.fuse_time + random.uniform(-0.5, 0.5)
         self.ignited: bool = False
 
-        self.explosion_radius = game_data.config.tnt_radius
-        self.explosion_damage = game_data.config.tnt_damage
+        self.explosion_radius = game_data.config.tnt.radius
+        self.explosion_damage = game_data.config.tnt.damage
 
     @override
     def on_damaged(self):
@@ -51,7 +51,7 @@ class TNT(DamageableBlock):
         if not self.ignited:
             return
         
-        self.flash_sprite_renderer.alpha = math.sin(2 * math.pi * (game_data.config.tnt_fuse_time - self.fuse) / game_data.config.tnt_flash_interval) / 2 + 0.5
+        self.flash_sprite_renderer.alpha = math.sin(2 * math.pi * (game_data.config.tnt.fuse_time - self.fuse) / game_data.config.tnt.fuse_time) / 2 + 0.5
         self.fuse -= game_data.config.delta_time
         if self.fuse <= 0:
             self.explode()
