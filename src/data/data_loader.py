@@ -6,7 +6,7 @@ import text
 from typing import TYPE_CHECKING, Any
 import pygame
 from pygame import Surface, Vector2
-from data.config import Config
+from data.config import Config, PhysicsConfig
 from material import MaterialData
 from sound_data import SoundData
 from pygame.mixer import Sound
@@ -112,6 +112,15 @@ def load_config() -> Config:
     block_size: Vector2 = Vector2(config_json["block_size"])
     pickaxe_break_delay: float = config_json["default_break_speed"]
 
+    config_physics = config_json["physics"]
+    physics: PhysicsConfig = PhysicsConfig(
+        scale=config_physics["scale"],
+        iterations=config_physics["iterations"],
+        gravity=config_physics["gravity"],
+        default_elasticity=config_physics["default_elasticity"],
+        default_friction=config_physics["default_friction"]
+    )
+
     config = Config(
         screen_width=screen_width,
         screen_height=screen_height,
@@ -156,7 +165,7 @@ def load_config() -> Config:
 
         auto_commands=config_json["auto_commands"],
 
-        physics=config_json["physics"]
+        physics=physics
     )
 
     return config

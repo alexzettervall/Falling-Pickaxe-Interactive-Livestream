@@ -6,6 +6,14 @@ from text import AlignmentType
 from typing import Any
 
 @dataclass(slots=True)
+class PhysicsConfig:
+    scale: float
+    iterations: int
+    gravity: float
+    default_elasticity: float
+    default_friction: float
+
+@dataclass(slots=True)
 class Config:
     screen_width: int
     screen_height: int
@@ -46,4 +54,4 @@ class Config:
     chat_position: tuple[int, int]
     chat_alignment_type: AlignmentType
     auto_commands: list
-    physics: dict[str, Any]
+    physics: PhysicsConfig

@@ -28,8 +28,8 @@ class PhysicsManager():
         self.world: World = world
         self.body_rigidbodies: bidict[Body, RigidBody] = bidict()
         self.space = pymunk.Space()
-        self.space.gravity = (0, config.physics["gravity"] * config.physics["scale"])
-        self.space.iterations = config.physics["iterations"]
+        self.space.gravity = (0, config.physics.gravity * config.physics.scale)
+        self.space.iterations = config.physics.iterations
         self.space.on_collision(None, None, self.on_collision_begin, None, None, self.on_collision_end)
         self.rigidbodies_to_remove: set[RigidBody] = set()
 
@@ -39,7 +39,7 @@ class PhysicsManager():
         self._set_body_type(body, body_type)
 
         entity = rigidbody.entity
-        body.position = (entity.location.position.x * config.physics["scale"], entity.location.position.y * config.physics["scale"])
+        body.position = (entity.location.position.x * config.physics.scale, entity.location.position.y * config.physics.scale)
         for shape in shapes:
             pymunk_shape = Poly(body, shape)
             pymunk_shape.density = 1
@@ -49,8 +49,8 @@ class PhysicsManager():
         self.body_rigidbodies.put(body, rigidbody)
         self.space.add(body)
         for shape in body.shapes:
-            shape.elasticity = config.physics["default_elasticity"]
-            shape.friction = config.physics["default_friction"]
+            shape.elasticity = config.physics.default_elasticity
+            shape.friction = config.physics.default_friction
             self.space.add(shape)
 
     def _set_body_type(self, body: Body, body_type: BodyType):
@@ -73,7 +73,7 @@ class PhysicsManager():
             draw_options = pymunk.pygame_util.DrawOptions(game_data.camera.surface)
             draw_options.transform = pymunk.Transform(
                 a=1, b=0, c=0, d=-1, tx=config.screen_width / 2, ty=config.screen_height / 2
-            ).translated(offset.x * config.physics["scale"], -offset.y * config.physics["scale"])
+            ).translated(offset.x * config.physics.scale, -offset.y * config.physics.scale)
 
             self.space.debug_draw(draw_options)
 
@@ -81,7 +81,7 @@ class PhysicsManager():
     def update_rigidbody_positions(self):
         for body in self.body_rigidbodies.keys():
             rigidbody = self.body_rigidbodies[body]
-            rigidbody.on_position_update(Vector2(body.position.x / config.physics["scale"], body.position.y / config.physics["scale"]))
+            rigidbody.on_position_update(Vector2(body.position.x / config.physics.scale, body.position.y / config.physics.scale))
             rigidbody.update_rotation_degrees(math.degrees(body.angle))
 
     def remove_rigidbodies(self):
@@ -112,7 +112,7 @@ class PhysicsManager():
         body = self.body_rigidbodies.inverse.get(rigidbody)
         if body == None:
             return
-        body.position = Vec2d(position.x * config.physics["scale"], position.y * config.physics["scale"])
+        body.position = Vec2d(position.x * config.physics.scale, position.y * config.physics.scale)
 
     def rotate_rigidbody_degrees(self, rigidbody: RigidBody, angle: float):
         body = self.body_rigidbodies.inverse.get(rigidbody)
@@ -121,7 +121,7 @@ class PhysicsManager():
         body.angle = math.radians(angle)
 
     def point_query(self, point: tuple[float, float], max_distance: float) -> list[Entity]:
-        queries: list[PointQueryInfo] = self.space.point_query((point[0] * config.physics["scale"], point[1] * config.physics["scale"]), max_distance * config.physics["scale"], ShapeFilter())
+        queries: list[PointQueryInfo] = self.space.point_query((point[0] * config.physics.scale, point[1] * config.physics.scale), max_distance * config.physics.scale, ShapeFilter())
         entities: list[Entity] = []
         for query in queries:
             if query.shape.body == None:
@@ -139,7 +139,7 @@ class PhysicsManager():
         body = self.body_rigidbodies.inverse.get(rigidbody)
         if body == None:
             return
-        body.velocity = (velocity.x * config.physics["scale"], velocity.y * config.physics["scale"])
+        body.velocity = (velocity.x * config.physics.scale, velocity.y * config.physics.scale)
 
     """
     Set the size of the pymunk body associated with the rigidbody.
