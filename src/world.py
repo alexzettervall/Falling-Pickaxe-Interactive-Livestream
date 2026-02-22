@@ -198,7 +198,7 @@ class World:
             return
         self.pickaxe.set_pickaxe_size(PickaxeSize.BIG)
         self.chat.add_displayed_message(f"{user} made the pickaxe big!")
-        time.sleep(game_data.config.pickaxe_size_changee_duration)
+        time.sleep(game_data.config.pickaxe_size_change_duration)
         self.pickaxe.set_pickaxe_size(PickaxeSize.NORMAL)
 
     def size_small(self, user: str):
@@ -206,7 +206,7 @@ class World:
             return
         self.pickaxe.set_pickaxe_size(PickaxeSize.SMALL)
         self.chat.add_displayed_message(f"{user} made the pickaxe small!")
-        time.sleep(game_data.config.pickaxe_size_changee_duration)
+        time.sleep(game_data.config.pickaxe_size_change_duration)
         self.pickaxe.set_pickaxe_size(PickaxeSize.NORMAL)
 
     def set_pickaxe_type(self, user: str, pickaxe_type: str):
