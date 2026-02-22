@@ -51,7 +51,7 @@ class TNT(DamageableBlock):
         if not self.ignited:
             return
         
-        self.flash_sprite_renderer.alpha = math.sin(2 * math.pi * (game_data.config.tnt.fuse_time - self.fuse) / game_data.config.tnt.fuse_time) / 2 + 0.5
+        self.flash_sprite_renderer.alpha = math.sin(2 * math.pi * (game_data.config.tnt.fuse_time - self.fuse) / game_data.config.tnt.flash_interval) / 2 + 0.5
         self.fuse -= game_data.config.delta_time
         if self.fuse <= 0:
             self.explode()
