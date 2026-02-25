@@ -6,7 +6,7 @@ import text
 from typing import TYPE_CHECKING, Any
 import pygame
 from pygame import Surface, Vector2
-from data.config import Config, PhysicsConfig, TNTConfig
+from data.config import Config, NukeConfig, PhysicsConfig, TNTConfig
 from material import MaterialData
 from sound_data import SoundData
 from pygame.mixer import Sound
@@ -129,6 +129,13 @@ def load_config() -> Config:
         default_friction=config_physics["default_friction"]
     )
 
+    config_nuke = config_json["nuke"]
+    nuke: NukeConfig = NukeConfig(
+        radius=config_nuke["radius"],
+        damage=config_nuke["damage"],
+        required_xp=config_nuke["required_xp"]
+    )
+
     config = Config(
         screen_width=screen_width,
         screen_height=screen_height,
@@ -141,9 +148,7 @@ def load_config() -> Config:
         
         tnt=tnt,
 
-        nuke_radius=config_json["nuke"]["radius"],
-        nuke_damage=config_json["nuke"]["damage"],
-        nuke_xp=config_json["nuke"]["xp"],
+        nuke=nuke,
 
         block_size=block_size,
         default_break_speed=pickaxe_break_delay,

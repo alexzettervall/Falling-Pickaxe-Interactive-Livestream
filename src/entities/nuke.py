@@ -13,8 +13,8 @@ class Nuke(TNT):
         super().__init__(None, location, user)
         self.rigidbody.set_size(Vector2(2.5, 2.5))
 
-        self.explosion_radius = game_data.config.nuke_radius
-        self.explosion_damage = game_data.config.nuke_damage
+        self.explosion_radius = game_data.config.nuke.radius
+        self.explosion_damage = game_data.config.nuke.damage
         self.text_renderer.font = "big"
         self.text_renderer.text = "🔴NUKE"
         self.text_renderer.offset = Vector2(0, 1.5)

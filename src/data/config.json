@@ -31,7 +31,7 @@
     "nuke": {
         "radius": 25.0,
         "damage": 1000000.0,
-        "xp": 50000.0
+        "required_xp": 50000.0
     },
 
     "speed": {

@@ -51,7 +51,7 @@ class World:
 
     def tick(self):
         global tick
-        if self.xp >= game_data.config.nuke_xp:
+        if self.xp >= game_data.config.nuke.required_xp:
             self.spawn_nuke()
             self.xp = 0
         for entity in self.entities_to_remove:

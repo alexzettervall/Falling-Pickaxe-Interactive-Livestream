@@ -86,7 +86,7 @@ class Display():
     def tick(self, world: World):
         nuke_text = self.texts["nuke"].text
         nuke_text = str.replace(nuke_text, "{xp}", str(round(world.xp)))
-        nuke_text = str.replace(nuke_text, "{nuke_xp}", str(round(game_data.config.nuke_xp)))
+        nuke_text = str.replace(nuke_text, "{nuke_xp}", str(round(game_data.config.nuke.required_xp)))
         self.texts["nuke"].text_to_render = nuke_text
 
         self._render()

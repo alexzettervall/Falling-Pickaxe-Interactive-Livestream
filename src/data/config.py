@@ -21,6 +21,12 @@ class TNTConfig:
     damage: float
 
 @dataclass(slots=True)
+class NukeConfig:
+    radius: float
+    damage: float
+    required_xp: float
+
+@dataclass(slots=True)
 class Config:
     screen_width: int
     screen_height: int
@@ -32,10 +38,7 @@ class Config:
     render_distance: float
     
     tnt: TNTConfig
-    
-    nuke_radius: float
-    nuke_damage: float
-    nuke_xp: float
+    nuke: NukeConfig
     
     block_size: Vector2
     default_break_speed: float
